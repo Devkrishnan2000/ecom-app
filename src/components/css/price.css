@@ -1,14 +1,11 @@
 .price-div{
     display: flex;
+    margin-top: 10px;
 }
 
 .norm-price
 {
     text-decoration: line-through;
     font-size: 10px;
-
-}
-.offer-price
-{
-    
+    margin-left: -60px;
 }

@@ -8,7 +8,7 @@ include 'dbconnect.php';
  switch($method)
  {
     case "GET":
-         if(isset($_GET))
+         if(isset($_GET['num']))
          {
            $limit = $_GET['num'];
          }

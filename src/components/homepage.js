@@ -39,7 +39,7 @@ export default class HomePage extends Component
             <ShowProducts key={this.state.count} numofprod={this.state.count}/>
             <button onClick={this.addnumprod} name="addprod" style={{float:"right",marginRight:20+"px"}} >VIEW MORE</button>
             <h1 style={{margin:27+'px',marginTop:86+'px'}}> SHOP FOR <span>TOOLS</span></h1>
-            <ShowParts></ShowParts>
+            <ShowParts key={this.state.count} numofpart={this.state.count}></ShowParts>
            </div>
        )
   }
