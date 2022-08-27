@@ -1,0 +1,14 @@
+.price-div{
+    display: flex;
+}
+
+.norm-price
+{
+    text-decoration: line-through;
+    font-size: 10px;
+
+}
+.offer-price
+{
+    
+}
