@@ -36,12 +36,13 @@ export default class Part extends Component
         }
         else
         return(
-            <h6 style={{marginTop: 10+"px",fontWeight: 500+"px"}}>₹ {this.props.price}.00</h6>
+            <h6 style={{marginTop: 23+"px",fontWeight: 500+"px"}}>₹ {this.props.price}.00</h6>
         ) 
      }
 
      setdiscount()
      {
+       
         if(this.props.discount!=="-1")
         {
             return(

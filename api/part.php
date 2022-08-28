@@ -8,7 +8,8 @@ if ($conn->connect_error) {
 
 if(isset($_GET['num']))
  {
-    $sql = "select pid,pname,pimage,price,oprice,discount,rating from products where ptype ='tool'";
+    $limit = $_GET['num'];
+    $sql = "select pid,pname,pimage,price,oprice,discount,rating from products where ptype ='tool' LIMIT $limit";
     $res = mysqli_query($conn,$sql);
     $rows = array();
     while($r= mysqli_fetch_assoc($res))

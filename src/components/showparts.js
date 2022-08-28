@@ -27,7 +27,6 @@ export default class ShowParts extends Component
     {
         return(
               <div className="wrapper">
-              <Part name ="Morary Driver Kit" img="images\Tools\morary.png" rating="5" price="1500" offerprice="-1" discount="40" />
               {this.state.data.map((result)=><Part key={result.pid} name={result.pname} img={result.pimage} price={result.price} offerprice={result.oprice} discount={result.discount} rating={result.rating}/>)}
               </div>
         )
