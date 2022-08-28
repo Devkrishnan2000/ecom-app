@@ -1,0 +1,16 @@
+.login-parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-div{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 350px;
+    height: 350px;
+    box-shadow:0px 0px 8px #B1B1B1;
+    margin: 117px 0px;
+    
+
+}

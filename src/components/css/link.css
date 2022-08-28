@@ -1,0 +1,12 @@
+
+a{
+    color: #02b3bd;
+}
+a:link:active
+{
+    color: #218489;
+}
+a:link:visited
+{
+    color: #5e5e5e;
+}

@@ -72,7 +72,7 @@ li {
     margin-left: 10px;
   }
 
-  input[type=text]
+  .nav-textbox
   {
     background-color:transparent;
     width:33vw ;

@@ -5,9 +5,9 @@ export default class Footer extends Component
     render()
     {
         return(
-            <div className="footer-div">
-            <h6 style={{textAlign: "center"}}>Designed by Devkrishnan V.A</h6>
-            </div>
+            <footer className="footer-div">
+            <h5 style={{textAlign: "center"}}>Designed by Devkrishnan V.A</h5>
+            </footer>
         )
     }
 }

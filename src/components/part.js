@@ -29,14 +29,14 @@ export default class Part extends Component
         {
             return(
                 <div className="price-div">
-                  <h6 className="norm-price" >₹ {this.props.price}.00</h6>
-                  <h6 style={{marginTop: 10+"px",fontWeight: 500+"px"}}>₹ {this.props.offerprice}.00</h6>
+                  <h5 className="norm-price" >₹ {this.props.price}.00</h5>
+                  <h5 style={{marginTop: 10+"px",fontWeight: 500+"px"}}>₹ {this.props.offerprice}.00</h5>
                 </div>
             )
         }
         else
         return(
-            <h6 style={{marginTop: 23+"px",fontWeight: 500+"px"}}>₹ {this.props.price}.00</h6>
+            <h5 style={{marginTop: 23+"px",fontWeight: 500+"px"}}>₹ {this.props.price}.00</h5>
         ) 
      }
 
@@ -47,7 +47,7 @@ export default class Part extends Component
         {
             return(
                 <div className="discount-div">
-                <h6>{this.props.discount}% off</h6>
+                <h5>{this.props.discount}% off</h5>
                 </div> 
             )
         }
@@ -60,7 +60,7 @@ export default class Part extends Component
               {this.setdiscount()}
               <img src={this.props.img}></img>
               <img src={this.setrating()}></img>
-              <h5>{this.props.name}</h5>
+              <h4>{this.props.name}</h4>
               {this.setprice()}
               </div>
         )
