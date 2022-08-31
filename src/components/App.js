@@ -6,11 +6,13 @@ import Footer from "./footer";
 import Login from "./login";
 import "./css/link.css";
 import CreateAccount from "./createAccount";
+import axios from "axios";
 export default class App extends Component
 {
    
     render()
     {
+        axios.defaults.withCredentials = true;
        return(
         <Router>
          

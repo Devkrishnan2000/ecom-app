@@ -1,28 +1,20 @@
 <?php
-session_start();
-header("Access-Control-Allow-Origin:http://127.0.0.1:3000");
-header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers', 'content-type, authorization, x-requested-with');
-header('Access-Control-Allow-Credentials:true');
-include 'dbconnect.php';
-/*
-if(!isset($_SESSION["user"]))
-echo "hello";
-else
-{
-    $cid = $_SESSION['user'];
-    $sql = "select cname from customer where cid=$cid";
-    $res = mysqli_query($conn,$sql);
-    if(mysqli_num_rows($res)==1)
-    {
-        $user = mysqli_fetch_assoc($res);
-        echo $user['cname'];
-    }
+ini_set("session.cookie_domain", 'localhost');
+session_set_cookie_params(3600, '/', 'localhost');
+if(!isset($_SESSION)) {
+   session_start();
 }
-*/
-if(isset($_SESSION['val']))
-echo "val";
-else
-echo session_id(); 
-
+// csrf code add here (see below...)
+$http_origin = $_SERVER['HTTP_ORIGIN'];
+if ($http_origin == "http://dev.local:3000" || $http_origin == "http://localhost:3000"){
+    header("Access-Control-Allow-Origin: $http_origin");
+}
+header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Headers: X-Requested-With, Origin, Content-Type, X-CSRF-Token, Accept');
+// code starts here
+$_SESSION['test'] = 'whatever';
+if(isset($_SESSION['user']))
+echo $_SESSION['user'];
+session_write_close();
 ?>
