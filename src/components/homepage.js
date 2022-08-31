@@ -4,14 +4,15 @@ import tagline from "./images/Banners/tagline.png";
 import ShowProducts from "./showproducts";
 import ShowParts from "./showparts";
 import Footer from "./footer";
-import { BrowserRouter as Router,Route,Switch } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 import  "./css/banner.css";
 import "./css/text.css";
 import "./css/button.css";
 
 
 
-export default class HomePage extends Component
+ class HomePage extends Component
 {
   state = {
     countx:1,   //to remove duplication bug by asigning different key
@@ -44,7 +45,12 @@ export default class HomePage extends Component
     });
     console.log(this.state.countpart);
   }
-
+  componentDidMount()
+  {
+    axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/userlogincheck.php",{withCredentials:true}).then(res=>{
+              console.log(res.data);
+            })
+  }
   
   render(){
    
@@ -62,3 +68,4 @@ export default class HomePage extends Component
        )
   }
 }
+export default withRouter(HomePage);

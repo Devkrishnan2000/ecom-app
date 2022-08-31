@@ -1,10 +1,10 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
-$conn = new mysqli("localhost","root","","fixme");
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+include 'dbconnect.php';
+
+$db = new DbConnect();
+$conn = $db->connect();
 
 if(isset($_GET['num']))
  {

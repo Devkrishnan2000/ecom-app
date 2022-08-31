@@ -1,20 +1,56 @@
 import React from "react";
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import "./css/navcss.css";
 import cart from "./images/navbar/cart.svg";
 import search from "./images/navbar/search.svg";
+import { Link,withRouter  } from "react-router-dom";
+import login from "./login";
+import DropDown from "./dropdown";
+import axios from "axios";
 
-export default class Navbar extends Component {
+ class Navbar extends Component {
      
           constructor(props)
           {
             super(props);
+            this.state={
+              visible:0,
+              loggedIn:0
+            }
+            this.setvisible = this.setvisible.bind(this);
+            this.setinvisible = this.setinvisible.bind(this);
+            this.dispdropdown =this.dispdropdown.bind(this);
           }
+
+          setvisible()
+          {
+            this.state.visible=1;
+            this.forceUpdate();
+          }
+          setinvisible()
+          {
+            this.state.visible=0;
+            this.forceUpdate();
+          }
+
+          dispdropdown()
+          {
+           if(this.state.visible==1)
+           {
+            return(
+                 <DropDown/>
+            )
+           }
+          }
+          
+      
+         
+          
+
   render() {
     return (
-      <div>
-        <ul>
+      <div onMouseLeave={this.setinvisible}>
+        <ul className="nav-list">
         <li>
             <a className='brand' href="/">{this.props.brand}</a>
           </li>
@@ -34,14 +70,17 @@ export default class Navbar extends Component {
             </div>
           </li>
           <li className='align-right'>
-          <a href="/login" style={{marginRight:20+"px"}}>LOGIN</a>
+            <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>LOGIN</Link>
           </li>
           <li className='align-right'>
-          <a href="#"><img src={cart}></img></a>
+          <a>
+          </a>
           </li>
-         
+          
         </ul>
+        {this.dispdropdown()}
       </div>
     );
   }
 }
+export default withRouter(Navbar);

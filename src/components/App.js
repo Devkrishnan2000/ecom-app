@@ -5,26 +5,28 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import Login from "./login";
 import "./css/link.css";
+import CreateAccount from "./createAccount";
 export default class App extends Component
 {
+   
     render()
     {
        return(
         <Router>
-        <div>
+         
+            <div>
         <Navbar brand="FixMe.com" option1="Laptop Parts" option2="Desktop Parts" option3="Tools"/> 
          <div>
              <Switch>
-                 <Route exact path="/">
-                  <HomePage/>
-                 </Route>
-                 <Route exact path="/login">
-                  <Login/>
-                 </Route>
+                 <Route exact  path="/" component={HomePage}/>
+                 <Route  path="/login" component={Login}/>
+                 <Route path="/createAccount" component={CreateAccount}/>
+                 
              </Switch>
          </div>
         <Footer/> 
         </div>
+       
        </Router>
 
        )  
