@@ -15,7 +15,7 @@ import axios from "axios";
             super(props);
             this.state={
               visible:0,
-              loggedIn:0
+              usrname:"LOGIN"
             }
             this.setvisible = this.setvisible.bind(this);
             this.setinvisible = this.setinvisible.bind(this);
@@ -24,21 +24,24 @@ import axios from "axios";
           }
 
 
-          componentDidMount()
+         componentDidMount()
+         {
+          console.log('navbar called');
+          if(this.props.islogin==1)
           {
-            axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/userlogincheck.php").then(res=>{
-              console.log(res.data);
-              this.setState({loggedIn:res.data});
-               
-            })
+            this.setState({usrname:this.props.username});
           }
+         
+         }
 
           setlogout()
           {
             axios.get('http://localhost:80/sem8project/ecom-app/ecom-app/api/logout.php').then(res=>{
               console.log("logged out");
+              this.setState({usrname:"LOGIN"});
             })
-            this.setState({loggedIn:"LOGIN"});
+           
+            this.props.setlogoutval();
           }
 
     
@@ -60,7 +63,7 @@ import axios from "axios";
 
           dispdropdown()
           {
-           if(this.state.visible==1&&this.state.loggedIn!="LOGIN")
+           if(this.state.visible==1&&this.state.usrname!="LOGIN")
            {
             return(
                  <DropDown logout={this.setlogout}/>
@@ -95,7 +98,7 @@ import axios from "axios";
             </div>
           </li>
           <li className='align-right'>
-            <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>{this.state.loggedIn}</Link>
+            <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>{this.state.usrname}</Link>
           </li>
           
           
