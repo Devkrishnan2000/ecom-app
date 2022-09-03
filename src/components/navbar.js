@@ -20,7 +20,32 @@ import axios from "axios";
             this.setvisible = this.setvisible.bind(this);
             this.setinvisible = this.setinvisible.bind(this);
             this.dispdropdown =this.dispdropdown.bind(this);
+            this.setlogout =this.setlogout.bind(this);
           }
+
+
+          componentDidMount()
+          {
+            axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/userlogincheck.php").then(res=>{
+              console.log(res.data);
+              this.setState({loggedIn:res.data});
+               
+            })
+          }
+
+          setlogout()
+          {
+            axios.get('http://localhost:80/sem8project/ecom-app/ecom-app/api/logout.php').then(res=>{
+              console.log("logged out");
+            })
+            this.setState({loggedIn:"LOGIN"});
+          }
+
+    
+      componentDidUpdate()
+      {
+       
+      }
 
           setvisible()
           {
@@ -35,10 +60,10 @@ import axios from "axios";
 
           dispdropdown()
           {
-           if(this.state.visible==1)
+           if(this.state.visible==1&&this.state.loggedIn!="LOGIN")
            {
             return(
-                 <DropDown/>
+                 <DropDown logout={this.setlogout}/>
             )
            }
           }
@@ -70,12 +95,9 @@ import axios from "axios";
             </div>
           </li>
           <li className='align-right'>
-            <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>LOGIN</Link>
+            <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>{this.state.loggedIn}</Link>
           </li>
-          <li className='align-right'>
-          <a>
-          </a>
-          </li>
+          
           
         </ul>
         {this.dispdropdown()}

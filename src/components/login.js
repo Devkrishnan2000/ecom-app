@@ -25,7 +25,7 @@ class Login extends Component
         fd.append('pass',e.target.pass.value);
         await axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/userlogin.php",fd).then(res=>{
          if(res.data===1)
-         this.props.history.push("/")
+         this.props.history.push("/");
          else
          this.setState({loginval:res.data});
         })      

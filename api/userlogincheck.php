@@ -9,12 +9,22 @@ $http_origin = $_SERVER['HTTP_ORIGIN'];
 if ($http_origin == "http://dev.local:3000" || $http_origin == "http://localhost:3000"){
     header("Access-Control-Allow-Origin: $http_origin");
 }
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Headers: X-Requested-With, Origin, Content-Type, X-CSRF-Token, Accept');
+include 'headers\header.php';
+include 'db\dbconnect.php';
 // code starts here
-$_SESSION['test'] = 'whatever';
 if(isset($_SESSION['user']))
-echo $_SESSION['user'];
+{
+    $cid = $_SESSION['user'];
+    $db = new DbConnect();
+    $conn = $db->connect();
+    $sql = "select cname from customer where cid=$cid";
+    $res = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($res);
+    echo $row['cname'];
+    mysqli_close($conn);
+}
+else
+echo "LOGIN";
+
 session_write_close();
 ?>

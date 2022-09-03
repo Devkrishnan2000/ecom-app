@@ -7,8 +7,10 @@ import Login from "./login";
 import "./css/link.css";
 import CreateAccount from "./createAccount";
 import axios from "axios";
+import homepage from "./homepage";
 export default class App extends Component
 {
+   
    
     render()
     {
@@ -20,7 +22,7 @@ export default class App extends Component
         <Navbar brand="FixMe.com" option1="Laptop Parts" option2="Desktop Parts" option3="Tools"/> 
          <div>
              <Switch>
-                 <Route exact  path="/" component={HomePage}/>
+                 <Route exact  path="/" component={homepage}/>
                  <Route  path="/login" component={Login}/>
                  <Route path="/createAccount" component={CreateAccount}/>
                  

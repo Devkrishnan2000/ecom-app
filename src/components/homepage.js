@@ -45,12 +45,7 @@ import "./css/button.css";
     });
     console.log(this.state.countpart);
   }
-  componentDidMount()
-  {
-    axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/userlogincheck.php").then(res=>{
-              console.log(res.data);
-            })
-  }
+  
   
   render(){
    

@@ -1,9 +1,22 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 
 export default class DropDown extends Component
 {
-    
+ 
+    constructor(props)
+    {
+       super(props);
+    }
+
+  /*  logout()
+    {
+      axios.get('http://localhost:80/sem8project/ecom-app/ecom-app/api/logout.php').then(res=>{
+        console.log("logged out");
+      })
+    }
+    */
     render()
     {
         return(
@@ -15,7 +28,7 @@ export default class DropDown extends Component
           <a>My Cart</a>
           </li>
           <li>
-          <a>Log Out</a>
+          <a onClick={this.props.logout}>Log Out</a>
           </li>
          </ul>
         )

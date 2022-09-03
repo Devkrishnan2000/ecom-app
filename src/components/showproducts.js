@@ -20,7 +20,7 @@ export default class ShowProducts extends Component
 
   componentDidMount()
   {
-    axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/index.php",{ params: { num: this.props.numofprod } }).then(res =>{
+    axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getproduct.php",{ params: { num: this.props.numofprod } }).then(res =>{
       this.setState({data: res.data})
       
     }

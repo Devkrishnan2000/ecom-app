@@ -17,7 +17,7 @@ export default class ShowParts extends Component
     }
     componentDidMount()
     {
-        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/part.php",{ params: { num: this.props.numofpart } }).then(res =>{
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getpart.php",{ params: { num: this.props.numofpart } }).then(res =>{
       this.setState({data: res.data})
       
     }
