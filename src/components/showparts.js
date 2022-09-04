@@ -27,7 +27,7 @@ export default class ShowParts extends Component
     {
         return(
               <div className="wrapper">
-              {this.state.data.map((result)=><Part key={result.pid} name={result.pname} img={result.pimage} price={result.price} offerprice={result.oprice} discount={result.discount} rating={result.rating}/>)}
+              {this.state.data.map((result)=><Part key={result.pid} id={result.pid} name={result.pname} img={result.pimage} price={result.price} offerprice={result.oprice} discount={result.discount} rating={result.rating}/>)}
               </div>
         )
     }

@@ -53,11 +53,11 @@ import "./css/button.css";
      
        if(res.data!=="LOGIN")
        {
-        this.props.setlogin(res.data);
+        this.props.setloginval(res.data);
        }
        else
        {
-        
+
        }
        
     })

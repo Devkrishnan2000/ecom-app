@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2022 at 08:51 AM
+-- Generation Time: Sep 03, 2022 at 03:56 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -49,6 +49,32 @@ INSERT INTO `brand` (`brandid`, `bname`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `cid` int(11) NOT NULL,
+  `cname` varchar(50) NOT NULL,
+  `caddr` text NOT NULL,
+  `cmail` varchar(30) NOT NULL,
+  `cphno` varchar(12) NOT NULL,
+  `cpass` text NOT NULL,
+  `pincode` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cid`, `cname`, `caddr`, `cmail`, `cphno`, `cpass`, `pincode`) VALUES
+(1, 'Devkrishnan', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva', 'des@gmail.com', '9074757442', '$2y$10$2H/GJx3tmSM5ZM/fvIN0iuazofT2wojDQ6gBbWsyKuuvUjrT42n7m', 683106),
+(2, 'Anjali V A', 'Aiswarya Nagar Flat no 207 thaikkattukara po aluva', 'anjaliaswinikumar7@gmail.com', '9400531221', '$2y$10$INpO8hWCi7lmpIwgIMlrKO9IgIy/ayCYw7hHvoqw6PsC1qbsAwXTi', 683123),
+(3, 'Aswinikumar V V', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva', 'aswinikumarjaya@gmail.com', '9847193950', '$2y$10$5NrKQ7qlenTHofmPNyVrO.tlYu8bmV1fvJPkejbmVuqNa74t7nKcC', 683106),
+(17, 'Jayasree M J', 'fsf', 'jayasreeaswinikumar@gmail.com', '9074757442', '$2y$10$WeWbDlBY0Ywq.gwtVp5jQ.FAN2hCM9rnu3Umi5pGgJreJJUzw/L9S', 683106);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `electronics`
 --
 
@@ -73,6 +99,27 @@ INSERT INTO `electronics` (`eid`, `ename`, `brandid`, `etype`, `eimage`) VALUES
 (2005, 'Predator', 1004, 'laptop', '/images/Products/predator.png'),
 (2006, 'Alienware 15 R3', 1005, 'laptop', 'images/Products/A15r3.png'),
 (2007, 'XPS 15', 1004, 'laptop', 'images/Products/delxps15.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pincode`
+--
+
+CREATE TABLE `pincode` (
+  `pincode` int(11) NOT NULL,
+  `place` varchar(50) NOT NULL,
+  `dfrom` int(11) NOT NULL,
+  `dto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pincode`
+--
+
+INSERT INTO `pincode` (`pincode`, `place`, `dfrom`, `dto`) VALUES
+(683106, 'Kandungaloor', 1, 2),
+(683123, 'Karumathra', 2, 5);
 
 -- --------------------------------------------------------
 
@@ -118,11 +165,24 @@ ALTER TABLE `brand`
   ADD PRIMARY KEY (`brandid`);
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`cid`),
+  ADD KEY `pincode` (`pincode`);
+
+--
 -- Indexes for table `electronics`
 --
 ALTER TABLE `electronics`
   ADD PRIMARY KEY (`eid`),
   ADD KEY `brandid` (`brandid`);
+
+--
+-- Indexes for table `pincode`
+--
+ALTER TABLE `pincode`
+  ADD PRIMARY KEY (`pincode`);
 
 --
 -- Indexes for table `products`
@@ -142,6 +202,12 @@ ALTER TABLE `brand`
   MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1009;
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
 -- AUTO_INCREMENT for table `electronics`
 --
 ALTER TABLE `electronics`
@@ -156,6 +222,12 @@ ALTER TABLE `products`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `customer`
+--
+ALTER TABLE `customer`
+  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`pincode`) REFERENCES `pincode` (`pincode`);
 
 --
 -- Constraints for table `electronics`

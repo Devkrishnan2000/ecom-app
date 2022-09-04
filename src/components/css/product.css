@@ -19,6 +19,13 @@
 }
 
 
+.cube .productImage
+{
+    height: 150px;
+    width: 150px;
+}
+
+
 .cube h5{
     margin-top: 10px;
 }

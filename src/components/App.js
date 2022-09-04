@@ -8,6 +8,7 @@ import "./css/link.css";
 import CreateAccount from "./createAccount";
 import axios from "axios";
 import homepage from "./homepage";
+import ProductPage from "./productPage";
 export default class App extends Component
 {
    constructor(props)
@@ -17,15 +18,15 @@ export default class App extends Component
         isloggedIn:0,
         username:"LOGIN"
     }  
-    this.setlogin = this.setlogin.bind(this);
+    this.setloginval = this.setloginval.bind(this);
     this.setlogout = this.setlogoutval.bind(this);
    }
 
-     setlogin(usr)
+     setloginval(usr)
      {
         this.setState({isloggedIn:1});
         this.setState({username:usr})
-        console.log(" setlogin method called"+this.state.username);
+        console.log(" setloginvalval method called"+this.state.username);
      }
 
      setlogoutval=()=>
@@ -46,11 +47,13 @@ export default class App extends Component
          <div>
              <Switch>
                  <Route exact  path="/">
-                    <HomePage setlogin={this.setlogin}/>
+                    <HomePage setloginval={this.setloginval}/>
                  </Route>
                  <Route  path="/login" component={Login}/>
                  <Route path="/createAccount" component={CreateAccount}/>
-                 
+                 <Route path="/productPage">
+                    <ProductPage prodname="MORARY DRIVER KIT" rating="4" reviewcount="4" price="2000" discount="30" offerprice="-1" stock="4"/>
+                 </Route>
              </Switch>
          </div>
         <Footer/> 

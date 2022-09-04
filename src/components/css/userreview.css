@@ -1,0 +1,26 @@
+.user{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.user img{
+   
+   margin-right: 10px;
+}
+
+.content{
+    margin-left: 35px;
+}
+.content img{
+    width: 120px;
+    height: 15px;
+}
+.content .title
+{
+    margin-top: 10px;
+}
+.content .cont
+{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

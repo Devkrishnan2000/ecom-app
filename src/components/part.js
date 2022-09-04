@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "./css/price.css";
 import "./css/discount.css";
-export default class Part extends Component
+class Part extends Component
 {
      constructor(props)
      {
         super(props);
+        this.viewpart = this.viewpart.bind(this);
 
      }
 
@@ -21,6 +23,14 @@ export default class Part extends Component
             case "5": return "images/star/stars5.svg";
             default :return "images/star/stars0.svg";
         }
+     }
+
+     viewpart()
+     {
+        this.props.history.push({
+            pathname: '/productPage',
+            state :{id:this.props.id}
+        });
      }
 
      setprice()
@@ -56,9 +66,9 @@ export default class Part extends Component
     {
          
         return(
-              <div className="cube">
+              <div onClick={this.viewpart} className="cube" style={{height:250+"px"}} >
               {this.setdiscount()}
-              <img src={this.props.img}></img>
+              <img className="productImage" src={this.props.img}></img>
               <img src={this.setrating()}></img>
               <h4>{this.props.name}</h4>
               {this.setprice()}
@@ -66,3 +76,4 @@ export default class Part extends Component
         )
     }
 }
+export default withRouter(Part);

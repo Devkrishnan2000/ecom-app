@@ -9,6 +9,9 @@ h1{
 h1 span{
     color: #00ADB5;
 }
+h2 span{
+    color: #00ADB5;
+}
 
 h4{
     font-size: 16px;
@@ -16,9 +19,16 @@ h4{
     font-weight: 400;
     letter-spacing: 1.5px;
 }
+
+h2
+{
+    font-family: 'Roboto';
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
 h5{
 
-    font-size: 15px;
+    font-size: 16px;
     font-family: 'Roboto';
     letter-spacing: 1px;
     font-weight: 400;
@@ -26,7 +36,7 @@ h5{
 }
 
 h6{
-    font-size: 10px;
+    font-size: 14px;
     font-family: 'Roboto';
     letter-spacing: 1px;
     font-weight: 400;
