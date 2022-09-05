@@ -1,0 +1,49 @@
+.parts-page
+{
+    margin-left: 40px;
+    background-color: #EEEEEE;
+}
+
+.parts-page .intro
+{
+    display: flex;
+    margin-top: 10px;
+}
+
+.parts-page .intro img
+{
+    width: 150px;
+    height: 150px;
+}
+.parts-page .intro h6
+{
+    text-align: start;
+    margin-top: 10px;
+}
+
+.parts-page .product-show
+{
+  margin-top: 30px;
+}
+.parts-page .product-category
+{
+    display: flex;
+    margin-top: 20px;
+    
+}
+.parts-page .product-condition
+{
+    display: flex;
+    margin-top: 20px;
+}
+.parts-page .product-condition h6
+{
+   margin-right: 10px;
+   margin-left: 5px;
+    
+}
+.parts-page .condition-price
+{
+    display: flex;
+    justify-content: space-between;
+}

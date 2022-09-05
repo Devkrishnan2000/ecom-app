@@ -1,0 +1,22 @@
+.category-div
+{
+    background-color: #EEEEEE;
+    border-style: solid;
+    border-color: #D9D9D9;
+    border-width: 0.5px;
+    border-radius: 1px;
+    box-shadow:0px 0px 4px #454545 ;
+    width: fit-content;
+    padding: 10px 30px;
+    margin: 10px;
+}
+
+.category-div:hover
+{
+    background-color: #444444;
+    color: white;
+    border-color: #444444;
+    box-shadow:0px 0px 4px #454545 ;
+    cursor: pointer;
+}
+  

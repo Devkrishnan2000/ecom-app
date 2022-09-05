@@ -23,12 +23,17 @@ import UserReview from "./userReview";
          stock:"",
          waranty:"",
          rating:"",
+         pcondition:"",
 
          place:"",
          to:"",
          from:"",
          isset:false,
-         fail:false
+         fail:false,
+
+         ispart:false
+
+        
        }
 
         this.setrating = this.setrating.bind(this);
@@ -39,8 +44,8 @@ import UserReview from "./userReview";
 
      componentDidMount()
      {
-      
-      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getproductdata.php",{params:{pid:this.props.location.state.id}}).then(res=>{
+        window.scrollTo(0, 0);
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getproductdata.php",{params:{pid:this.props.location.state.id}}).then(res=>{
         this.setState({pname:res.data['pname']});
         this.setState({pdesc:res.data['pdesc']});
         this.setState({pimage:res.data['pimage']});
@@ -50,6 +55,9 @@ import UserReview from "./userReview";
         this.setState({stock:res.data['stock']});
         this.setState({waranty:res.data['waranty']});
         this.setState({rating:res.data['rating']});
+        this.setState({pcondition:res.data['pcondition']});
+        if(typeof this.props.location.state.eid!=='undefined')
+        this.setState({ispart:true});
       }
       )
      }
@@ -69,7 +77,7 @@ import UserReview from "./userReview";
 
     pricedisp()
     {
-        if(this.state.oprice==="-1")
+        if(this.state.oprice===this.state.price)
         {
             if(this.state.stock>5)
             {
@@ -152,6 +160,22 @@ import UserReview from "./userReview";
      })
      
     }
+
+    getcondition()
+    {
+       if(this.state.pcondition==0)
+       {
+        return(
+          <h6  style={{marginTop:5+"px"}}>Condition : New</h6>
+        )
+       }
+       else if(this.state.pcondition==1)
+       {
+        return(
+          <h6  style={{marginTop:5+"px"}}>Condition : Refurbished</h6>
+        )
+       }
+    }
   render()
   {
 
@@ -194,8 +218,11 @@ import UserReview from "./userReview";
             <div style={{marginLeft:20+"px"}}>
               <h2>ABOUT THIS <span>ITEM</span></h2>
               <h6 style={{marginTop:10+"px"}}>{this.state.pdesc} </h6>
-              <h4 style={{marginTop:20+"px"}}>Waranty</h4>
-              <h6  style={{marginTop:5+"px"}}>{this.state.waranty} months</h6>
+              <h4 style={{marginTop:20+"px",marginBottom:10+"px",fontWeight:700}}>SPECIFICATION</h4>
+              <h6  style={{marginTop:5+"px"}}>Waranty : {this.state.waranty} months</h6>
+              {this.getcondition()}
+              {this.state.ispart &&
+                <button className="button-black" style={{marginTop:20+"px"}}>VIEW DIY INSTRUCTIONS</button>}
             </div>
             <UserReview pid={this.props.location.state.id}/>
            </div>

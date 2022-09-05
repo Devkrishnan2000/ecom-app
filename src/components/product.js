@@ -1,8 +1,9 @@
 import React from "react";
 import { Component } from "react";
 import  "./css/product.css"; 
+import { withRouter } from "react-router-dom";
 
-export default class product extends Component
+ class product extends Component
 {
      constructor(props)
      {
@@ -12,6 +13,10 @@ export default class product extends Component
     dev=()=>
     {
        console.log(this.props.mkey);
+       this.props.history.push({
+        pathname: '/partsPage',
+        state :{id:this.props.mkey,name:this.props.name,image:this.props.img}
+    });
     }
     render()
     {
@@ -23,3 +28,5 @@ export default class product extends Component
         )
     }
 }
+
+export default withRouter(product);

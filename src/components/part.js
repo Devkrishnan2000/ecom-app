@@ -27,15 +27,26 @@ class Part extends Component
 
      viewpart()
      {
-        this.props.history.push({
-            pathname: '/productPage',
-            state :{id:this.props.id}
-        });
+        if (typeof this.props.eid !== 'undefined') {
+            
+            this.props.history.push({
+                pathname: '/productPage',
+                state :{id:this.props.id, eid:this.props.eid}
+            });
+        }
+        else
+        {
+            this.props.history.push({
+                pathname: '/productPage',
+                state :{id:this.props.id}
+            });
+        }
+        
      }
 
      setprice()
      {
-        if(this.props.offerprice!=="-1")
+        if(this.props.offerprice!==this.props.price)
         {
             return(
                 <div className="price-div">

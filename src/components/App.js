@@ -9,6 +9,7 @@ import CreateAccount from "./createAccount";
 import axios from "axios";
 import homepage from "./homepage";
 import ProductPage from "./productPage";
+import PartsPage from "./partsPage";
 export default class App extends Component
 {
    constructor(props)
@@ -40,10 +41,10 @@ export default class App extends Component
         axios.defaults.withCredentials = true;
 
        return(
-        <Router>
+        <Router onUpdate={() => window.scrollTo(0, 0)}>
          
             <div>
-        <Navbar key={this.state.isloggedIn} brand="FixMe.com" option1="Laptop Parts" option2="Desktop Parts" option3="Tools" islogin={this.state.isloggedIn} setlogoutval={this.setlogoutval} username={this.state.username}/> 
+        <Navbar key={this.state.isloggedIn} brand="FixMe.com" option1="Mobile Parts" option2="Desktop Parts" option3="Tools" islogin={this.state.isloggedIn} setlogoutval={this.setlogoutval} username={this.state.username}/> 
          <div>
              <Switch>
                  <Route exact  path="/">
@@ -53,6 +54,9 @@ export default class App extends Component
                  <Route path="/createAccount" component={CreateAccount}/>
                  <Route path="/productPage">
                     <ProductPage prodname="MORARY DRIVER KIT" rating="4" reviewcount="4" price="2000" discount="30" offerprice="-1" stock="4"/>
+                 </Route>
+                 <Route path="/partsPage">
+                   <PartsPage/>
                  </Route>
              </Switch>
          </div>
