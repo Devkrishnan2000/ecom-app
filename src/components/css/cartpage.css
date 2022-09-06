@@ -1,0 +1,110 @@
+.cart-content
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.cart-item
+{
+    background-color: #EEEEEE;
+    border-style: solid;
+    border-color: #D9D9D9;
+    border-width: 0.5px;
+    border-radius: 2.5px;
+    box-shadow:0px 0px 8px #B1B1B1 ;
+    margin: 20px 60px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 50vw;
+}
+.order-details
+{
+    justify-self: center;
+    background-color: #EEEEEE;
+    border-style: solid;
+    border-color: #D9D9D9;
+    border-width: 0.5px;
+    border-radius: 2.5px;
+    box-shadow:0px 0px 8px #B1B1B1 ;
+    margin: 20px 60px;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+
+}
+
+.order-details .bill-list
+{
+    display: flex;
+    justify-content: space-evenly;
+}
+.bill-list h4
+{
+    margin-bottom: 20px;
+    font-weight: 700;
+
+}
+
+.bill-list h6
+{
+    margin-bottom: 10px;
+}
+.order-details h5
+{
+    margin-top: 15px;
+    font-weight: 600px;
+}
+
+.order-details h2
+{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.order-details button
+{
+    margin-top: 30px;
+    margin-left: 80px;
+}
+
+
+.cart-item img
+{
+    height: 170px;
+    width: 120px;
+    margin: 30px 40px;
+    
+}
+
+.cart-item .desc
+{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.cart-item .desc .content
+{
+    display: flex;
+    margin-top: 20px;
+    justify-content: flex-start;
+    margin-left: 0px;
+}
+
+.cart-item .desc .content .rhs
+{
+    margin-left: 10px;
+}
+.cart-item .desc .content h6
+{
+    margin-bottom: 10px;
+}
+.button-placement
+{
+    height: fit-content;
+    align-self: end;
+    margin-bottom: 10px;
+    display: flex;
+}
+.button-placement button
+{
+    margin-right: 10px;
+}

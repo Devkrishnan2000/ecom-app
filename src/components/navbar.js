@@ -39,9 +39,11 @@ import axios from "axios";
             axios.get('http://localhost:80/sem8project/ecom-app/ecom-app/api/logout.php').then(res=>{
               console.log("logged out");
               this.setState({usrname:"LOGIN"});
+
             })
            
             this.props.setlogoutval();
+            this.props.history.push("/");
           }
 
     

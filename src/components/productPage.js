@@ -31,7 +31,9 @@ import UserReview from "./userReview";
          isset:false,
          fail:false,
 
-         ispart:false
+         ispart:false,
+
+         qty:1
 
         
        }
@@ -39,6 +41,8 @@ import UserReview from "./userReview";
         this.setrating = this.setrating.bind(this);
         this.pricedisp = this.pricedisp.bind(this);
         this.getpincodedata = this.getpincodedata.bind(this);
+        this.ontextchange = this.ontextchange.bind(this);
+        this.addtocart = this.addtocart.bind(this);
 
      }
 
@@ -176,6 +180,36 @@ import UserReview from "./userReview";
         )
        }
     }
+
+    ontextchange(e)
+    {
+      if(e.target.value!=='0')
+       this.setState({qty:e.target.value});
+    }
+
+    addtocart(e)
+    {
+      e.preventDefault();
+      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getuser.php").then(res=>{
+        
+        if(res.data===-1)
+        alert("You need to Login First to perform this action");
+        else
+        {
+         
+          axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/addtocart.php",{params:{cid:res.data,pid:this.props.location.state.id,qty:this.state.qty}}).then(res=>{
+            if(res.data===-1)
+            alert("Please select lowwer quantity");
+            else if(res.data==0)
+            alert("Sucessfully Added to cart");
+            else
+            alert("Unexpected Error Occured Please try again later");
+
+          }
+          )
+        }
+      })
+    }
   render()
   {
 
@@ -194,11 +228,18 @@ import UserReview from "./userReview";
                 </div>
 
                {this.pricedisp()}
-
+               <form>
+               <div style={{display:"flex",alignItems:"center",marginTop:20+"px"}}>
+                <h6>Quantity</h6>
+                <input className="textbox" name="qty" style={{width:4+"vw",fontSize:12+"px"}} type='number' value={this.state.qty} onChange={this.ontextchange} min="0"></input>
+                
+               </div>
                <div style={{marginTop:20+"px"}}>
-                <button className="button-black"  style={{marginRight:30+"px"}}>ADD TO CART</button>
+                <button onClick={this.addtocart}  className="button-black"  style={{marginRight:30+"px"}}>ADD TO CART</button>
                 <button>BUY NOW</button>
                </div>
+               </form>
+               
                <h6 style={{marginTop:30+"px"}}>Check availability in your Region</h6>
                <div style={{marginTop:10+"px"}}>
 

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 export default class DropDown extends Component
@@ -25,7 +26,7 @@ export default class DropDown extends Component
             <a>My orders</a>
           </li>
           <li>
-          <a>My Cart</a>
+          <Link to="/cart" >My Cart</Link>
           </li>
           <li>
           <a onClick={this.props.logout}>Log Out</a>

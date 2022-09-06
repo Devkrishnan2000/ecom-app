@@ -10,6 +10,7 @@ import axios from "axios";
 import homepage from "./homepage";
 import ProductPage from "./productPage";
 import PartsPage from "./partsPage";
+import Cartpage from "./cartpage";
 export default class App extends Component
 {
    constructor(props)
@@ -57,6 +58,9 @@ export default class App extends Component
                  </Route>
                  <Route path="/partsPage">
                    <PartsPage/>
+                 </Route>
+                 <Route path="/cart">
+                    <Cartpage/>
                  </Route>
              </Switch>
          </div>
