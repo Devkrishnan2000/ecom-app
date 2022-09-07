@@ -15,7 +15,7 @@ import axios from "axios";
             super(props);
             this.state={
               visible:0,
-              usrname:"LOGIN"
+              usrname:"LOGIN",
             }
             this.setvisible = this.setvisible.bind(this);
             this.setinvisible = this.setinvisible.bind(this);
@@ -31,6 +31,7 @@ import axios from "axios";
           {
             this.setState({usrname:this.props.username});
           }
+
          
          }
 
@@ -45,6 +46,8 @@ import axios from "axios";
             this.props.setlogoutval();
             this.props.history.push("/");
           }
+
+          
 
     
       componentDidUpdate()
@@ -84,24 +87,28 @@ import axios from "axios";
         <li>
             <a className='brand' href="/">{this.props.brand}</a>
           </li>
-          <li>
-            <a href="#">{this.props.option1}</a>
-          </li>
-          <li>
-            <a href="#">{this.props.option2}</a>
-          </li>
-          <li>
-            <a href="#">{this.props.option3}</a>
-          </li>
-          <li>
-            <div className="search-box">
-             <img  src={search}></img>
-             <input type='text'placeholder="Search for parts" className="nav-textbox"></input>
-            </div>
-          </li>
-          <li className='align-right'>
-            <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>{this.state.usrname}</Link>
-          </li>
+            <li>
+              <a href="#">{this.props.option1}</a>
+            </li>
+            <li>
+              <a href="#">{this.props.option2}</a>
+            </li>
+            <li>
+              <a href="#">{this.props.option3}</a>
+            </li>
+            <li>
+              <div className="search-box">
+               <img  src={search}></img>
+               <input type='text'placeholder="Search for parts" className="nav-textbox"></input>
+              </div>
+            </li>
+            <li className='align-right'>
+              <Link to="/login"style={{marginRight:20+"px"}} onMouseEnter={this.setvisible}>{this.state.usrname}</Link>
+            </li>
+            
+          
+          
+          
           
           
         </ul>

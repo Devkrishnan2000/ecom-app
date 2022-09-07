@@ -33,6 +33,7 @@ class CartPage extends Component
          {
             this.setState({cartempty:true});
          }
+           this.state.totalprice=0;
            res.data.map((result=>this.state.totalprice+=Number(result.oprice)*Number(result.qty)))
       })
    }
@@ -58,10 +59,7 @@ class CartPage extends Component
        
    }
 
-   dispcart()
-   {
-
-   }
+  
    render()
    {
     return(

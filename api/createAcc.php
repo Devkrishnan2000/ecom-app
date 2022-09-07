@@ -5,6 +5,8 @@ include 'db\dbconnect.php';
 $db = new DbConnect();
 $conn = $db->connect();
 
+
+
  if(isset($_POST['cname']))
  {
     $pass = password_hash($_POST['pass'],PASSWORD_DEFAULT);
@@ -19,5 +21,6 @@ $conn = $db->connect();
     mysqli_query($conn,$sql);
     mysqli_close($conn);
  }
+
 
 ?>
