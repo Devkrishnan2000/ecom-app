@@ -43,6 +43,7 @@ import UserReview from "./userReview";
         this.getpincodedata = this.getpincodedata.bind(this);
         this.ontextchange = this.ontextchange.bind(this);
         this.addtocart = this.addtocart.bind(this);
+        this.buynow = this.buynow.bind(this);
 
      }
 
@@ -210,6 +211,30 @@ import UserReview from "./userReview";
         }
       })
     }
+
+    buynow(e)
+    {
+      e.preventDefault();
+      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getuser.php").then(res=>{
+        
+        if(res.data===-1)
+        alert("You need to Login First to perform this action");
+        else
+        {
+         
+          axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/addtocart.php",{params:{cid:res.data,pid:this.props.location.state.id,qty:this.state.qty}}).then(res=>{
+            if(res.data===-1)
+            alert("Please select lowwer quantity");
+            else if(res.data==0)
+            this.props.history.push("/cart");
+            else
+            alert("Unexpected Error Occured Please try again later");
+
+          }
+          )
+        }
+      })
+    }
   render()
   {
 
@@ -236,7 +261,7 @@ import UserReview from "./userReview";
                </div>
                <div style={{marginTop:20+"px"}}>
                 <button onClick={this.addtocart}  className="button-black"  style={{marginRight:30+"px"}}>ADD TO CART</button>
-                <button>BUY NOW</button>
+                <button onClick={this.buynow}>BUY NOW</button>
                </div>
                </form>
                

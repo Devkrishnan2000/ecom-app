@@ -23,7 +23,7 @@ export default class DropDown extends Component
         return(
             <ul className="drop-list">
           <li>
-            <a>My orders</a>
+            <Link to="/orders">My orders</Link>
           </li>
           <li>
           <Link to="/cart" >My Cart</Link>

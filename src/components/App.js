@@ -12,6 +12,7 @@ import ProductPage from "./productPage";
 import PartsPage from "./partsPage";
 import Cartpage from "./cartpage";
 import Adminpage from "./adminpage";
+import Orderpage from "./orderpage";
 export default class App extends Component
 {
    constructor(props)
@@ -78,6 +79,9 @@ export default class App extends Component
                  </Route>
                  <Route  path="/admin" >
                   <Adminpage setnavfalse={this.setnavbarfalse} setnavtrue={this.setnavbartrue} />
+                 </Route>
+                 <Route  path="/orders" >
+                  <Orderpage/>
                  </Route>
              </Switch>
          </div>

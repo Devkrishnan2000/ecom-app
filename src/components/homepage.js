@@ -68,6 +68,10 @@ import "./css/button.css";
     axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getadmin.php").then(res=>{
       console.log("current admin:"+res.data);
     })
+
+    axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/createAcc.php").then(
+      console.log("worked")
+    )
     
   }
   

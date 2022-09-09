@@ -14,7 +14,9 @@ class CartPage extends Component
          cartitem:[],
          totalprice:0,
          itemcount:0,
-         cartempty:false
+         cartempty:false,
+         address:'',
+         pincode:'',
       }
       this.delcart = this.delcart.bind(this);
    }
@@ -47,6 +49,11 @@ class CartPage extends Component
             this.setState({cartitem:res.data});
             this.setState({cartempty:false});
             this.setState({itemcount:res.data.length})
+            axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getaddrpincode.php").then(res=>{
+               console.log(res.data);
+               this.setState({address:res.data['caddr']});
+               this.setState({pincode:res.data['pincode']});
+            })
          }
          else
          {
@@ -72,7 +79,8 @@ class CartPage extends Component
                }
                </div>
                {!this.state.cartempty &&
-                   <div className="order-details">
+                   <div>
+                       <div className="order-details">
                    <h2>SUMMARY</h2>
                    <div className="bill-list">
                    <div>
@@ -88,6 +96,17 @@ class CartPage extends Component
                    <h5>Sub Total ({this.state.itemcount} Items) : ₹ {this.state.totalprice}</h5>
                    <button>BUY ALL</button>
                   </div>
+                    <div className="order-details">
+                     <div className="location-details">
+                     <h4>Delivery Address :</h4>
+                     <p>{this.state.address}</p>
+                     <h4>Pincode :</h4>
+                     <p>{this.state.pincode}</p>
+                     <button>CHANGE</button>
+                     </div>
+                     </div>
+                   </div>
+                   
                }
                
               
