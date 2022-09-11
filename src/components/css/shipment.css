@@ -1,0 +1,42 @@
+.ship-div
+{
+    margin-left: 20px;
+    width: 100%;
+}
+
+.ship-div form
+{
+
+    text-align: center;
+    border: 2px solid #00ADB5;
+    margin: 50px 200px;
+    padding: 50px 0px;
+    border-radius: 2px;
+}
+.ship-div form button
+{
+    margin-left: 20px;
+    padding: 7px 10px;
+}
+.ship-div form h4
+{
+    margin-bottom: 20px;
+    margin-left: -56px;
+}
+.ship-div table
+{
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Roboto';
+    border: #00ADB5 solid 2px;
+    border-radius: 3px;
+}
+.ship-div table tbody td
+{
+    padding: 10px 10px;
+}
+.ship-div table tbody tr
+{
+   text-align: left;
+}
+

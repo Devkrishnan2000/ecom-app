@@ -4,6 +4,7 @@ import "./css/adminpage.css";
 import axios from "axios";
 import UpdateAdmin from "./updateadmin";
 import Ordermgnt from "./ordermgnt";
+import Shipment from "./shipment";
 
 class AdminPage extends Component
 {
@@ -18,6 +19,7 @@ class AdminPage extends Component
      this.updateadmin = this.updateadmin.bind(this);
      this.setcontent = this.setcontent.bind(this);
      this.Ordermgnt  = this.Ordermgnt.bind(this);
+     this.shipmentpage = this.shipmentpage.bind(this);
    }
   componentDidMount()
   {
@@ -46,6 +48,11 @@ class AdminPage extends Component
     this.setState({choice:2});
   }
 
+  shipmentpage()
+  {
+    this.setState({choice:3});
+  }
+
 
    setcontent()
    {
@@ -54,6 +61,7 @@ class AdminPage extends Component
         case -1 : return( <div></div>);
         case 1: return(<UpdateAdmin/>);
         case 2: return(<Ordermgnt/>);
+        case 3: return(<Shipment/>)
         default: return(<div></div>);
       }
    }
@@ -78,7 +86,7 @@ class AdminPage extends Component
                     <img src="images\svg\clipboard_white.svg"></img>
                     <h5>Order Management</h5>
                   </li>
-                  <li>
+                  <li onClick={this.shipmentpage}>
                     <img src="images\svg\shipping_white.svg"></img>
                     <h5>Shipment Management</h5>
                   </li>

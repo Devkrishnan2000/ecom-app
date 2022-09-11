@@ -14,6 +14,7 @@ import Cartpage from "./cartpage";
 import Adminpage from "./adminpage";
 import Orderpage from "./orderpage";
 import Invoice from "./invoice";
+import Shipment from "./shipment";
 export default class App extends Component
 {
    constructor(props)
@@ -86,6 +87,9 @@ export default class App extends Component
                  </Route>
                  <Route  path="/invoice" >
                   <Invoice/>
+                 </Route>
+                 <Route  path="/shpping" >
+                  <Shipment/>
                  </Route>
              </Switch>
          </div>
