@@ -11,7 +11,7 @@ $conn = $db->connect();
 if(isset($_SESSION['user'])&&isset($_GET['oid']))
 {
    $oid = $_GET['oid'];
-   $sql = "update porder set ostatus=-1 where oid=$oid";
+   $sql = "update porder set ostatus='Canceled' where oid=$oid";
    mysqli_query($conn,$sql);
    mysqli_close($conn);
    echo "0";

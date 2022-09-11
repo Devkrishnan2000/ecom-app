@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import "./css/adminpage.css";
 import axios from "axios";
 import UpdateAdmin from "./updateadmin";
+import Ordermgnt from "./ordermgnt";
 
 class AdminPage extends Component
 {
@@ -16,6 +17,7 @@ class AdminPage extends Component
      this.adminlogout = this.adminlogout.bind(this);
      this.updateadmin = this.updateadmin.bind(this);
      this.setcontent = this.setcontent.bind(this);
+     this.Ordermgnt  = this.Ordermgnt.bind(this);
    }
   componentDidMount()
   {
@@ -39,6 +41,11 @@ class AdminPage extends Component
    console.log("state updated");
 }
 
+  Ordermgnt()
+  {
+    this.setState({choice:2});
+  }
+
 
    setcontent()
    {
@@ -46,6 +53,7 @@ class AdminPage extends Component
       {
         case -1 : return( <div></div>);
         case 1: return(<UpdateAdmin/>);
+        case 2: return(<Ordermgnt/>);
         default: return(<div></div>);
       }
    }
@@ -66,9 +74,13 @@ class AdminPage extends Component
                     <img src="images\svg\inventory_white.svg"></img>
                     <h5>Inventory Management</h5>
                   </li>
-                  <li>
+                  <li onClick={this.Ordermgnt}>
                     <img src="images\svg\clipboard_white.svg"></img>
                     <h5>Order Management</h5>
+                  </li>
+                  <li>
+                    <img src="images\svg\shipping_white.svg"></img>
+                    <h5>Shipment Management</h5>
                   </li>
                   <li onClick={this.updateadmin}>
                     <img src="images\svg\user_white.svg"></img>

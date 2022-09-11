@@ -11,7 +11,7 @@ $conn = $db->connect();
 if(isset($_SESSION['user'])&&isset($_GET['oid']))
 {
    $oid = $_GET['oid'];
-   $sql = "update porder set ostatus=0 where oid=$oid";
+   $sql = "update porder set ostatus='Waiting for Dispatch',odate=CURRENT_TIMESTAMP where oid=$oid";
    mysqli_query($conn,$sql);
    mysqli_close($conn);
    echo "0";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2022 at 05:35 PM
+-- Generation Time: Sep 10, 2022 at 02:08 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `fixme`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `aid` int(11) NOT NULL,
+  `atype` int(11) NOT NULL,
+  `aname` varchar(30) NOT NULL,
+  `ausrname` varchar(50) NOT NULL,
+  `apass` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`aid`, `atype`, `aname`, `ausrname`, `apass`) VALUES
+(101, 0, 'Devkrishnan V A', 'dev2001', '$2y$10$swEHp9.nDRVfrTl52.T1HeuLmfViQclixIqCuvf2ZZqPxzTUkbaY.');
 
 -- --------------------------------------------------------
 
@@ -63,8 +84,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
-(1, 3002, 1),
-(1, 3010, 3);
+(1, 3001, 4),
+(1, 3004, 1),
+(17, 3008, 1);
 
 -- --------------------------------------------------------
 
@@ -169,6 +191,34 @@ INSERT INTO `pincode` (`pincode`, `place`, `dfrom`, `dto`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `porder`
+--
+
+CREATE TABLE `porder` (
+  `oid` bigint(20) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `oprice` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `ostatus` int(11) NOT NULL DEFAULT 0,
+  `olocation` varchar(50) NOT NULL DEFAULT 'Warehouse',
+  `odate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `porder`
+--
+
+INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocation`, `odate`) VALUES
+(100000, 1, 3000, 1500, 1, 0, 'Warehouse', '2022-09-09'),
+(100001, 1, 3002, 1385, 1, 1, 'Warehouse', '2022-09-09'),
+(100002, 1, 3010, 1920, 1, 0, 'Warehouse', '2022-09-09'),
+(100003, 17, 3008, 1500, 1, 0, 'Warehouse', '2022-09-09'),
+(100004, 1, 3004, 350, 1, 0, 'Warehouse', '2022-09-10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -233,6 +283,12 @@ INSERT INTO `review` (`cid`, `pid`, `rtitle`, `rdesc`, `rrating`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`aid`);
+
+--
 -- Indexes for table `brand`
 --
 ALTER TABLE `brand`
@@ -273,6 +329,12 @@ ALTER TABLE `pincode`
   ADD PRIMARY KEY (`pincode`);
 
 --
+-- Indexes for table `porder`
+--
+ALTER TABLE `porder`
+  ADD PRIMARY KEY (`oid`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -291,6 +353,12 @@ ALTER TABLE `review`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
@@ -307,6 +375,12 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `electronics`
   MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2008;
+
+--
+-- AUTO_INCREMENT for table `porder`
+--
+ALTER TABLE `porder`
+  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100005;
 
 --
 -- AUTO_INCREMENT for table `products`

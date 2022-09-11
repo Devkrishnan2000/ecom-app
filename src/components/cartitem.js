@@ -30,6 +30,10 @@ import { withRouter } from "react-router-dom";
             {
               this.props.history.push('/orders');  
             }
+            else if(res.data===1)
+            {
+                alert("The item is currently out of stock please try again or reduce quantity");
+            }
           })
     }
     componentDidMount()

@@ -9,27 +9,29 @@ class OrderItems extends Component
     {
         super(props);
         this.state={
-            curstatus:this.props.status
+            curstatus:this.props.status,
+            deliverydate:''
         }
         this.cancelorder  = this.cancelorder.bind(this);
         this.orderagain = this.orderagain.bind(this);
+        this.getInvoice = this.getInvoice.bind(this);
     }
 
     setstatus()
     {
         switch(this.state.curstatus)
         {
-            case "0": return(
+            case "Waiting for Dispatch": return(
                 <h6 style={{color:"orange"}}>Waiting for Dispatch</h6>
             )
-            case "1": return(
+            case "Shipping": return(
                 <h6>Shipping</h6>
             )
-            case "2":return(
+            case "Delivered":return(
                 <h6 style={{color:"green"}}>Delivered</h6>
             )
 
-            case "-1": return(
+            case "Canceled": return(
                 <h6 style={{color:"red"}}>Canceled</h6>
             )
         }
@@ -41,36 +43,52 @@ class OrderItems extends Component
         console.log(res.data);
         if(res.data===0)
         {
-            this.setState({curstatus:"-1"});
+            this.setState({curstatus:"Canceled"});
         }
        })
     }
 
-    orderagain()
+  async  orderagain()
     {
-        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/orderagain.php",{params:{oid:this.props.oid}}).then(res=>{
+       await axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/orderagain.php",{params:{oid:this.props.oid}}).then(res=>{
         console.log(res.data);
         if(res.data===0)
         {
-            this.setState({curstatus:"0"});
+            this.setState({curstatus:"Waiting for Dispatch"});
         }
        })
+       this.getdeliverydate();
+    }
+
+    getdeliverydate()
+    {
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getdeliverydate.php",{params:{oid:this.props.oid}}).then(res=>{
+            this.setState({deliverydate:res.data});
+          })
+    }
+
+    getInvoice()
+    {
+        this.props.history.push({
+            pathname: '/invoice',
+            state :{id:this.props.oid}
+        });
     }
 
     renderbuttons()
     {
-        if(this.state.curstatus==="2")
+        if(this.state.curstatus==="Delivered")
         {
             return(
 
                 <div style={{display:"flex",flexDirection:"column"}} >
-                    <button className="button-black">VIEW INVOICE</button>
+                    <button className="button-black"  onClick={this.getInvoice}>VIEW INVOICE</button>
                     <button className="button-black">WRITE A REVIEW</button>
 
                 </div>
             )
         }
-        else if(this.state.curstatus==="-1")
+        else if(this.state.curstatus==="Canceled")
         {
             return(
                 <div style={{display:"flex",flexDirection:"column"}} >
@@ -86,12 +104,16 @@ class OrderItems extends Component
         {
               return(
                 <div style={{display:"flex",flexDirection:"column"}}>
-                    <button className="button-black">VIEW INVOICE</button>
+                    <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
                     <button className="button-black" onClick={this.cancelorder}>CANCEL ORDER </button>
                 </div>
               )
         }
     }
+      componentDidMount()
+      {
+         this.getdeliverydate();
+      }
     render()
     {
         return(
@@ -104,11 +126,13 @@ class OrderItems extends Component
                         <h6>Order ID :</h6>
                         <h6>Order Status :</h6>
                         <h6>Current Location :</h6>
+                        <h6>Expected Delivery :</h6>
                     </div>
                     <div className="rhs">
                          <h6> {this.props.oid}</h6>
                          {this.setstatus()}
                         <h6> {this.props.loc} </h6>
+                        <h6>{this.state.deliverydate}</h6>
                     </div>
 
                 </div>

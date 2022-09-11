@@ -23,7 +23,9 @@ class OrderPage extends Component
        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getorder.php").then(res=>{
         console.log(res.data);
         if(res.data!==-1)
+        {
         this.setState({orderitem:res.data});
+        }
         else
         this.setState({noorder:true});
        })
