@@ -54,10 +54,9 @@ class OrderItems extends Component
         console.log(res.data);
         if(res.data===0)
         {
-            this.setState({curstatus:"Waiting for Dispatch"});
+            this.props.history.push('/');
         }
        })
-       this.getdeliverydate();
     }
 
     getdeliverydate()
@@ -84,6 +83,7 @@ class OrderItems extends Component
                 <div style={{display:"flex",flexDirection:"column"}} >
                     <button className="button-black"  onClick={this.getInvoice}>VIEW INVOICE</button>
                     <button className="button-black">WRITE A REVIEW</button>
+                    <button className="button-black" onClick={this.orderagain}>ORDER AGAIN</button>
 
                 </div>
             )

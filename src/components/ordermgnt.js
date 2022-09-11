@@ -38,7 +38,7 @@ class OrderMgnt extends Component
                     this.setState({ispendingorder:false});
                     console.log("ispendingorder is false");
                 }
-                console.log(res.data);
+               // console.log(res.data);
                })
         }
         else if(this.state.allorders===true)
@@ -63,7 +63,7 @@ class OrderMgnt extends Component
     getcuroid(oid)
     {
         this.setState({curoid:oid});
-        console.log(oid);
+       // console.log(oid);
         this.getdispatched(oid);
     }
 
@@ -71,6 +71,7 @@ class OrderMgnt extends Component
     {
       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdispatch.php",{params:{oid:oid}});
       this.getorders();
+      this.forceUpdate();
 
     }
 
@@ -121,6 +122,7 @@ class OrderMgnt extends Component
                 <thead>
                 <tr>
                     <th>Order ID</th>
+                    <th>Order Date</th>
                     <th> Customer ID</th>
                     <th> Product ID</th>
                     <th>Product Name</th>
@@ -134,6 +136,7 @@ class OrderMgnt extends Component
                     {this.state.ispendingorder && !this.state.allorders &&
                     this.state.pendingorder.map((result=> <tr key={result.oid}>
                         <td>{result.oid}</td>
+                        <td>{result.odate}</td>
                         <td>{result.cid}</td>
                         <td>{result.pid}</td>
                         <td>{result.pname}</td>
@@ -145,6 +148,7 @@ class OrderMgnt extends Component
                         {this.state.allorders &&
                           this.state.pendingorder.map((result=> <tr key={result.oid}>
                             <td>{result.oid}</td>
+                            <td>{result.odate}</td>
                             <td>{result.cid}</td>
                             <td>{result.pid}</td>
                             <td>{result.pname}</td>

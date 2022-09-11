@@ -7,11 +7,11 @@ $conn = $db->connect();
 if(isset($_GET['all']))
 {
    
-   $sql = "select oid,cid,porder.pid,ostatus,products.pname from porder,products where porder.pid=products.pid";
+   $sql = "select oid,cid,porder.pid,ostatus,products.pname,odate from porder,products where porder.pid=products.pid";
 }
 else
 {
-    $sql = "select oid,cid,porder.pid,products.pname from porder,products where porder.pid=products.pid and ostatus='Waiting for Dispatch'";
+    $sql = "select oid,cid,porder.pid,products.pname,odate from porder,products where porder.pid=products.pid and ostatus='Waiting for Dispatch'";
    
     
 }

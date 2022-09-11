@@ -11,7 +11,14 @@ $conn = $db->connect();
 if(isset($_SESSION['user'])&&isset($_GET['oid']))
 {
    $oid = $_GET['oid'];
-   $sql = "update porder set ostatus='Waiting for Dispatch',odate=CURRENT_TIMESTAMP where oid=$oid";
+   $sql = "select cid,pid,qty,oprice from porder where oid=$oid";
+   $res =mysqli_query($conn,$sql);
+   $r = mysqli_fetch_assoc($res);
+   $cid = $r['cid'];
+   $pid = $r['pid'];
+   $qty = $r['qty'];
+   $oprice =$r['oprice']; 
+   $sql = "insert into porder(cid,pid,qty,oprice,odate) values($cid,$pid,$qty,$oprice,CURRENT_TIMESTAMP); ";
    mysqli_query($conn,$sql);
    mysqli_close($conn);
    echo "0";
