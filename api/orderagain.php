@@ -17,11 +17,24 @@ if(isset($_SESSION['user'])&&isset($_GET['oid']))
    $cid = $r['cid'];
    $pid = $r['pid'];
    $qty = $r['qty'];
-   $oprice =$r['oprice']; 
-   $sql = "insert into porder(cid,pid,qty,oprice,odate) values($cid,$pid,$qty,$oprice,CURRENT_TIMESTAMP); ";
-   mysqli_query($conn,$sql);
-   mysqli_close($conn);
-   echo "0";
+   $oprice =$r['oprice'];
+   
+   $sql ="select stock from products where pid=$pid";
+   $res =mysqli_query($conn,$sql);
+   $r = mysqli_fetch_assoc($res);
+
+   if($r['stock']>$qty)
+   {
+       $newstock = $r['stock']-$qty;
+       $sql ="update products set stock=$newstock where pid=$pid";
+       mysqli_query($conn,$sql);
+       $sql = "insert into porder(cid,pid,qty,oprice,odate) values($cid,$pid,$qty,$oprice,CURRENT_TIMESTAMP); ";
+       mysqli_query($conn,$sql);
+       mysqli_close($conn);
+       echo "0";
+   }
+
+   
 }
 else
 {

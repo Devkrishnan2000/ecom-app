@@ -39,7 +39,7 @@ class OrderItems extends Component
 
     cancelorder()
     {
-       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/cancelorder.php",{params:{oid:this.props.oid}}).then(res=>{
+       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/cancelorder.php",{params:{oid:this.props.oid,qty:this.props.qty,pid:this.props.pid}}).then(res=>{
         console.log(res.data);
         if(res.data===0)
         {
@@ -55,6 +55,10 @@ class OrderItems extends Component
         if(res.data===0)
         {
             this.props.history.push('/');
+        }
+        else if(res.data==-1)
+        {
+            alert("Please try again item is not in stock right now");
         }
        })
     }

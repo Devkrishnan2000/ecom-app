@@ -15,6 +15,7 @@ import Adminpage from "./adminpage";
 import Orderpage from "./orderpage";
 import Invoice from "./invoice";
 import Shipment from "./shipment";
+import Docpage from "./docpage";
 export default class App extends Component
 {
    constructor(props)
@@ -90,6 +91,9 @@ export default class App extends Component
                  </Route>
                  <Route  path="/shpping" >
                   <Shipment/>
+                 </Route>
+                 <Route path="/doc">
+                  <Docpage/>
                  </Route>
              </Switch>
          </div>
