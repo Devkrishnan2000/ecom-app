@@ -97,7 +97,6 @@ class OrderItems extends Component
             return(
                 <div style={{display:"flex",flexDirection:"column"}} >
 
-                <button className="button-black">VIEW INVOICE</button>
                 <button className="button-black" onClick={this.orderagain}>ORDER AGAIN</button>
     
             </div>

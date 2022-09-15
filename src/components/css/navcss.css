@@ -109,7 +109,7 @@
   .drop-list
   {
     font-family: 'Roboto';
-    width: fit-content;
+    width: max-content;
     background-color: #222831;
     position: absolute;
     left: 91.5%;

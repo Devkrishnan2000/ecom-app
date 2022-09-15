@@ -28,5 +28,32 @@
 
 .content
 {
-    margin: 10px 70px;
+    margin: 70px 130px;
+}
+.content p
+{
+    text-align: left;
+}
+
+.content .step
+{
+    margin-top: 50px;
+}
+
+.content .step h2
+{
+    margin-bottom: 20px;
+}
+
+.content .step  div
+{
+     display: flex;
+     justify-content: space-evenly;
+}
+
+.content .step div img
+{
+    height: 250px;
+    width: 600px;
+    margin-right: 30px;
 }

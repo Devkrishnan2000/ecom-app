@@ -11,7 +11,7 @@ $conn = $db->connect();
 if(isset($_SESSION['user']))
 {
     $cid = $_SESSION['user'];
-    $sql = "select products.pimage,products.pname,porder.pid,oid,qty,ostatus,olocation from porder,products where products.pid=porder.pid and cid=$cid;";
+    $sql = "select products.pimage,products.pname,porder.pid,oid,qty,ostatus,olocation from porder,products where products.pid=porder.pid and cid=$cid order by oid desc;";
     $res = mysqli_query($conn,$sql);
     if(mysqli_num_rows($res)>0)
     {

@@ -19,6 +19,8 @@ class CartPage extends Component
          pincode:'',
       }
       this.delcart = this.delcart.bind(this);
+      this.placeorder = this.placeorder.bind(this);
+      this.buyall  = this.buyall.bind(this);
    }
 
    delcart(pid)
@@ -66,6 +68,30 @@ class CartPage extends Component
        
    }
 
+   placeorder(pid,qty,price)
+   {
+
+         let tprice =Number(qty)*Number(price);
+         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/placeorder.php",{params:{pid:pid,qty:qty,price:tprice}}).then(res=>
+         {
+            console.log(res.data);
+           if(res.data===0)
+           {
+             this.props.history.push('/orders');  
+           }
+           else if(res.data===1)
+           {
+               alert("one of the item is currently out of stock please try again or reduce quantity");
+           }
+         })
+   }
+
+   buyall()
+   {
+      this.state.cartitem.map((result=> this.placeorder(result.pid,result.qty,result.oprice)));
+      console.log("buy all");
+   }
+
   
    render()
    {
@@ -94,7 +120,7 @@ class CartPage extends Component
                    </div>
                    </div>
                    <h5>Sub Total ({this.state.itemcount} Items) : ₹ {this.state.totalprice}</h5>
-                   <button>BUY ALL</button>
+                   <button onClick={this.buyall}>BUY ALL</button>
                   </div>
                     <div className="order-details">
                      <div className="location-details">
