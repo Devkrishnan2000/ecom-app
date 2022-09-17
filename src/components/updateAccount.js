@@ -75,7 +75,6 @@ class UpdateAccount extends Component {
     e.preventDefault();
     this.setState({pinflag:0})
     this.setState({mailflag:0})
-     console.log('call')
     const fd = new FormData();
     this.state.pindat.map((res)=>{
         if(res.pincode=== e.target.pincode.value)
@@ -105,15 +104,34 @@ class UpdateAccount extends Component {
         }
         else
         {
+          if(e.target.vpass.value==='')
+          {
+              e.target.vpass.value = e.target.pass.value;
+          }
         fd.append('cname', e.target.cname.value);
         fd.append('cmail',e.target.cmail.value);
+        fd.append('opass',e.target.pass.value);
         fd.append('pass', e.target.vpass.value);
         fd.append('adr',e.target.addr.value);
         fd.append('phno',e.target.phno.value);
         fd.append('pincode',e.target.pincode.value);
-       /// axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/createAcc.php",fd).then(res=>{}
-       // )
-       // this.props.history.push('/login');
+        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/updateuser.php",fd).then(res=>{
+          if(res.data===0)
+          {
+            alert("Please Logout and Login to effect changes");
+          }
+          else if(res.data===-1)
+          {
+            alert("Old Password is incorrect");
+          }
+          else if(res.data===-2)
+          {
+            alert(" Session expired ,Please Login Again");
+          }
+
+        }
+        )
+      
         }
        
       }
@@ -243,8 +261,8 @@ class UpdateAccount extends Component {
                       className="textbox"
                       name="vpass"
                       style={{ marginTop: 20 + "px" }}
-                      required
-                      placeholder="same as old if not meant to change"
+                    
+                      placeholder="leave blank if password not meant to be changed"
                     ></input>
                   </td>
                 </tr>

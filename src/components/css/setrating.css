@@ -1,0 +1,10 @@
+.rating-div
+{
+    display: flex;
+    margin-left: 20px;
+}
+
+.rating-div img
+{
+    margin-right: 5px;
+}

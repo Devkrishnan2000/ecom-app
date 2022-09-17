@@ -10,7 +10,7 @@ $conn = $db->connect();
 if(isset($_SESSION['user']))
 {
     $cid =$_SESSION['user'];
-    $sql = "select * from customer where cid=$cid";
+    $sql = "select cid,cname,caddr,cmail,cphno,pincode from customer where cid=$cid";
     $res = mysqli_query($conn,$sql);
     if(mysqli_num_rows($res)==1)
     {

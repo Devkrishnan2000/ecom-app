@@ -21,6 +21,7 @@ class CartPage extends Component
       this.delcart = this.delcart.bind(this);
       this.placeorder = this.placeorder.bind(this);
       this.buyall  = this.buyall.bind(this);
+      this.gotoaccount = this.gotoaccount.bind(this);
    }
 
    delcart(pid)
@@ -92,6 +93,11 @@ class CartPage extends Component
       console.log("buy all");
    }
 
+   gotoaccount()
+   {
+      this.props.history.push('/updateAcc');
+   }
+
   
    render()
    {
@@ -128,7 +134,7 @@ class CartPage extends Component
                      <p>{this.state.address}</p>
                      <h4>Pincode :</h4>
                      <p>{this.state.pincode}</p>
-                     <button>CHANGE</button>
+                     <button onClick={this.gotoaccount}>CHANGE</button>
                      </div>
                      </div>
                    </div>

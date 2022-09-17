@@ -1,0 +1,11 @@
+.score-div
+{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.score-div button
+{
+    margin-right: 10px;
+}

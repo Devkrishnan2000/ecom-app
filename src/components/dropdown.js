@@ -29,7 +29,7 @@ export default class DropDown extends Component
           <Link to="/cart" >My Cart</Link>
           </li>
           <li>
-          <Link to="/updateAcc" >User settings</Link>
+          <Link to="/updateAcc" >Update Account</Link>
           </li>
           <li>
           <a onClick={this.props.logout}>Log Out</a>

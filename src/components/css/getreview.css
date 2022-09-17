@@ -1,0 +1,36 @@
+.getreview-page
+{
+    margin: 20px 50px;
+}
+
+.getreview-page h2
+{
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.getreview-page form
+{
+    margin-top: 30px;
+}
+
+.getreview-page form h5
+{
+
+    margin: 20px 0px;
+    margin-left: 20px;
+}
+.getreview-page  form input[type='text']
+{
+    width: 70%;
+}
+.getreview-page  form textarea
+{
+    width: 80%;
+
+}
+
+.getreview-page  form p
+{
+    margin-left: 20px;
+    
+}

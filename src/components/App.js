@@ -17,6 +17,7 @@ import Invoice from "./invoice";
 import Shipment from "./shipment";
 import Docpage from "./docpage";
 import UpdateAccount from "./updateAccount";
+import Getreview from "./getreview";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -109,6 +110,9 @@ export default class App extends Component {
               </Route>
               <Route path="/updateAcc">
                 <UpdateAccount/>
+              </Route>
+              <Route path="/getreview">
+                <Getreview/>
               </Route>
             </Switch>
           </div>
