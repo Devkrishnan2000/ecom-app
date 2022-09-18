@@ -6,7 +6,7 @@ import "./css/doc.css";
 class Docpage extends Component {
   render() {
     return (
-      <div>
+      <div className="docpage-div">
         <h1 className="heading">iPhone 12 Battery Replacement</h1>
         <div className="info-tab">
           <div className="info-detail">

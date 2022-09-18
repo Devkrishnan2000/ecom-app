@@ -15,6 +15,7 @@ class OrderItems extends Component
         this.cancelorder  = this.cancelorder.bind(this);
         this.orderagain = this.orderagain.bind(this);
         this.getInvoice = this.getInvoice.bind(this);
+        this.addreview = this.addreview.bind(this);
     }
 
     setstatus()
@@ -78,6 +79,14 @@ class OrderItems extends Component
         });
     }
 
+    addreview()
+    {
+        this.props.history.push({
+            pathname:'/getreview',
+            state :{pid:this.props.pid,pname:this.props.pname,ptype:this.props.ptype}
+        });
+    }
+
     renderbuttons()
     {
         if(this.state.curstatus==="Delivered")
@@ -86,7 +95,7 @@ class OrderItems extends Component
 
                 <div style={{display:"flex",flexDirection:"column"}} >
                     <button className="button-black"  onClick={this.getInvoice}>VIEW INVOICE</button>
-                    <button className="button-black">WRITE A REVIEW</button>
+                    <button className="button-black" onClick={this.addreview}>WRITE A REVIEW</button>
                     <button className="button-black" onClick={this.orderagain}>ORDER AGAIN</button>
 
                 </div>

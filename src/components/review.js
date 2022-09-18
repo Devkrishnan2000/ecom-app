@@ -33,7 +33,7 @@ export default class Review extends Component
                 <div className="content">
                   <img src={this.setrating()}></img>
                   <h5 className="title">{this.props.title}</h5>
-                  <h6 className="cont">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus nisi arcu, eu convallis dolor fringilla a. Fusce posuere euismod dui non vestibulum. Aenean finibus ex eget rutrum vehicula. Donec ornare massa sed ex facilisis, sed porttitor felis mattis. Etiam blandit pellentesque eros, non finibus lectus lacinia id. Ut vehicula finibus massa eget convallis. Phasellus et hendrerit diam. Aliquam facilisis molestie nulla sit amet semper. Curabitur in ornare arcu. In efficitur vitae tortor non posuere. Mauris sit amet velit aliquam, tincidunt augue at, pretium libero. Donec quis lorem vel turpis volutpat tempor vitae luctus mauris.</h6>
+                  <h6 className="cont">{this.props.content}</h6>
                 </div>
                </div>
         )

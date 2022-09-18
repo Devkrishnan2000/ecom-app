@@ -26,32 +26,32 @@
     margin-right: 10px;
 }
 
-.content
+.docpage-div .content
 {
     margin: 70px 130px;
 }
-.content p
+.docpage-div .content p
 {
     text-align: left;
 }
 
-.content .step
+.docpage-div .content .step
 {
     margin-top: 50px;
 }
 
-.content .step h2
+.docpage-div .content .step h2
 {
     margin-bottom: 20px;
 }
 
-.content .step  div
+.docpage-div .content .step  div
 {
      display: flex;
      justify-content: space-evenly;
 }
 
-.content .step div img
+.docpage-div .content .step div img
 {
     height: 250px;
     width: 600px;

@@ -22,7 +22,7 @@ import UserReview from "./userReview";
          oprice:"",
          stock:"",
          waranty:"",
-         rating:"",
+         rating:0,
          pcondition:"",
 
          place:"",
@@ -55,16 +55,19 @@ import UserReview from "./userReview";
         this.setState({pdesc:res.data['pdesc']});
         this.setState({pimage:res.data['pimage']});
         this.setState({price:res.data['price']});
+        this.setState({rating:res.data['rating']});
         this.setState({oprice:res.data['oprice']});
         this.setState({discount:res.data['discount']});
         this.setState({stock:res.data['stock']});
         this.setState({waranty:res.data['waranty']});
-        this.setState({rating:res.data['rating']});
         this.setState({pcondition:res.data['pcondition']});
         if(typeof this.props.location.state.eid!=='undefined')
         this.setState({ispart:true});
+       
       }
       )
+
+     
      }
     setrating()
     {

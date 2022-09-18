@@ -36,7 +36,7 @@ class OrderPage extends Component
             <div>
               <h1 style={{marginTop:20+"px",marginLeft:70+"px"}}>MY <span>ORDERS</span></h1>
               {!this.state.noorder &&
-                this.state.orderitem.map((result=><Orderitems key={result.oid} pid={result.pid} oid={result.oid} qty={result.qty} pname={result.pname} pimage={result.pimage} status={result.ostatus} loc={result.olocation}/>))
+                this.state.orderitem.map((result=><Orderitems key={result.oid} pid={result.pid} oid={result.oid} qty={result.qty} pname={result.pname} pimage={result.pimage} status={result.ostatus} loc={result.olocation} ptype={result.ptype}/>))
                }
                {
                 this.state.noorder &&
