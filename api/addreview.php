@@ -46,6 +46,18 @@ if(isset($_SESSION['user']) && isset($_POST['pid']))
        mysqli_query($conn,$sql);
    }
 
+   $sql = "SELECT AVG(rscore) from review where rscore >0 and pid=$pid";
+   $res = mysqli_query($conn,$sql);
+   $r = mysqli_fetch_assoc($res);
+
+   if($r['AVG(rscore)']!='')
+   {
+    $rscore = round($r['AVG(rscore)'],0);
+    $sql = "update elecproduct set rscore=$rscore where pid=$pid";
+    mysqli_query($conn,$sql);
+   }
+   
+
 
    mysqli_close($conn);
    echo "0";

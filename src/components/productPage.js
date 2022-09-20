@@ -12,7 +12,7 @@ import UserReview from "./userReview";
      constructor(props)
      {
         super(props);
-
+        this.score = React.createRef();
        this.state={
          pname :"",
          pdesc:"",
@@ -28,6 +28,7 @@ import UserReview from "./userReview";
          place:"",
          to:"",
          from:"",
+         rscore:0,
          isset:false,
          fail:false,
 
@@ -63,6 +64,10 @@ import UserReview from "./userReview";
         this.setState({pcondition:res.data['pcondition']});
         if(typeof this.props.location.state.eid!=='undefined')
         this.setState({ispart:true});
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getrscore.php",{params:{pid:this.props.location.state.id}}).then(res=>{
+          this.setState({rscore:res.data});
+          
+        })
        
       }
       )
@@ -279,6 +284,17 @@ import UserReview from "./userReview";
                   }
                   {this.state.fail &&
                       <h6 style={{marginTop:10+"px",color:"red"}}>This product is not deliverable to this location</h6>
+                  }
+                  {
+                    this.state.ispart &&
+                    <div className="score-parent-div">
+                     <h6>User Repairability Score:</h6>
+                     <div className="userscore-div">
+                      <h6 ref={this.score} className="score">{this.state.rscore}</h6>
+                      <h6>10</h6>
+                     </div>
+                    </div>
+                    
                   }
                 </form>
                </div>    
