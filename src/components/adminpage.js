@@ -80,19 +80,23 @@ class AdminPage extends Component
                 <ul>
                   <li >
                     <img src="images\svg\inventory_white.svg"></img>
-                    <h5>Inventory Management</h5>
+                    <h6>Inventory Management</h6>
                   </li>
                   <li onClick={this.Ordermgnt}>
                     <img src="images\svg\clipboard_white.svg"></img>
-                    <h5>Order Management</h5>
+                    <h6>Order Management</h6>
                   </li>
                   <li onClick={this.shipmentpage}>
                     <img src="images\svg\shipping_white.svg"></img>
-                    <h5>Shipment Management</h5>
+                    <h6>Shipment Management</h6>
+                  </li>
+                  <li onClick={this.shipmentpage}>
+                    <img src="images\svg\document_white.svg"></img>
+                    <h6>Documentation</h6>
                   </li>
                   <li onClick={this.updateadmin}>
                     <img src="images\svg\user_white.svg"></img>
-                    <h5>Admin settings</h5>
+                    <h6>Admin settings</h6>
                   </li>    
                 </ul>
              </div>
