@@ -18,6 +18,7 @@ import Shipment from "./shipment";
 import Docpage from "./docpage";
 import UpdateAccount from "./updateAccount";
 import Getreview from "./getreview";
+import Newdoc from "./newdoc";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -113,6 +114,9 @@ export default class App extends Component {
               </Route>
               <Route path="/getreview">
                 <Getreview/>
+              </Route>
+              <Route path="/newdoc">
+                <Newdoc/>
               </Route>
             </Switch>
           </div>
