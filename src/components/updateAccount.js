@@ -262,7 +262,7 @@ class UpdateAccount extends Component {
                       name="vpass"
                       style={{ marginTop: 20 + "px" }}
                     
-                      placeholder="leave blank if password not meant to be changed"
+                      placeholder="leave blank if not meant to be changed"
                     ></input>
                   </td>
                 </tr>

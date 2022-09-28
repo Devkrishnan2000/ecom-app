@@ -93,7 +93,7 @@ class OrderMgnt extends Component
     render()
     {
         return(
-            <div>
+            <div className="ordermgnt-div">
              <h1>ORDER <span>MANAGEMENT</span></h1>
              <div>
                 <div className="view-all">

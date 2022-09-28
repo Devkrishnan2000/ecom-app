@@ -1,6 +1,7 @@
 <?php
 include 'headers\header.php';
 include 'db\dbconnect.php';
+include 'directories\dirs.php';
 ini_set("session.cookie_domain", '.dev.local');
 session_set_cookie_params(3600, '/', '.dev.local');
 session_start();
@@ -8,7 +9,7 @@ session_start();
 $db = new DbConnect();
 $conn = $db->connect();
 
-$dir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/documentation/";
+$dir =$docimgdir;
 if(isset($_SESSION['admin']))
 {
   
@@ -22,7 +23,8 @@ if(isset($_SESSION['admin']))
   $sid = $_POST['stid'];
   $stitle = $_POST['stitle'];
   $sdesc = $_POST['stdesc'];
-  $sql = "insert into steps values($did,$sid,'$stitle','$sdesc','$filedir')";
+  $relpath =  abs_to_rel($filedir,$dir,"images/documentation/");
+  $sql = "insert into steps values($did,$sid,'$stitle','$sdesc','$relpath')";
   mysqli_query($conn,$sql);
   mysqli_close($conn);
   echo "1";

@@ -83,6 +83,7 @@ class AdminPage extends Component
            <div className="admin-page" >
             <div className="side-pannel">
              <h2 style={{color:"white"}}>ADMIN <span>PANNEL</span></h2>
+              
              <div className="options">
                 <ul>
                   <li >
@@ -107,14 +108,14 @@ class AdminPage extends Component
                   </li>    
                 </ul>
              </div>
-
-               <div className="admin-info">
-               <p style={{marginBottom:10+"px"}}>Signed in as :</p>
-               <h5 style={{textAlign:"left"}}>{this.state.adminname}</h5>
+             <div className="admin-info">
+               <p style={{marginBottom:10+"px",textAlign:"center"}}>Welcome</p>
+               <h5 style={{textAlign:"center"}}>{this.state.adminname}</h5>
                <button onClick={this.adminlogout}>LOGOUT</button>
-               </div>    
+               </div>
+                 
             </div>
-            <div className="content">
+            <div className="admin-content">
               {this.setcontent()}
             </div>
            </div>

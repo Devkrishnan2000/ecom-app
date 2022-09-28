@@ -39,7 +39,11 @@ export default class UpdateAdmin extends Component
     onupdate(e)
     {
       e.preventDefault();
-      const fd = new FormData();
+      const fd = new FormData();  
+      if(e.target.apass.value==='')
+      {
+          e.target.apass.value = e.target.prevpass.value
+      }
       fd.append('aname',e.target.aname.value);
       fd.append('ausrname',e.target.ausrname.value);
       fd.append('prevpass',e.target.prevpass.value);
@@ -64,7 +68,7 @@ export default class UpdateAdmin extends Component
     {
         return(
              <div>
-                <h2 style={{marginBottom:20+"px"}}>UPDATE ADMIN <span>DETAILS</span></h2>
+                <h1 style={{marginBottom:20+"px",marginLeft:20+"px"}}>UPDATE <span>ADMIN</span></h1>
                 <div className="Table-div">
           <form onSubmit={this.onupdate} ref={(el) => this.myFormRef = el}>
             <table width={1000 + "px"}>
@@ -124,8 +128,8 @@ export default class UpdateAdmin extends Component
                       type="password"
                       className="textbox"
                       name="apass"
+                      placeholder="leave blank if not meant to be changed"
                       style={{ marginTop: 20 + "px" }}
-                      required
                     ></input>
                   </td>
                 </tr>

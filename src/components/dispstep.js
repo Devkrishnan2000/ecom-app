@@ -2,18 +2,20 @@ import React, { Component } from "react";
 
 export default class DispStep extends Component
 {
+  constructor(props)
+  {
+    super(props)
+  }
     render()
     {
         return(
             <div className="dispstep-div">
             <div className="step">
-            <h2>STEP 1: Eject the SIM card tray</h2>
+            <h2>STEP {this.props.stid}: {this.props.title} </h2>
             <div>
-              <img src="images\documentation\iphone 12\Battery\s1.png"></img>
+              <img src={this.props.image}></img>
             <h5>
-              Insert a SIM card eject tool or a paperclip into the small hole in
-              the SIM card tray, located on the volume button edge of the
-              iPhone. Press firmly to eject the tray.
+             {this.props.desc}
             </h5>
             </div>
            

@@ -2,5 +2,9 @@
 {
     float: right;
     margin-top: 20px;
-    margin-right: 50px;
+}
+
+.adddoc-div h1
+{
+    margin-left: 20px;
 }

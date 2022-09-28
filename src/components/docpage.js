@@ -18,6 +18,7 @@ class Docpage extends Component {
       dtime:'',
       dstep:'',
       dintro:'',
+      steps:[]
     }
   }
   componentDidMount()
@@ -25,13 +26,17 @@ class Docpage extends Component {
 
     console.log(this.props.location.state.pid)
     axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getdoc.php",{params:{pid:this.props.location.state.pid}}).then(res=>{
-    console.log(res.data);
     this.setState({dname:res.data['dname']})
     this.setState({ddiff:res.data['ddiff']})
     this.setState({dtime:res.data['dtime']})
     this.setState({dintro:res.data['intro']})
+    axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getstep.php",{params:{did:res.data['did']}}).then(step=>{
+      this.setState({steps: step.data});
+      console.log(step.data);
+        })
     })
-
+    
+    
 
   }
   render() {
@@ -60,7 +65,7 @@ class Docpage extends Component {
           <p style={{ marginTop: 20 + "px" }}>
            {this.state.dintro}
           </p>
-         <DispStep/>
+          {this.state.steps.map((res=><DispStep key={res.stid} stid={res.stid} title={res.stitle} image={res.stimg} desc={res.stdesc}></DispStep>))}
         </div>
       </div>
     );
