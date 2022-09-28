@@ -45,6 +45,7 @@ import UserReview from "./userReview";
         this.ontextchange = this.ontextchange.bind(this);
         this.addtocart = this.addtocart.bind(this);
         this.buynow = this.buynow.bind(this);
+        this.gotodoc = this.gotodoc.bind(this);
 
      }
 
@@ -220,6 +221,16 @@ import UserReview from "./userReview";
       })
     }
 
+    gotodoc()
+    {
+      this.props.history.push(
+        {
+          pathname :"/doc",
+          state : {pid:this.props.location.state.id}
+        }
+      )
+    }
+
     buynow(e)
     {
       e.preventDefault();
@@ -307,7 +318,7 @@ import UserReview from "./userReview";
               <h6  style={{marginTop:5+"px"}}>Waranty : {this.state.waranty} months</h6>
               {this.getcondition()}
               {this.state.ispart &&
-                <button className="button-black" style={{marginTop:20+"px"}}>VIEW DIY INSTRUCTIONS</button>}
+                <button onClick={this.gotodoc} className="button-black" style={{marginTop:20+"px"}} >VIEW DIY INSTRUCTIONS</button>}
             </div>
             <UserReview pid={this.props.location.state.id}/>
            </div>

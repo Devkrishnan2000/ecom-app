@@ -45,7 +45,9 @@ class NewDoc extends Component
        fd.append("dname",e.target.dname.value)
        fd.append("ddiff",e.target.diff.value)
        fd.append("dtime",e.target.dtime.value)
+       fd.append("dintro",e.target.intro.value)
        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adddoc.php",fd).then(res=>{
+      console.log(res.data);
          
          if(res.data===-2)
          {
@@ -82,7 +84,7 @@ class NewDoc extends Component
 
                         <div className="docname">
                         <h6>Documentation Name</h6>
-                        <input type='text' pattern="[a-z A-Z]*" className="textbox" name="dname" placeholder="Enter Document Name" required ></input>
+                        <input type='text' pattern="[a-z A-Z 0-9]*" className="textbox" name="dname" placeholder="Enter Document Name" required ></input>
                         </div>
 
                         <div className="docdiff">
@@ -98,6 +100,10 @@ class NewDoc extends Component
                         <h6>Documentation Time</h6>
                         <input type='number' name="dtime"  className="textbox" placeholder="Time In Hours" required></input>
                         </div>    
+                    </div>
+                    <div className="intro">
+                    <h6>Introduction</h6>
+                    <textarea rows={10} name="intro" className="textbox" placeholder="Introduction" required></textarea>
                     </div>
                     <button>NEXT</button>
                 </form>

@@ -9,7 +9,7 @@ $db = new DbConnect();
 $conn = $db->connect();
 
 $dir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/documentation/";
-if(isset($_SESSION['user']))
+if(isset($_SESSION['admin']))
 {
   
   if($_FILES['stimg'])

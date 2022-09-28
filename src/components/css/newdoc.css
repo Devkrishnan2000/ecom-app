@@ -26,6 +26,20 @@
     margin-bottom: 20px;
     float: right;
 }
+.newdoc-div form .intro
+{
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+.newdoc-div form .intro h6
+{
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.newdoc-div form .intro textarea
+{
+    width: 92vw;
+}
 .step-outterdiv button
 {
    margin-top: 10px;
