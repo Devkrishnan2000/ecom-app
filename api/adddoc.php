@@ -14,6 +14,8 @@ if(isset($_SESSION['admin']) && isset($_POST['dname']))
   $ddiff = $_POST['ddiff'];
   $dtime = $_POST['dtime'];
   $intro = $_POST['dintro'];
+  $elecprod = $_POST['elecprod'];
+  $elecname = $_POST['elecname'];
   $sql = "select dname from document where dname='$dname'";
   if(mysqli_num_rows(mysqli_query($conn,$sql))==0)
   {
@@ -22,8 +24,11 @@ if(isset($_SESSION['admin']) && isset($_POST['dname']))
     $sql = "select did from document where dname='$dname'";
     $res = mysqli_query($conn,$sql);
     $r = mysqli_fetch_assoc($res);
-    echo $r['did'];
-
+    $did = $r['did'];
+    echo $did;
+    
+    $sql = "update elecproduct set did=$did where pid=$elecprod and eid=$elecname";
+    mysqli_query($conn,$sql);
   }
   else
   {

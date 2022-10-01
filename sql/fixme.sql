@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2022 at 10:52 AM
+-- Generation Time: Sep 30, 2022 at 09:56 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`aid`, `atype`, `aname`, `ausrname`, `apass`) VALUES
-(101, 0, 'Devkrishnan V A', 'dev2001', '$2y$10$swEHp9.nDRVfrTl52.T1HeuLmfViQclixIqCuvf2ZZqPxzTUkbaY.');
+(101, 0, 'Devkrishnan V A', 'dev1999', '$2y$10$2SwkZhy6aVY3zEuWYurMJ.Cwft8knhSnS3nmYA7FZ/p4crj0O2MaC');
 
 -- --------------------------------------------------------
 
@@ -84,8 +84,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
-(1, 3003, 1),
-(1, 3006, 1),
+(1, 3006, 2),
 (17, 3001, 1),
 (17, 3002, 1),
 (17, 3007, 1);
@@ -128,8 +127,15 @@ CREATE TABLE `document` (
   `dname` varchar(50) NOT NULL,
   `ddiff` varchar(20) NOT NULL,
   `dtime` int(11) NOT NULL,
-  `drating` int(11) NOT NULL DEFAULT 0
+  `intro` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `document`
+--
+
+INSERT INTO `document` (`did`, `dname`, `ddiff`, `dtime`, `intro`) VALUES
+(50, 'Samsung Galaxy  S20 Battery Replacement', 'easy', 1, 'If the battery in your Galaxy S20 Ultra has gone bad, but you’re not ready to part with the phone yet, you’re in the right place! This video will show you how to replace the battery in your S20 Ultra!');
 
 -- --------------------------------------------------------
 
@@ -141,7 +147,7 @@ CREATE TABLE `elecproduct` (
   `pid` int(11) NOT NULL,
   `eid` int(11) NOT NULL,
   `parttype` varchar(20) NOT NULL,
-  `did` int(11) DEFAULT NULL,
+  `did` int(11) NOT NULL DEFAULT 0,
   `rscore` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -150,11 +156,11 @@ CREATE TABLE `elecproduct` (
 --
 
 INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
-(3006, 2000, 'Battery', NULL, 0),
-(3007, 2000, 'Back Cover (BLACK)', NULL, 6),
-(3008, 2000, 'Back Cover(PINK)', NULL, 0),
-(3009, 2000, 'Back Cover(RED)', NULL, 0),
-(3010, 2001, 'Battery', NULL, 0);
+(3006, 2000, 'Battery', 50, 0),
+(3007, 2000, 'Back Cover (BLACK)', 0, 8),
+(3008, 2000, 'Back Cover(PINK)', 0, 0),
+(3009, 2000, 'Back Cover(RED)', 0, 0),
+(3010, 2001, 'Battery', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -236,9 +242,10 @@ INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocatio
 (100012, 1, 3007, 1350, 1, 'Delivered', 'ALUVA', '2022-09-15'),
 (100013, 1, 3007, 1350, 1, 'Canceled', 'Warehouse', '2022-09-15'),
 (100014, 17, 3002, 1385, 1, 'Delivered', 'Tamil Nadu', '2022-09-15'),
-(100015, 17, 3001, 1400, 1, 'Shipping', 'Warehouse', '2022-09-15'),
+(100015, 17, 3001, 1400, 1, 'Delivered', 'ALUVA', '2022-09-15'),
 (100016, 1, 3003, 750, 1, 'Shipping', 'Warehouse', '2022-09-15'),
-(100017, 17, 3007, 1350, 1, 'Waiting for Dispatch', 'Warehouse', '2022-09-18');
+(100017, 17, 3007, 1350, 1, 'Shipping', 'Warehouse', '2022-09-18'),
+(100018, 1, 3006, 1400, 2, 'Shipping', 'Warehouse', '2022-09-24');
 
 -- --------------------------------------------------------
 
@@ -273,7 +280,7 @@ INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `
 (3003, 1006, 'tool', 'Precision Tweezers', 'Grab everything from screws to eyebrows with iFixit\'s Precision Tweezers Set. The complete tweezer kit for all holding, pulling, squeezing, picking up, and plucking jobs.\r\n\r\nIncluded are the three essential tips for DIY projects:\r\n\r\nPointed (extra fine!) - For ultimate precision\r\nAngled - For ergonomic accuracy\r\nBlunt - For heavy lifting\r\nMade with stainless steel and a protective coating that prevents ESD damage from harming sensitive electronics. Keep your tweezers organized with the portable fabric storage sleeve.', 'images/Tools/tweezers.png', 750, 750, -1, 19, 6, 5, 0),
 (3004, 1006, 'tool', 'Anti static tray', 'Organize and Store Your Projects\r\n\r\nInvaluable for all electronics projects and repairs.\r\nStore tiny components and screws in the 20 small compartments, store large components and tools in the larger compartments.\r\nMade from Anti-Static Plastic, so it\'s safe for delicate components.\r\nUse in conjunction with our screwmaps for repairs on our most popular smartphone guides.\r\nGreat for phone repair! Put your standard size smartphone in the side compartment, store your tools in the bottom compartment, and organize your screws and parts in the small compartments.', 'images/Tools/tray.png', 350, 350, -1, 20, 6, 4, 0),
 (3005, 1006, 'tool', 'Magnetic mat', 'Organize all your small parts while you work on a device.\r\nDry erase surface lets you keep notes and location sketches.\r\nReduces reassembly time by up to 40% while preventing errors.\r\nDesigned by fixers, for fixers, the 8”x10” Magnetic Project Mat catches and securely holds screws as you pull them out of a device.\r\n\r\nNow you can stop worrying about keeping track of all the loose screws and focus on your repair. Screws and small parts will remain right where you left them. For laptops with hundreds of screws, use the whole mat as a screw guide and keep careful location notes.\r\n\r\nThe included pen is uniquely suited for the Project Mat. It’s made by Staedtler, producer of top-of-the-line pens and pencils for artists and architects. Their Lumocolor Correctable pen resists smears and won\'t wipe away with a casual brush of your hand. When your repair is complete, the eraser tip or a dry cloth wipes the ink away clean.', 'images/Tools/mat.png', 150, 150, -1, 20, 6, 4, 0),
-(3006, 1000, 'part', 'GALAXY S20 BATTERY', 'This Samsung Galaxy S20 Ultra replacement battery is what you need to bring your dead smartphone back to life!\r\n\r\nBattery degradation is an inevitable part of your smartphone\'s lifespan — extend it with this replacement battery compatible with the S20 Ultra model Samsung Galaxy. If your phone won’t turn on, won’t hold a charge, or you simply experience poor battery life, this replacement battery may be what you need to fix it.', 'images\\parts\\samsungs20bat.png', 1000, 700, 30, 10, 6, 4, 0),
+(3006, 1000, 'part', 'GALAXY S20 BATTERY', 'This Samsung Galaxy S20 Ultra replacement battery is what you need to bring your dead smartphone back to life!\r\n\r\nBattery degradation is an inevitable part of your smartphone\'s lifespan — extend it with this replacement battery compatible with the S20 Ultra model Samsung Galaxy. If your phone won’t turn on, won’t hold a charge, or you simply experience poor battery life, this replacement battery may be what you need to fix it.', 'images\\parts\\samsungs20bat.png', 1000, 700, 30, 8, 6, 4, 0),
 (3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1350, 10, 2, 6, 4, 0),
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 3, 0),
 (3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 10, 6, 4, 0),
@@ -300,7 +307,7 @@ CREATE TABLE `review` (
 
 INSERT INTO `review` (`cid`, `pid`, `rtitle`, `rdesc`, `rrating`, `rscore`) VALUES
 (1, 3005, 'Nice Mat', 'Sed auctor, nisi ac rutrum sagittis, est dui condimentum sapien, sed bibendum nunc nisl et lacus. Vestibulum consectetur tortor id magna iaculis, vitae lobortis ante egestas. Maecenas porttitor erat non arcu venenatis, non consequat metus sollicitudin. Maecenas a tristique velit. Mauris quis faucibus libero. Etiam ut ultricies enim. Vestibulum lacus quam, aliquam non lobortis in, venenatis sed odio. Nam fringilla lectus at augue auctor porttitor.', 4, 0),
-(1, 3007, 'TEsting', 'fsdggsgagdagdsgdsvsggsdagsagdgds', 4, 6),
+(1, 3007, 'good product', 'gsdgagdsfsg', 4, 8),
 (2, 3000, 'Easy to use very nice product', 'EaEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productsy to use very nice product', 4, 0),
 (3, 3000, 'Very good product ill recommend it', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus nisi arcu, eu convallis dolor fringilla a. Fusce posuere euismod dui non vestibulum. Aenean finibus ex eget rutrum vehicula. Donec ornare massa sed ex facilisis, sed porttitor felis mattis. Etiam blandit pellentesque eros, non finibus lectus lacinia id. Ut vehicula finibus massa eget convallis. Phasellus et hendrerit diam. Aliquam facilisis molestie nulla sit amet semper. Curabitur in ornare arcu. In efficitur vitae tortor non posuere. Mauris sit amet velit aliquam, tincidunt augue at, pretium libero. Donec quis lorem vel turpis volutpat tempor vitae luctus mauris.', 5, 0),
 (17, 3001, 'Awesome Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum sem nec pulvinar faucibus. Curabitur viverra sodales libero. In dictum accumsan massa, a tempor ante vestibulum sed. Quisque nulla magna, placerat at turpis id, porta iaculis mi. Sed vel quam placerat, suscipit dolor vel, malesuada enim. Aliquam pharetra et quam ac accumsan. In interdum tellus elit, nec tincidunt quam commodo ac. Aenean sit amet pharetra urna. In eget metus ultrices nisi viverra dignissim. Praesent vulputate tristique pulvinar. Suspendisse vel ligula vel metus fermentum aliquam. Suspendisse vitae ante orci. Vestibulum auctor tortor quis volutpat fermentum. Sed ultricies porta velit.', 5, 0);
@@ -316,8 +323,17 @@ CREATE TABLE `steps` (
   `stid` int(11) NOT NULL,
   `stitle` varchar(70) NOT NULL,
   `stdesc` text NOT NULL,
-  `stimg` varchar(70) NOT NULL
+  `stimg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `steps`
+--
+
+INSERT INTO `steps` (`did`, `stid`, `stitle`, `stdesc`, `stimg`) VALUES
+(50, 1, 'Removing back cover', 'Start by heating up an iOpener and place it on the bottom edge of the phone’s back cover. Leave it there for about two minutes. Then apply a suction handle on the spot you just heated and pull up with a strong steady force. This will create a gap between the cover and the frame for the next step.WARNING: Do not apply excessive force with the pick while cutting the adhesive during the next few steps, or you might crack the back cover glass.\r\n\r\nWhen you see the gap, grab an opening pick and insert the point into the gap so that the adhesive doesn’t re-adhere. This may take more than one attempt due to tight tolerances. If so, apply more heat.\r\n\r\nOnce you have your pick inserted, slide the pick back and forth along the bottom edge making sure you slice through all the adhesive. Leave a pick in the seam so that the adhesive doesn’t reseal.', 'images/documentation/samsungs20bat1.jpg'),
+(50, 2, 'Separate the bottom edge adhesi', 'Apply a suction cup to the back of the phone, as close to the center of the bottom edge as possible.\r\n\r\nIf your display is badly cracked, covering it with a layer of clear packing tape may allow the suction cup to adhere. Alternatively, very strong tape may be used instead of the suction cup. If all else fails, you can superglue the suction cup to the broken glass.\r\n\r\nPull on the suction cup with strong, steady force to create a gap between the back cover and the frame.\r\n\r\nInsert the point of an opening pick into the gap.\r\n\r\nDue to tight tolerances, this may take multiple attempts of reheating with the iOpener and separating with the suction cup before you get it right.\r\n\r\nIf you are having trouble creating a gap, apply more heat to the edge and try again.\r\n\r\nDo not apply excessive force with the pick, or you risk cracking the back cover glass.', 'images/documentation/IMG-20220619-WA0016.jpg'),
+(50, 3, 'Heat the left edge', 'Slide the pick back and forth along the bottom edge to slice through the adhesive.\r\n\r\nDo not attempt to cut the adhesive near the corners of the phone where the glass is curved or you risk cracking the glass panel.\r\n\r\nLeave your opening pick in the seam to prevent the adhesive from resealing.\r\n\r\nApply a heated iOpener to the left edge of the back cover for two minutes.', 'images/documentation/samsungs20bat3.jpg');
 
 --
 -- Indexes for dumped tables
@@ -400,8 +416,7 @@ ALTER TABLE `review`
 -- Indexes for table `steps`
 --
 ALTER TABLE `steps`
-  ADD PRIMARY KEY (`stid`),
-  ADD KEY `did` (`did`);
+  ADD PRIMARY KEY (`did`,`stid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -429,7 +444,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `electronics`
@@ -441,7 +456,7 @@ ALTER TABLE `electronics`
 -- AUTO_INCREMENT for table `porder`
 --
 ALTER TABLE `porder`
-  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100018;
+  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100019;
 
 --
 -- AUTO_INCREMENT for table `products`

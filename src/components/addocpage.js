@@ -12,6 +12,8 @@ class AddocPage extends Component
             doc:[]
         }
         this.newdoc = this.newdoc.bind(this);
+        this.gotoeditdoc = this.gotoeditdoc.bind(this);
+        this.deletedoc = this.deletedoc.bind(this);
     }
     newdoc()
     {
@@ -20,8 +22,22 @@ class AddocPage extends Component
     componentDidMount()
     {
         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getdocdetails.php").then(res=>{
-            console.log(res.data);
             this.setState({doc:res.data});
+        })
+    }
+
+    gotoeditdoc(did)
+    {
+         this.props.history.push({
+            pathname : "/editdoc",
+            state:{did : did}
+         })
+    }
+
+    deletedoc(did)
+    {
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/deldoc.php",{params:{did :did}}).then(res=>{
+            this.setState({doc:res.data})
         })
     }
      render()
@@ -42,7 +58,10 @@ class AddocPage extends Component
                     this.state.doc.map((result=> <tr key={result.did}>
                         <td>{result.did}</td>
                         <td>{result.dname}</td>
-                        <td><button  className="button-black">Edit</button></td>
+                        <td>
+                            <button className="button-red" onClick={this.deletedoc.bind(this,result.did)} style={{marginLeft:20+"px"}}><img src="images\svg\delete.svg"/></button>
+                            <button onClick={this.gotoeditdoc.bind(this,result.did)}  className="button-black"><img src="images\svg\edit.svg"/></button>
+                        </td>
                     </tr>
                     
                         ))}

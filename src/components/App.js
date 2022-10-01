@@ -19,6 +19,9 @@ import Docpage from "./docpage";
 import UpdateAccount from "./updateAccount";
 import Getreview from "./getreview";
 import Newdoc from "./newdoc";
+import Editdoc from "./editdoc";
+import Editstep from "./editstep";
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -117,6 +120,12 @@ export default class App extends Component {
               </Route>
               <Route path="/newdoc">
                 <Newdoc/>
+              </Route>
+              <Route path="/editdoc">
+                <Editdoc/>
+              </Route>
+              <Route path="/editstep">
+                <Editstep/>
               </Route>
             </Switch>
           </div>
