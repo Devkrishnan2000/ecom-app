@@ -12,8 +12,9 @@
 
 .parts-page .intro img
 {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
 }
 .parts-page .intro h6
 {

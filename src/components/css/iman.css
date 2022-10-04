@@ -1,0 +1,16 @@
+
+.iman-div button
+{
+    float: right;
+    margin-bottom: 50px;
+}
+.iman-div .table-div button
+{
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-bottom:0px;
+}
+.iman-div .table-div 
+{
+    margin-bottom: 20px;
+}

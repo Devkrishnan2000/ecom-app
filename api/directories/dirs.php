@@ -1,5 +1,7 @@
 <?php
   $docimgdir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/documentation/";
+  $prodimgdir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/Products/";
+  $partimgdir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/parts/";
 
   function abs_to_rel($abspath,$dir,$relpath)
   {

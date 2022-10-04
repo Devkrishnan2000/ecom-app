@@ -79,7 +79,7 @@ class Part extends Component
         return(
               <div onClick={this.viewpart} className="cube" style={{height:250+"px"}} >
               {this.setdiscount()}
-              <img className="productImage" src={this.props.img}></img>
+              <img className="partImage" src={this.props.img}></img>
               <img src={this.setrating()}></img>
               <h4>{this.props.name}</h4>
               {this.setprice()}

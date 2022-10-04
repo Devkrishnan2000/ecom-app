@@ -21,6 +21,7 @@ import Getreview from "./getreview";
 import Newdoc from "./newdoc";
 import Editdoc from "./editdoc";
 import Editstep from "./editstep";
+import Addinventory from "./addinventory";
 
 export default class App extends Component {
   constructor(props) {
@@ -127,9 +128,12 @@ export default class App extends Component {
               <Route path="/editstep">
                 <Editstep/>
               </Route>
+              <Route path="/adinventory">
+                <Addinventory/>
+              </Route>
             </Switch>
           </div>
-          <Footer />
+         
         </div>
       </Router>
     );

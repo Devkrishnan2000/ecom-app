@@ -22,7 +22,7 @@ import { withRouter } from "react-router-dom";
     {
         return(
             <div onClick={this.dev} className="cube">
-                <img src={this.props.img}></img>
+                <img className="productImage"  src={this.props.img}></img>
                 <h5>{this.props.name}</h5>
             </div>
         )

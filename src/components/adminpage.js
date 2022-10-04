@@ -7,6 +7,7 @@ import Ordermgnt from "./ordermgnt";
 import Shipment from "./shipment";
 import AddocPage from "./addocpage";
 import Addshiper from "./addshiper";
+import Inventory from "./inventory";
 
 class AdminPage extends Component
 {
@@ -25,6 +26,7 @@ class AdminPage extends Component
      this.shipmentpage = this.shipmentpage.bind(this);
      this.addocpage = this.addocpage.bind(this);
      this.addshiper = this.addshiper.bind(this);
+     this.inventory = this.inventory.bind(this);
    }
   componentDidMount()
   {
@@ -69,6 +71,11 @@ class AdminPage extends Component
     this.setState({choice:5});
   }
 
+  inventory()
+  {
+    this.setState({choice:6});
+  }
+
 
    setcontent()
    {
@@ -80,6 +87,7 @@ class AdminPage extends Component
         case 3: return(<Shipment/>);
         case 4: return(<AddocPage/>);
         case 5: return(<Addshiper/>);
+        case 6: return(<Inventory/>)
         default: return(<div></div>);
       }
    }
@@ -99,7 +107,7 @@ class AdminPage extends Component
                 <ul>
                   {
                     this.state.atype==='0' &&
-                    <li >
+                    <li onClick={this.inventory} >
                     <img src="images\svg\inventory_white.svg"></img>
                     <h6>Inventory Management</h6>
                   </li>

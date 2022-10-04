@@ -19,10 +19,18 @@
 }
 
 
-.cube .productImage
+.cube .partImage
 {
     height: 150px;
     width: 100px;
+   
+}
+
+.cube .productImage
+{
+    height: 250px;
+    width: 250px;
+    object-fit: contain;
 }
 
 
