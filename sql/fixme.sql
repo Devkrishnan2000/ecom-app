@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2022 at 09:56 AM
+-- Generation Time: Oct 04, 2022 at 07:46 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -40,7 +40,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`aid`, `atype`, `aname`, `ausrname`, `apass`) VALUES
-(101, 0, 'Devkrishnan V A', 'dev1999', '$2y$10$2SwkZhy6aVY3zEuWYurMJ.Cwft8knhSnS3nmYA7FZ/p4crj0O2MaC');
+(101, 0, 'Devkrishnan V A', 'dev1999', '$2y$10$2SwkZhy6aVY3zEuWYurMJ.Cwft8knhSnS3nmYA7FZ/p4crj0O2MaC'),
+(102, 1, 'Neeraj', 'Nk2010', '$2y$10$BcOoXQjDsn8wHX5NC5VMQOa.W9I8mrvEpd3arF6FMToqNcKFQvorC');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,9 @@ INSERT INTO `brand` (`brandid`, `bname`) VALUES
 (1004, 'Acer'),
 (1005, 'Dell'),
 (1006, 'Ifixit'),
-(1008, 'Black and Decker');
+(1008, 'Black and Decker'),
+(1009, 'Huawei'),
+(1010, 'MicroMax');
 
 -- --------------------------------------------------------
 
@@ -160,7 +163,8 @@ INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
 (3007, 2000, 'Back Cover (BLACK)', 0, 8),
 (3008, 2000, 'Back Cover(PINK)', 0, 0),
 (3009, 2000, 'Back Cover(RED)', 0, 0),
-(3010, 2001, 'Battery', 0, 0);
+(3010, 2001, 'Battery', 0, 0),
+(3011, 2001, 'display', 50, 0);
 
 -- --------------------------------------------------------
 
@@ -188,7 +192,8 @@ INSERT INTO `electronics` (`eid`, `ename`, `brandid`, `etype`, `eimage`) VALUES
 (2004, 'Nitro 5', 1004, 'laptop', 'images/Products/nitro5.png'),
 (2005, 'Predator', 1004, 'laptop', '/images/Products/predator.png'),
 (2006, 'Alienware 15 R3', 1005, 'laptop', 'images/Products/A15r3.png'),
-(2007, 'XPS 15', 1004, 'laptop', 'images/Products/delxps15.png');
+(2007, 'XPS 15', 1004, 'laptop', 'images/Products/delxps15.png'),
+(2009, 'Pixel 5', 1002, 'mobile', 'images/Products/googlepixel5.png');
 
 -- --------------------------------------------------------
 
@@ -284,7 +289,8 @@ INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `
 (3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1350, 10, 2, 6, 4, 0),
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 3, 0),
 (3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 10, 6, 4, 0),
-(3010, 1001, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 4, 6, 3, 0);
+(3010, 1001, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 4, 6, 3, 0),
+(3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 10, 6, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -332,7 +338,7 @@ CREATE TABLE `steps` (
 
 INSERT INTO `steps` (`did`, `stid`, `stitle`, `stdesc`, `stimg`) VALUES
 (50, 1, 'Removing back cover', 'Start by heating up an iOpener and place it on the bottom edge of the phone’s back cover. Leave it there for about two minutes. Then apply a suction handle on the spot you just heated and pull up with a strong steady force. This will create a gap between the cover and the frame for the next step.WARNING: Do not apply excessive force with the pick while cutting the adhesive during the next few steps, or you might crack the back cover glass.\r\n\r\nWhen you see the gap, grab an opening pick and insert the point into the gap so that the adhesive doesn’t re-adhere. This may take more than one attempt due to tight tolerances. If so, apply more heat.\r\n\r\nOnce you have your pick inserted, slide the pick back and forth along the bottom edge making sure you slice through all the adhesive. Leave a pick in the seam so that the adhesive doesn’t reseal.', 'images/documentation/samsungs20bat1.jpg'),
-(50, 2, 'Separate the bottom edge adhesi', 'Apply a suction cup to the back of the phone, as close to the center of the bottom edge as possible.\r\n\r\nIf your display is badly cracked, covering it with a layer of clear packing tape may allow the suction cup to adhere. Alternatively, very strong tape may be used instead of the suction cup. If all else fails, you can superglue the suction cup to the broken glass.\r\n\r\nPull on the suction cup with strong, steady force to create a gap between the back cover and the frame.\r\n\r\nInsert the point of an opening pick into the gap.\r\n\r\nDue to tight tolerances, this may take multiple attempts of reheating with the iOpener and separating with the suction cup before you get it right.\r\n\r\nIf you are having trouble creating a gap, apply more heat to the edge and try again.\r\n\r\nDo not apply excessive force with the pick, or you risk cracking the back cover glass.', 'images/documentation/IMG-20220619-WA0016.jpg'),
+(50, 2, 'Separate the bottom edge adhesive', 'Apply a suction cup to the back of the phone, as close to the center of the bottom edge as possible.\r\n\r\nIf your display is badly cracked, covering it with a layer of clear packing tape may allow the suction cup to adhere. Alternatively, very strong tape may be used instead of the suction cup. If all else fails, you can superglue the suction cup to the broken glass.\r\n\r\nPull on the suction cup with strong, steady force to create a gap between the back cover and the frame.\r\n\r\nInsert the point of an opening pick into the gap.\r\n\r\nDue to tight tolerances, this may take multiple attempts of reheating with the iOpener and separating with the suction cup before you get it right.\r\n\r\nIf you are having trouble creating a gap, apply more heat to the edge and try again.\r\n\r\nDo not apply excessive force with the pick, or you risk cracking the back cover glass.', 'images/documentation/samsungs20bat2.jpg'),
 (50, 3, 'Heat the left edge', 'Slide the pick back and forth along the bottom edge to slice through the adhesive.\r\n\r\nDo not attempt to cut the adhesive near the corners of the phone where the glass is curved or you risk cracking the glass panel.\r\n\r\nLeave your opening pick in the seam to prevent the adhesive from resealing.\r\n\r\nApply a heated iOpener to the left edge of the back cover for two minutes.', 'images/documentation/samsungs20bat3.jpg');
 
 --
@@ -403,6 +409,7 @@ ALTER TABLE `porder`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`pid`),
+  ADD UNIQUE KEY `pname` (`pname`),
   ADD KEY `brandid` (`brandid`);
 
 --
@@ -426,13 +433,13 @@ ALTER TABLE `steps`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1009;
+  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1017;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -444,13 +451,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `electronics`
 --
 ALTER TABLE `electronics`
-  MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2008;
+  MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2010;
 
 --
 -- AUTO_INCREMENT for table `porder`
@@ -462,7 +469,7 @@ ALTER TABLE `porder`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3011;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3012;
 
 --
 -- Constraints for dumped tables

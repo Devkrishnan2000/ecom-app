@@ -84,26 +84,71 @@ if(isset($_SESSION['admin'] ))
         else
         $oprice = $price;
 
-        if($_FILES['pimg'])
+        if(isset($_POST['pid']))
         {
-          $filedir = $dir.basename($_FILES['pimg']['name']);
-          move_uploaded_file($_FILES['pimg']['tmp_name'],$filedir);
+          $pid = $_POST['pid'];
+          $filedir="null";
+          if(isset($_FILES['pimg']))
+          {
+            $filedir = $dir.basename($_FILES['pimg']['name']);
+            move_uploaded_file($_FILES['pimg']['tmp_name'],$filedir);
+          }
+
+          if($filedir!="null")
+          {
+            $relpath =  abs_to_rel($filedir,$dir,"images/parts/");
+            $sql = "update products set brandid=$bid ,pname='$pname', pdesc='$pdesc', pimage='$relpath' , price=$price ,oprice=$oprice ,discount=$discount ,stock=$stock ,waranty=$waranty, pcondition=$condition where pid=$pid";
+            if(!mysqli_query($conn,$sql))
+            {
+               echo mysqli_error($conn);
+               $flag=-1;
+            }
+            else
+            {
+                $sql = "update elecproduct set eid=$partof, parttype='$ptype', did=$doc where pid=$pid";
+            }
+          }
+          else
+          {
+            $sql = "update products set brandid=$bid ,pname='$pname', pdesc='$pdesc', price=$price ,oprice=$oprice ,discount=$discount ,stock=$stock ,waranty=$waranty, pcondition=$condition where pid=$pid";
+            if(!mysqli_query($conn,$sql))
+            {
+               echo mysqli_error($conn);
+               $flag=-1;
+            }
+            else
+            {
+                $sql = "update elecproduct set eid=$partof, parttype='$ptype', did=$doc where pid=$pid";
+            }
+          }
+
+
         }
-        $relpath =  abs_to_rel($filedir,$dir,"images/parts/");
-        $sql = "insert into products (brandid,ptype,pname,pdesc,pimage,price,oprice,discount,stock,waranty,pcondition) values($bid,'part','$pname','$pdesc','$relpath',$price,$oprice,$discount,$stock,$waranty,$condition)";
-        if(!mysqli_query($conn,$sql))
-         {
-            echo mysqli_error($conn);
-            $flag=-1;
-         }
-         else
-         {
-            $sql = "select pid from products where pname='$pname'";
-            $res = mysqli_query($conn,$sql);
-            $r = mysqli_fetch_assoc($res);
-            $pid = $r['pid'];
-            $sql = "insert into elecproduct  values($pid,$partof,'$ptype',$doc,0)";
-         }
+        else
+        {
+          if($_FILES['pimg'])
+          {
+            $filedir = $dir.basename($_FILES['pimg']['name']);
+            move_uploaded_file($_FILES['pimg']['tmp_name'],$filedir);
+          }
+          $relpath =  abs_to_rel($filedir,$dir,"images/parts/");
+          $sql = "insert into products (brandid,ptype,pname,pdesc,pimage,price,oprice,discount,stock,waranty,pcondition) values($bid,'part','$pname','$pdesc','$relpath',$price,$oprice,$discount,$stock,$waranty,$condition)";
+          if(!mysqli_query($conn,$sql))
+           {
+              echo mysqli_error($conn);
+              $flag=-1;
+           }
+           else
+           {
+              $sql = "select pid from products where pname='$pname'";
+              $res = mysqli_query($conn,$sql);
+              $r = mysqli_fetch_assoc($res);
+              $pid = $r['pid'];
+              $sql = "insert into elecproduct  values($pid,$partof,'$ptype',$doc,0)";
+           }
+        }
+
+       
     }
 
     if($flag==0)

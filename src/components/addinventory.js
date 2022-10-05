@@ -44,6 +44,12 @@ class AddInventory extends Component
          axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getinventory.php",{params:{cat:this.props.location.state.inventory.category,id:this.props.location.state.inventory.id}}).then(
           res=>{
             this.setState({val:res.data})
+            if(this.props.location.state.inventory.category=="Parts")
+            {
+              this.state.price = res.data['price'];
+              this.state.discount = res.data['discount'];
+              this.state.waranty = res.data['waranty'];
+            }
           }
          )
         }
@@ -149,13 +155,31 @@ class AddInventory extends Component
         fd.append("pimg",e.target.pimg.files[0]);
         fd.append("ptype",e.target.ptype.value);
         fd.append("doc",e.target.docselc.value);
-        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adinventory.php",fd).then(res=>{
-          if(res.data===0)
-          {
-            this.props.history.push("/admin");
-          }
-          console.log(res.data);
-        })
+        if(this.props.location.state.inventory.isupdate===false)
+        {
+          axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adinventory.php",fd).then(res=>{
+            if(res.data===0)
+            {
+              this.props.history.push("/admin");
+            }
+            console.log(res.data);
+          })
+        }
+        else
+        {
+          fd.append("pid",this.props.location.state.inventory.id)
+          axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adinventory.php",fd).then(res=>{
+            if(res.data===0)
+            {
+              this.props.history.push("/admin");
+            }
+            console.log(res.data);
+          })
+
+        }
+
+
+       
         
 
         
@@ -313,14 +337,29 @@ class AddInventory extends Component
                           <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                            Product Name
                           </h6>
-                          <input
+                          {!this.props.location.state.inventory.isupdate &&
+                             <input
+                             type="text"
+                             pattern="[a-z A-Z 0-9]*"
+                             className="textbox"
+                             name="pname"
+                             style={{ marginTop: 20 + "px" }}
+                             required
+                           ></input>
+                          }
+                          {
+                            this.props.location.state.inventory.isupdate &&
+                            <input
                             type="text"
                             pattern="[a-z A-Z 0-9]*"
                             className="textbox"
                             name="pname"
+                            defaultValue={this.state.val['pname']}
                             style={{ marginTop: 20 + "px" }}
                             required
                           ></input>
+                          }
+                         
                         </td>
                         <td>
                           <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
@@ -335,7 +374,7 @@ class AddInventory extends Component
                           <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                             Price
                           </h6>
-                          <input
+                            <input
                             type="number"
                             className="textbox"
                             name="price"
@@ -343,7 +382,7 @@ class AddInventory extends Component
                              onChange={this.onpricechange}
                             style={{ marginTop: 20 + "px" }}
                             required
-                          ></input>
+                          ></input> 
                         </td>
 
                         <td>
@@ -359,7 +398,7 @@ class AddInventory extends Component
                             name="discount"
                             style={{ marginTop: 20 + "px" }}
                             required
-                          ></input>
+                          ></input> 
                         </td>
                         
                       </tr>
@@ -368,29 +407,46 @@ class AddInventory extends Component
                           <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                             Stock 
                           </h6>
-                          <input
-                            type="number"
-                            className="textbox"
-                            
-                            name="stock"
-                            style={{ marginTop: 20 + "px" }}
-                            required
-                          ></input>
+                          {!this.props.location.state.inventory.isupdate &&
+                           <input
+                           type="number"
+                           className="textbox"
+                           placeholder="-1 to disable the product "
+                           name="stock"
+                           style={{ marginTop: 20 + "px" }}
+                           required
+                         ></input>
+                          }
+
+                          {this.props.location.state.inventory.isupdate &&
+                           <input
+                           type="number"
+                           className="textbox"
+                           defaultValue={this.state.val['stock']}
+                           name="stock"
+                           style={{ marginTop: 20 + "px" }}
+                           required
+                         ></input>
+                          }
+
+                          
+                          
                         </td>
                         <td>
                           <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                             Waranty
                           </h6>
-                          <input
-                            type="number"
-                            className="textbox"
-                            placeholder="in months"
-                            value={this.state.waranty}
-                            onChange={this.onwarantychange}
-                            name="waranty"
-                            style={{ marginTop: 20 + "px" }}
-                            required
-                          ></input>
+                             <input
+                             type="number"
+                             className="textbox"
+                             placeholder="in months"
+                             value={this.state.waranty}
+                             onChange={this.onwarantychange}
+                             name="waranty"
+                             style={{ marginTop: 20 + "px" }}
+                             required
+                           ></input>
+                        
                         </td>
                      
                         <td>
@@ -407,7 +463,13 @@ class AddInventory extends Component
                         <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                             Product Image
                           </h6>
-                          <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
+                          {!this.props.location.state.inventory.isupdate &&
+                            <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
+                          }
+                          {this.props.location.state.inventory.isupdate &&
+                             <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }}></input>
+                          }
+                        
                         </td>
                        
                       </tr>
@@ -416,7 +478,13 @@ class AddInventory extends Component
                           <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                             Product description
                           </h6>
+                          {!this.props.location.state.inventory.isupdate &&
                             <textarea name="pdesc" className="textbox" rows={5} required></textarea>
+                          }
+                           {this.props.location.state.inventory.isupdate &&
+                            <textarea name="pdesc" defaultValue={this.state.val['pdesc']} className="textbox" rows={5} required></textarea>
+                          }
+                           
                         </td>
                       </tr>
                       <tr>
@@ -433,7 +501,8 @@ class AddInventory extends Component
                         <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
                            Part Type
                           </h6>
-                          <input
+                          {!this.props.location.state.inventory.isupdate &&
+                            <input
                             type="text"
                             pattern="[a-z A-Z]*"
                             className="textbox"
@@ -441,6 +510,19 @@ class AddInventory extends Component
                             style={{ marginTop: 20 + "px" }}
                             required
                           ></input>
+                          }
+                          {this.props.location.state.inventory.isupdate &&
+                            <input
+                            type="text"
+                            pattern="[a-z A-Z]*"
+                            className="textbox"
+                            defaultValue={this.state.val['parttype']}
+                            name="ptype"
+                            style={{ marginTop: 20 + "px" }}
+                            required
+                          ></input>
+                          }
+                         
                         </td>
 
                         <td>
@@ -455,7 +537,12 @@ class AddInventory extends Component
                       </tr>
                       <tr>
                       <td style={{verticalAlign:"bottom",marginTop:20+"px"}}>
+                      {!this.props.location.state.inventory.isupdate &&
                           <button type="submit" style={{marginTop:20+"px",marginLeft:22+"px"}}>INSERT</button>
+                        }
+                         {this.props.location.state.inventory.isupdate &&
+                          <button type="submit" style={{marginTop:20+"px",marginLeft:22+"px"}}>UPDATE</button>
+                        }
                         </td>
                       </tr>
                     </tbody>
