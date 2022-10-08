@@ -15,6 +15,7 @@ import UserReview from "./userReview";
         this.score = React.createRef();
        this.state={
          pname :"",
+         deliv:0,
          pdesc:"",
          pimage:"",
          price:"",
@@ -164,8 +165,10 @@ import UserReview from "./userReview";
          this.setState({place:res.data['place']});
          this.setState({to:res.data['dto']});
          this.setState({from:res.data['dfrom']});
+         this.setState({deliv:res.data['deliverable']});
          this.setState({isset:true});
          this.setState({fail:false});
+         console.log(res.data['deliverable']);
        }
        else if(res.data==-1)
        {
@@ -290,8 +293,11 @@ import UserReview from "./userReview";
                 <form onSubmit={this.getpincodedata}>
                   <input name="pintext" type='text' pattern="[0-9]{6}" className="textbox" style={{width:10+"vw",marginLeft:0+"px",marginRight:20+"px"}} placeholder="Enter the Pincode" required></input>
                   <button className="button-black"  style={{marginRight:30+"px",paddingTop:9+"px",paddingBottom:9+"px",fontSize:10+"px"}} type="submit">CHECK</button>
-                  {this.state.isset && !this.state.fail &&
+                  {this.state.isset && !this.state.fail && this.state.deliv==='0' &&
                      <h6 style={{marginTop:10+"px"}}>This product will be delivered to {this.state.place} in {this.state.from}-{this.state.to} business days</h6>
+                  }
+                   {this.state.isset && !this.state.fail && this.state.deliv==='1' &&
+                      <h6 style={{marginTop:10+"px",color:"red"}}>This product is not deliverable to this location temporarily</h6>
                   }
                   {this.state.fail &&
                       <h6 style={{marginTop:10+"px",color:"red"}}>This product is not deliverable to this location</h6>

@@ -23,7 +23,9 @@ import { withRouter } from "react-router-dom";
     placeorder(e)
     {
          e.preventDefault();
-          axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/placeorder.php",{params:{pid:this.props.mkey,qty:this.props.qty,price:this.state.tprice}}).then(res=>
+         if(this.props.deliv==='0')
+         {
+            axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/placeorder.php",{params:{pid:this.props.mkey,qty:this.props.qty,price:this.state.tprice}}).then(res=>
           {
              console.log(res.data);
             if(res.data===0)
@@ -35,6 +37,10 @@ import { withRouter } from "react-router-dom";
                 alert("The item is currently out of stock please try again or reduce quantity");
             }
           })
+         }
+         else
+         alert("Product is currently not delverable to this location please try again");
+         
     }
     componentDidMount()
     {

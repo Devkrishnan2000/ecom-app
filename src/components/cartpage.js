@@ -12,6 +12,7 @@ class CartPage extends Component
       super(props);
       this.state={
          cartitem:[],
+         deliv:0,
          totalprice:0,
          itemcount:0,
          cartempty:false,
@@ -56,15 +57,23 @@ class CartPage extends Component
                console.log(res.data);
                this.setState({address:res.data['caddr']});
                this.setState({pincode:res.data['pincode']});
+               axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getpincodedata.php",{params :{pincode:res.data['pincode']}}).then(res=>
+               {
+                 this.setState({deliv:res.data['deliverable']})
+                 console.log(res.data['deliverable'])
+               })
             })
          }
          else
          {
             this.setState({cartempty:true});
          }
+        
+   
            res.data.map((result=>this.state.totalprice+=Number(result.oprice)*Number(result.qty)))
       })
 
+    
       
        
    }
@@ -72,19 +81,27 @@ class CartPage extends Component
    placeorder(pid,qty,price)
    {
 
-         let tprice =Number(qty)*Number(price);
-         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/placeorder.php",{params:{pid:pid,qty:qty,price:tprice}}).then(res=>
+    
+         if(this.state.deliv==='0')
          {
-            console.log(res.data);
-           if(res.data===0)
-           {
-             this.props.history.push('/orders');  
-           }
-           else if(res.data===1)
-           {
-               alert("one of the item is currently out of stock please try again or reduce quantity");
-           }
-         })
+            let tprice =Number(qty)*Number(price);
+            axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/placeorder.php",{params:{pid:pid,qty:qty,price:tprice}}).then(res=>
+            {
+               console.log(res.data);
+              if(res.data===0)
+              {
+                this.props.history.push('/orders');  
+              }
+              else if(res.data===1)
+              {
+                  alert("one of the item is currently out of stock please try again or reduce quantity");
+              }
+            })
+         }
+         else
+         alert("Product is currently not delverable to this location please try again")
+      
+         
    }
 
    buyall()
@@ -107,7 +124,7 @@ class CartPage extends Component
             <div className="cart-content">
                <div>
                {!this.state.cartempty &&
-               this.state.cartitem.map((result=><CartItem key={result.pid} mkey={result.pid} pname={result.pname} qty={result.qty} pimage={result.pimage} price={result.oprice} delcart ={this.delcart}/>))
+               this.state.cartitem.map((result=><CartItem key={result.pid} mkey={result.pid} pname={result.pname} qty={result.qty} pimage={result.pimage} price={result.oprice} delcart ={this.delcart} deliv={this.state.deliv}/>))
                }
                </div>
                {!this.state.cartempty &&

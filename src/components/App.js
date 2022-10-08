@@ -22,6 +22,8 @@ import Newdoc from "./newdoc";
 import Editdoc from "./editdoc";
 import Editstep from "./editstep";
 import Addinventory from "./addinventory";
+import Location from "./location";
+import Adlocation from "./adlocation";
 
 export default class App extends Component {
   constructor(props) {
@@ -130,6 +132,12 @@ export default class App extends Component {
               </Route>
               <Route path="/adinventory">
                 <Addinventory/>
+              </Route>
+              <Route path="/location">
+                <Location/>
+              </Route>
+              <Route path="/adlocation">
+                <Adlocation/>
               </Route>
             </Switch>
           </div>
