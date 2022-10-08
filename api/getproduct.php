@@ -21,4 +21,5 @@ if(isset($_GET['num']))
     mysqli_close($conn);
     print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
  }
+
 ?>

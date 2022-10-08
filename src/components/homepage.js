@@ -81,7 +81,8 @@ import "./css/button.css";
        return (  
            <div>
             <img className="banner" src={tagline}></img>
-            <h1 style={{margin:27+'px'}}> CHOOSE YOUR <span>PRODUCT</span></h1>
+            <h1 style={{margin:27+'px'}}> SHOP FOR <span>PARTS</span></h1>
+            <h2 style={{margin:27+'px'}}>CHOOSE YOUR PRODUCT</h2>
             <ShowProducts key={this.state.countx} numofprod={this.state.countprod}/>
             <button onClick={this.addnumprod} name="addprod" style={{float:"right",marginRight:85+"px"}} >VIEW MORE</button>
             <h1 style={{margin:27+'px',marginTop:86+'px'}}> SHOP FOR <span>TOOLS</span></h1>

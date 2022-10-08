@@ -30,4 +30,24 @@ if(isset($_GET['eid']))
     mysqli_close($conn);
    
  }
+ else
+ {
+    $sql = "SELECT DISTINCT(tooltype) FROM tool";
+    $res = mysqli_query($conn,$sql);
+    $rows = array();
+    if(mysqli_num_rows($res)>0)
+    {
+        while($r= mysqli_fetch_assoc($res))
+        {
+            $rows[] =$r;
+        }
+        print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+    else
+    {
+        echo "-1";
+    }
+    
+    mysqli_close($conn);
+ }
 ?>

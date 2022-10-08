@@ -24,6 +24,7 @@ import Editstep from "./editstep";
 import Addinventory from "./addinventory";
 import Location from "./location";
 import Adlocation from "./adlocation";
+import Tools from "./tools";
 
 export default class App extends Component {
   constructor(props) {
@@ -57,8 +58,7 @@ export default class App extends Component {
           <Navbar
             key={this.state.isloggedIn}
             brand="FixMe.com"
-            option1="Mobile Parts"
-            option2="Desktop Parts"
+            option1="Parts"
             option3="Tools"
             islogin={this.state.isloggedIn}
             setlogoutval={this.setlogoutval}
@@ -138,6 +138,9 @@ export default class App extends Component {
               </Route>
               <Route path="/adlocation">
                 <Adlocation/>
+              </Route>
+              <Route path="/tools">
+                <Tools/>
               </Route>
             </Switch>
           </div>

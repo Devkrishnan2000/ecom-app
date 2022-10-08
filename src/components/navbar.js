@@ -91,10 +91,7 @@ import axios from "axios";
               <a href="#">{this.props.option1}</a>
             </li>
             <li>
-              <a href="#">{this.props.option2}</a>
-            </li>
-            <li>
-              <a href="#">{this.props.option3}</a>
+              <Link to="/tools">{this.props.option3}</Link>
             </li>
             <li>
               <div className="search-box">
