@@ -25,6 +25,7 @@ import Addinventory from "./addinventory";
 import Location from "./location";
 import Adlocation from "./adlocation";
 import Tools from "./tools";
+import Analytics from "./analytics";
 
 export default class App extends Component {
   constructor(props) {
@@ -141,6 +142,9 @@ export default class App extends Component {
               </Route>
               <Route path="/tools">
                 <Tools/>
+              </Route>
+              <Route path="/analytics">
+                <Analytics/>
               </Route>
             </Switch>
           </div>
