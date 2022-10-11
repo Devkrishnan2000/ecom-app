@@ -57,8 +57,23 @@ $conn = $db->connect();
  {
     $year =$_GET['revenueyear'];
     $curmonth = date('m');
+    $curyear = date('Y');
     $rows = array();
-    for($i=1;$i<=$curmonth;++$i)
+    if($year==$curyear)
+    {
+        for($i=1;$i<=$curmonth;++$i)
+        {
+            $sql = "SELECT IFNULL(sum(oprice),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
+            $res = mysqli_query($conn,$sql);
+            if(mysqli_num_rows($res)>0)
+            {
+                $rows[] = mysqli_fetch_assoc($res);
+            }
+        }
+    }
+    else
+    {
+        for($i=1;$i<=12;++$i)
     {
         $sql = "SELECT IFNULL(sum(oprice),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
         $res = mysqli_query($conn,$sql);
@@ -67,23 +82,96 @@ $conn = $db->connect();
             $rows[] = mysqli_fetch_assoc($res);
         }
     }
+    }
+    
     print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
  }
+ else 
  if(isset($_GET['salesyear']))
  {
     $year =$_GET['salesyear'];
     $curmonth = date('m');
+    $curyear = date('Y');
     $rows = array();
-    for($i=1;$i<=$curmonth;++$i)
+    if($year==$curyear)
     {
-        $sql = "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
+        for($i=1;$i<=$curmonth;++$i)
+        {
+            $sql = "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
+            $res = mysqli_query($conn,$sql);
+            if(mysqli_num_rows($res)>0)
+            {
+                $rows[] = mysqli_fetch_assoc($res);
+            }
+        }
+    }
+    else
+    {
+        for($i=1;$i<=12;++$i)
+        {
+            $sql = "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
+            $res = mysqli_query($conn,$sql);
+            if(mysqli_num_rows($res)>0)
+            {
+                $rows[] = mysqli_fetch_assoc($res);
+            }
+        }
+    }
+   
+    print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+ }
+ else
+ if(isset($_GET['yearwiserev']))
+ {
+    $sql = "SELECT DISTINCT(YEAR(odate)) as year FROM porder;";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0)
+    {
+        $rows = array();
+        $yearrev = array(); 
+       while( $r = mysqli_fetch_assoc($res))
+       {
+          $rows[] = $r['year'];
+       }
+       for($i=0;$i<count($rows);++$i)
+       {
+        $sql= "SELECT IFNULL(sum(oprice),0) as sum from porder where year(odate)=$rows[$i] and ostatus!='canceled';";
         $res = mysqli_query($conn,$sql);
         if(mysqli_num_rows($res)>0)
         {
-            $rows[] = mysqli_fetch_assoc($res);
+            $yearrev[] = mysqli_fetch_assoc($res);
         }
-    }
-    print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
- }
 
+       }
+       print json_encode($yearrev,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+ }
+ else
+ if(isset($_GET['yearwisesale']))
+ {
+    $sql = "SELECT DISTINCT(YEAR(odate)) as year FROM porder;";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0)
+    {
+        $rows = array();
+        $yearrev = array(); 
+       while( $r = mysqli_fetch_assoc($res))
+       {
+          $rows[] = $r['year'];
+       }
+       for($i=0;$i<count($rows);++$i)
+       {
+        $sql= "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$rows[$i] and ostatus!='canceled';";
+        $res = mysqli_query($conn,$sql);
+        if(mysqli_num_rows($res)>0)
+        {
+            $yearrev[] = mysqli_fetch_assoc($res);
+        }
+
+       }
+       print json_encode($yearrev,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+ }
+ 
+  
 ?>

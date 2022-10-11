@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2022 at 07:46 PM
+-- Generation Time: Oct 10, 2022 at 10:39 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -87,7 +87,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
-(1, 3006, 2),
+(1, 3011, 1),
 (17, 3001, 1),
 (17, 3002, 1),
 (17, 3007, 1);
@@ -113,7 +113,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cid`, `cname`, `caddr`, `cmail`, `cphno`, `cpass`, `pincode`) VALUES
-(1, 'Devkrishnan V A', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva near pulincode metro station', 'des@gmail.com', '9074757442', '$2y$10$4d5ulPDmeHN23hOoiYrPievQnsUYUWVz6g0mQ0CYxC/rCikAXW/oO', 683106),
+(1, 'Devkrishnan V A', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva near pulincode metro station', 'des@gmail.com', '9074757442', '$2y$10$gB7fvV74TDKyrUF7Qhy5cuAnXlbacfE6QXDV/LCKF3hD0niSIUY0S', 683123),
 (2, 'Anjali V A', 'Aiswarya Nagar Flat no 207 thaikkattukara po aluva', 'anjaliaswinikumar7@gmail.com', '9400531221', '$2y$10$INpO8hWCi7lmpIwgIMlrKO9IgIy/ayCYw7hHvoqw6PsC1qbsAwXTi', 683123),
 (3, 'Aswinikumar V V', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva', 'aswinikumarjaya@gmail.com', '9847193950', '$2y$10$5NrKQ7qlenTHofmPNyVrO.tlYu8bmV1fvJPkejbmVuqNa74t7nKcC', 683106),
 (17, 'Jayasree M J', 'fsf', 'jayasreeaswinikumar@gmail.com', '9446743339', '$2y$10$zgQvPcoV6UYSkZ/iT4NUC.Sf6ut9eAccKTMzW397H/bwiTborfPNy', 683106),
@@ -164,7 +164,8 @@ INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
 (3008, 2000, 'Back Cover(PINK)', 0, 0),
 (3009, 2000, 'Back Cover(RED)', 0, 0),
 (3010, 2001, 'Battery', 0, 0),
-(3011, 2001, 'display', 50, 0);
+(3011, 2001, 'display', 50, 0),
+(3012, 2001, 'camera', 50, 0);
 
 -- --------------------------------------------------------
 
@@ -205,16 +206,18 @@ CREATE TABLE `pincode` (
   `pincode` int(11) NOT NULL,
   `place` varchar(50) NOT NULL,
   `dfrom` int(11) NOT NULL,
-  `dto` int(11) NOT NULL
+  `dto` int(11) NOT NULL,
+  `deliverable` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pincode`
 --
 
-INSERT INTO `pincode` (`pincode`, `place`, `dfrom`, `dto`) VALUES
-(683106, 'Kandungaloor', 1, 2),
-(683123, 'Karumathra', 2, 5);
+INSERT INTO `pincode` (`pincode`, `place`, `dfrom`, `dto`, `deliverable`) VALUES
+(683106, 'Kandungaloor', 1, 2, 0),
+(683107, 'Koratty', 2, 3, 0),
+(683123, 'Karumathra', 2, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -250,7 +253,9 @@ INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocatio
 (100015, 17, 3001, 1400, 1, 'Delivered', 'ALUVA', '2022-09-15'),
 (100016, 1, 3003, 750, 1, 'Shipping', 'Warehouse', '2022-09-15'),
 (100017, 17, 3007, 1350, 1, 'Shipping', 'Warehouse', '2022-09-18'),
-(100018, 1, 3006, 1400, 2, 'Shipping', 'Warehouse', '2022-09-24');
+(100018, 1, 3006, 1400, 2, 'Shipping', 'Warehouse', '2022-09-24'),
+(100019, 1, 3012, 3304, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-05'),
+(100020, 1, 3011, 11250, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-05');
 
 -- --------------------------------------------------------
 
@@ -262,7 +267,7 @@ CREATE TABLE `products` (
   `pid` int(11) NOT NULL,
   `brandid` int(11) NOT NULL,
   `ptype` varchar(20) NOT NULL,
-  `pname` varchar(30) NOT NULL,
+  `pname` varchar(50) NOT NULL,
   `pdesc` text NOT NULL,
   `pimage` varchar(50) NOT NULL,
   `price` int(11) NOT NULL,
@@ -290,7 +295,8 @@ INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 3, 0),
 (3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 10, 6, 4, 0),
 (3010, 1001, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 4, 6, 3, 0),
-(3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 10, 6, 0, 1);
+(3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 9, 6, 0, 1),
+(3012, 1001, 'part', 'iPhone 12 Rear Camera', 'Replace a dual primary rear-facing camera assembly in your iPhone 12.\r\n\r\nIf your rear camera has sensor issues, focusing problems, or shows a blank image, you’ll want to replace this part.', 'images/parts/iphone12camera.png', 4130, 3304, 20, 9, 12, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -340,6 +346,28 @@ INSERT INTO `steps` (`did`, `stid`, `stitle`, `stdesc`, `stimg`) VALUES
 (50, 1, 'Removing back cover', 'Start by heating up an iOpener and place it on the bottom edge of the phone’s back cover. Leave it there for about two minutes. Then apply a suction handle on the spot you just heated and pull up with a strong steady force. This will create a gap between the cover and the frame for the next step.WARNING: Do not apply excessive force with the pick while cutting the adhesive during the next few steps, or you might crack the back cover glass.\r\n\r\nWhen you see the gap, grab an opening pick and insert the point into the gap so that the adhesive doesn’t re-adhere. This may take more than one attempt due to tight tolerances. If so, apply more heat.\r\n\r\nOnce you have your pick inserted, slide the pick back and forth along the bottom edge making sure you slice through all the adhesive. Leave a pick in the seam so that the adhesive doesn’t reseal.', 'images/documentation/samsungs20bat1.jpg'),
 (50, 2, 'Separate the bottom edge adhesive', 'Apply a suction cup to the back of the phone, as close to the center of the bottom edge as possible.\r\n\r\nIf your display is badly cracked, covering it with a layer of clear packing tape may allow the suction cup to adhere. Alternatively, very strong tape may be used instead of the suction cup. If all else fails, you can superglue the suction cup to the broken glass.\r\n\r\nPull on the suction cup with strong, steady force to create a gap between the back cover and the frame.\r\n\r\nInsert the point of an opening pick into the gap.\r\n\r\nDue to tight tolerances, this may take multiple attempts of reheating with the iOpener and separating with the suction cup before you get it right.\r\n\r\nIf you are having trouble creating a gap, apply more heat to the edge and try again.\r\n\r\nDo not apply excessive force with the pick, or you risk cracking the back cover glass.', 'images/documentation/samsungs20bat2.jpg'),
 (50, 3, 'Heat the left edge', 'Slide the pick back and forth along the bottom edge to slice through the adhesive.\r\n\r\nDo not attempt to cut the adhesive near the corners of the phone where the glass is curved or you risk cracking the glass panel.\r\n\r\nLeave your opening pick in the seam to prevent the adhesive from resealing.\r\n\r\nApply a heated iOpener to the left edge of the back cover for two minutes.', 'images/documentation/samsungs20bat3.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tool`
+--
+
+CREATE TABLE `tool` (
+  `pid` int(11) NOT NULL,
+  `tooltype` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tool`
+--
+
+INSERT INTO `tool` (`pid`, `tooltype`) VALUES
+(3000, 'Drivers'),
+(3001, 'Tool Kit'),
+(3002, 'Drivers'),
+(3004, 'Organization Tools'),
+(3005, 'Organization Tools');
 
 --
 -- Indexes for dumped tables
@@ -426,6 +454,12 @@ ALTER TABLE `steps`
   ADD PRIMARY KEY (`did`,`stid`);
 
 --
+-- Indexes for table `tool`
+--
+ALTER TABLE `tool`
+  ADD UNIQUE KEY `pid` (`pid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -463,13 +497,13 @@ ALTER TABLE `electronics`
 -- AUTO_INCREMENT for table `porder`
 --
 ALTER TABLE `porder`
-  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100019;
+  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100021;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3012;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3013;
 
 --
 -- Constraints for dumped tables
@@ -520,6 +554,12 @@ ALTER TABLE `review`
 --
 ALTER TABLE `steps`
   ADD CONSTRAINT `steps_ibfk_1` FOREIGN KEY (`did`) REFERENCES `document` (`did`);
+
+--
+-- Constraints for table `tool`
+--
+ALTER TABLE `tool`
+  ADD CONSTRAINT `tool_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `products` (`pid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

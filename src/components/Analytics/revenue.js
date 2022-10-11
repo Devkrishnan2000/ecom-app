@@ -11,8 +11,11 @@ export default class Revenue extends Component {
       salesnum: 0,
       revenuenum: 0,
       years: [],
+      months:['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','Decemeber'],
       revenuedat:[0,0,0,0,0,0,0,0,0,0,0,0],
-      salesdat:[0,0,0,0,0,0,0,0,0,0,0,0]
+      salesdat:[0,0,0,0,0,0,0,0,0,0,0,0],
+      yearrevdat:[],
+      yearsaledat:[]
     };
 
     this.onchangeyear= this.onchangeyear.bind(this);
@@ -41,6 +44,23 @@ export default class Revenue extends Component {
       )
       .then((res) => {
         this.setState({ years: res.data});
+        console.log(res.data);
+      });
+      axios
+      .get(
+        "http://localhost:80/sem8project/ecom-app/ecom-app/api/getrevenue.php",
+        { params: { yearwiserev: 0 } }
+      )
+      .then((res) => {
+        this.setState({ yearrevdat: res.data });
+      });
+      axios
+      .get(
+        "http://localhost:80/sem8project/ecom-app/ecom-app/api/getrevenue.php",
+        { params: { yearwisesale: 0 } }
+      )
+      .then((res) => {
+        this.setState({ yearsaledat: res.data });
       });
   }
   formatValuerev = (value) => value.toFixed(2);
@@ -64,6 +84,8 @@ export default class Revenue extends Component {
       .then((res) => {
         this.setState({ salesdat: res.data });
       });
+      
+      
   }
   render() {
     return (
@@ -110,9 +132,13 @@ export default class Revenue extends Component {
             ))}
           </select>
           <h2 style={{ marginTop: 20 + "px"}}>REVENUE MONTHLY WISE</h2>
-          <RevenueChart revenuedat={this.state.revenuedat} type="Revenue ₹"></RevenueChart>
+          <RevenueChart revenuedat={this.state.revenuedat} type="Revenue ₹"  label={this.state.months}></RevenueChart>
           <h2 style={{ marginTop: 20 + "px"}}>SALES MONTHLY WISE</h2>
-          <RevenueChart revenuedat={this.state.salesdat} type="Sales"></RevenueChart>
+          <RevenueChart revenuedat={this.state.salesdat} type="Sales" label={this.state.months} ></RevenueChart>
+          <h2 style={{ marginTop: 20 + "px"}}>REVENUE YEAR WISE</h2>
+          <RevenueChart revenuedat={this.state.yearrevdat} type="Year wise Revenue ₹" label={this.state.years.map((res=>res.year))}></RevenueChart>
+          <h2 style={{ marginTop: 20 + "px"}}>SALES YEAR WISE</h2>
+          <RevenueChart revenuedat={this.state.yearsaledat} type="Year wise Sale" label={this.state.years.map((res=>res.year))}></RevenueChart>
         </div>
       </div>
     );

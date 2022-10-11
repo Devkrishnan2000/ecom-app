@@ -32,3 +32,32 @@
     margin-top: 20px;
     margin-left: 20px;
 }
+
+.revenue-div .popular-prod
+{
+    padding: 10px;
+}
+
+.revenue-div .popular-prod h2
+{
+    margin-top: 10px;
+    text-align: center;
+}
+
+.revenue-div .avg-review
+{
+    margin-right: 10px;
+    padding: 10px;
+}
+.revenue-div .avg-review h2
+{
+    margin-top: 10px;
+    text-align: center;
+}
+.revenue-parent-div .prodgraph-div
+{
+    margin-left: 20px;
+    width: 85vw;
+}
+
+

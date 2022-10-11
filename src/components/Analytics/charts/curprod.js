@@ -21,8 +21,8 @@ ChartJS.register(
     Legend
   );
 
-export default class RevenueChart extends Component {
-
+  export default class CurProd extends Component
+  {
     constructor(props)
     {
         super(props);
@@ -39,7 +39,7 @@ export default class RevenueChart extends Component {
                 datasets: [
                     {
                       label: this.props.type,
-                      data: this.props.revenuedat.map((res=>res.sum)),
+                      data: this.props.data,
                       borderColor: '#00ADB5',
                       backgroundColor: '#00ADB5',
                     }
@@ -52,4 +52,4 @@ export default class RevenueChart extends Component {
      
     );
   }
-}
+  }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Apart from "./Analytics/apart";
 import Revenue from "./Analytics/revenue";
 
 
@@ -22,7 +23,7 @@ class Analytics extends Component
       <Revenue></Revenue>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 2</h2>
+     <Apart></Apart>
     </TabPanel>
     <TabPanel>
       <h2>Any content 3</h2>
