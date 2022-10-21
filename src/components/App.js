@@ -24,8 +24,9 @@ import Editstep from "./editstep";
 import Addinventory from "./addinventory";
 import Location from "./location";
 import Adlocation from "./adlocation";
-import Tools from "./tools";
+import Tools from "./productspage";
 import Analytics from "./analytics";
+import Apart from "./Analytics/apart";
 
 export default class App extends Component {
   constructor(props) {
@@ -145,6 +146,9 @@ export default class App extends Component {
               </Route>
               <Route path="/analytics">
                 <Analytics/>
+              </Route>
+              <Route path="/anpart">
+                <Apart/>
               </Route>
             </Switch>
           </div>

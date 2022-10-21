@@ -16,20 +16,16 @@ class Analytics extends Component
       <Tab style={{fontFamily:"Roboto",letterSpacing:1+"px",color:"#FFFFFF",backgroundColor:"#393E46"}} >Revenue</Tab>
       <Tab style={{fontFamily:"Roboto",letterSpacing:1+"px",color:"#FFFFFF",backgroundColor:"#393E46"}}>Parts</Tab>
       <Tab style={{fontFamily:"Roboto",letterSpacing:1+"px",color:"#FFFFFF",backgroundColor:"#393E46"}}>Tools</Tab>
-      <Tab style={{fontFamily:"Roboto",letterSpacing:1+"px",color:"#FFFFFF",backgroundColor:"#393E46"}}>Electronic</Tab>
     </TabList>
 
     <TabPanel>
       <Revenue></Revenue>
     </TabPanel>
     <TabPanel>
-     <Apart></Apart>
+     <Apart prodtype="part"></Apart>
     </TabPanel>
     <TabPanel>
-      <h2>Any content 3</h2>
-    </TabPanel>
-    <TabPanel>
-      <h2>Any content 4</h2>
+    <Apart prodtype="tool"></Apart>
     </TabPanel>
   </Tabs>
       )

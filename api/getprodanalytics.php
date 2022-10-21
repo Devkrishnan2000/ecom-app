@@ -52,6 +52,18 @@ if(isset($_GET['getpopprod']))
     mysqli_close($conn);
 }
 else
+if(isset($_GET['getpoptool']))
+{
+    $sql = "SELECT products.pname,products.rating, count(porder.pid) count from porder,products where porder.pid=products.pid and products.ptype='tool' and porder.ostatus!='canceled' GROUP by porder.pid ORDER BY COUNT DESC LIMIT 1";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0)
+    {
+        $r = mysqli_fetch_assoc($res);
+        print json_encode($r,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+    mysqli_close($conn);
+}
+else
 if(isset($_GET['gett5sales']))
 {
     $sql = "SELECT products.pname ,count(porder.pid) count from porder,products where porder.pid=products.pid and products.ptype='part' and porder.ostatus!='canceled' GROUP by porder.pid ORDER BY COUNT DESC LIMIT 5";
@@ -68,9 +80,42 @@ if(isset($_GET['gett5sales']))
     mysqli_close($conn);
 }
 else
+if(isset($_GET['gett5tsales']))
+{
+    $sql = "SELECT products.pname ,count(porder.pid) count from porder,products where porder.pid=products.pid and products.ptype='tool' and porder.ostatus!='canceled' GROUP by porder.pid ORDER BY COUNT DESC LIMIT 5";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0)
+    {
+        $rows = array();
+       while( $r = mysqli_fetch_assoc($res))
+       {
+          $rows[] = $r;
+       }
+       print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+    mysqli_close($conn);
+}
+
+else
 if(isset($_GET['gett5rating']))
 {
     $sql = "SELECT products.pname ,count(porder.pid),products.rating  from porder,products where porder.pid=products.pid and products.ptype='part' and porder.ostatus!='canceled' GROUP by porder.pid ORDER BY products.rating DESC LIMIT 5";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0)
+    {
+        $rows = array();
+       while( $r = mysqli_fetch_assoc($res))
+       {
+          $rows[] = $r;
+       }
+       print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+    mysqli_close($conn);
+}
+else
+if(isset($_GET['gett5trating']))
+{
+    $sql = "SELECT products.pname ,count(porder.pid),products.rating  from porder,products where porder.pid=products.pid and products.ptype='tool' and porder.ostatus!='canceled' GROUP by porder.pid ORDER BY products.rating DESC LIMIT 5";
     $res = mysqli_query($conn,$sql);
     if(mysqli_num_rows($res)>0)
     {
@@ -100,6 +145,24 @@ if(isset($_GET['getparts']))
     mysqli_close($conn);
     
 }
+else
+if(isset($_GET['gettools']))
+{
+    $sql = "select pname,pid from products where ptype='tool'";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0)
+    {
+        $rows = array();
+       while( $r = mysqli_fetch_assoc($res))
+       {
+          $rows[] = $r;
+       }
+       print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+    mysqli_close($conn);
+    
+}
+
 else
 if(isset($_GET['currating']))
 {

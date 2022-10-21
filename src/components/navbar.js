@@ -88,10 +88,10 @@ import axios from "axios";
             <a className='brand' href="/">{this.props.brand}</a>
           </li>
             <li>
-              <a href="#">{this.props.option1}</a>
+            <Link to={{pathname:'/tools',state:false}}>{this.props.option1}</Link>
             </li>
             <li>
-              <Link to="/tools">{this.props.option3}</Link>
+              <Link to={{pathname:'/tools',state:true}}>{this.props.option3}</Link>
             </li>
             <li>
               <div className="search-box">
@@ -106,8 +106,7 @@ import axios from "axios";
           
           
           
-          
-          
+     
         </ul>
         {this.dispdropdown()}
       </div>
