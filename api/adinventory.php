@@ -150,6 +150,87 @@ if(isset($_SESSION['admin'] ))
 
        
     }
+    else if(isset($_POST['ttype']))
+    {
+        $dir =  $toolimgdir;
+        $pname = $_POST['pname'];
+        $bid = $_POST['brandid'];
+        $price = $_POST['price'];
+        $discount = $_POST['discount'];
+        $stock = $_POST['stock'];
+        $waranty = $_POST['waranty'];
+        $condition = $_POST['condition'];
+        $pdesc = $_POST['pdesc'];
+        $ptype = $_POST['ttype'];
+        if($discount>-1)
+        $oprice = $price - ($price * ($discount/100));
+        else
+        $oprice = $price;
+
+        if(isset($_POST['pid']))
+        {
+          $pid = $_POST['pid'];
+          $filedir="null";
+          if(isset($_FILES['pimg']))
+          {
+            $filedir = $dir.basename($_FILES['pimg']['name']);
+            move_uploaded_file($_FILES['pimg']['tmp_name'],$filedir);
+          }
+
+          if($filedir!="null")
+          {
+            $relpath =  abs_to_rel($filedir,$dir,"images/Tools/");
+            $sql = "update products set brandid=$bid ,pname='$pname', pdesc='$pdesc', pimage='$relpath' , price=$price ,oprice=$oprice ,discount=$discount ,stock=$stock ,waranty=$waranty, pcondition=$condition where pid=$pid";
+            if(!mysqli_query($conn,$sql))
+            {
+               echo mysqli_error($conn);
+               $flag=-1;
+            }
+            else
+            {
+                $sql = "update tool set tooltype='$ptype' where pid=$pid";
+            }
+          }
+          else
+          {
+            $sql = "update products set brandid=$bid ,pname='$pname', pdesc='$pdesc', price=$price ,oprice=$oprice ,discount=$discount ,stock=$stock ,waranty=$waranty, pcondition=$condition where pid=$pid";
+            if(!mysqli_query($conn,$sql))
+            {
+               echo mysqli_error($conn);
+               $flag=-1;
+            }
+            else
+            {
+              $sql = "update tool set tooltype='$ptype' where pid=$pid";
+            }
+          }
+
+
+        }
+        else
+        {
+          if($_FILES['pimg'])
+          {
+            $filedir = $dir.basename($_FILES['pimg']['name']);
+            move_uploaded_file($_FILES['pimg']['tmp_name'],$filedir);
+          }
+          $relpath =  abs_to_rel($filedir,$dir,"images/Tools/");
+          $sql = "insert into products (brandid,ptype,pname,pdesc,pimage,price,oprice,discount,stock,waranty,pcondition) values($bid,'tool','$pname','$pdesc','$relpath',$price,$oprice,$discount,$stock,$waranty,$condition)";
+          if(!mysqli_query($conn,$sql))
+           {
+              echo mysqli_error($conn);
+              $flag=-1;
+           }
+           else
+           {
+              $sql = "select pid from products where pname='$pname'";
+              $res = mysqli_query($conn,$sql);
+              $r = mysqli_fetch_assoc($res);
+              $pid = $r['pid'];
+              $sql = "insert into tool  values($pid,'$ptype')";
+           }
+        }
+    }
 
     if($flag==0)
     {

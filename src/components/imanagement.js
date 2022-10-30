@@ -120,7 +120,19 @@ class Imanagement extends Component {
                       <th>Tool type</th>
                     </tr>
                   </thead>
-                  <tbody></tbody>
+                  <tbody>
+                  {
+                 this.props.tools.map((res=> <tr key={res.pid} >
+                    <td>{res.pid}</td>
+                    <td>{res.pname}</td>
+                    <td>{res.price}</td>
+                    <td>{res.oprice}</td>
+                    <td>{res.stock}</td>
+                    <td>{res.tooltype}</td>
+                    <td><button onClick={this.editinvent.bind(this,res.pid)}><img src="images\svg\edit.svg"/></button></td>
+                 </tr> ))
+                }
+                  </tbody>
                 </table>
               );            
     }

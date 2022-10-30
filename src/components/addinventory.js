@@ -23,6 +23,7 @@ class AddInventory extends Component
         this.ins_brand = this.ins_brand.bind(this);
         this.ins_elec = this.ins_elec.bind(this);
         this.ins_part = this.ins_part.bind(this);
+        this.ins_tool = this.ins_tool.bind(this);
      }
 
      componentDidMount()
@@ -44,7 +45,7 @@ class AddInventory extends Component
          axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getinventory.php",{params:{cat:this.props.location.state.inventory.category,id:this.props.location.state.inventory.id}}).then(
           res=>{
             this.setState({val:res.data})
-            if(this.props.location.state.inventory.category=="Parts")
+            if(this.props.location.state.inventory.category=="Parts" || this.props.location.state.inventory.category=="Tools")
             {
               this.state.price = res.data['price'];
               this.state.discount = res.data['discount'];
@@ -176,14 +177,46 @@ class AddInventory extends Component
             console.log(res.data);
           })
 
-        }
-
-
-       
-        
-
-        
+        }   
       }
+
+     ins_tool(e)
+     {
+      e.preventDefault();
+      const fd = new FormData();
+      fd.append("pname",e.target.pname.value);
+      fd.append("brandid",e.target.brandselc.value);
+      fd.append("price",e.target.price.value);
+      fd.append("discount",e.target.discount.value);
+      fd.append("stock",e.target.stock.value);
+      fd.append("waranty",e.target.waranty.value);
+      fd.append("condition",e.target.condselc.value);
+      fd.append("pdesc",e.target.pdesc.value);
+      fd.append("pimg",e.target.pimg.files[0]);
+      fd.append("ttype",e.target.ptype.value);
+      if(this.props.location.state.inventory.isupdate===false)
+      {
+        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adinventory.php",fd).then(res=>{
+          if(res.data===0)
+          {
+            this.props.history.push("/admin");
+          }
+          console.log(res.data);
+        })
+      }
+      else
+      {
+        fd.append("pid",this.props.location.state.inventory.id)
+        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adinventory.php",fd).then(res=>{
+          if(res.data===0)
+          {
+            this.props.history.push("/admin");
+          }
+          console.log(res.data);
+        })
+
+      }   
+     }
 
 
     insgen()
@@ -550,6 +583,216 @@ class AddInventory extends Component
                 </form>
               </div>
             )
+
+           case "Tools":
+            return(
+
+              <div className="Table-div">
+              <form onSubmit={this.ins_tool}  ref={(el) => this.myFormRef = el}>
+                <table width={1000 + "px"}>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                         Product Name
+                        </h6>
+                        {!this.props.location.state.inventory.isupdate &&
+                           <input
+                           type="text"
+                           pattern="[a-z A-Z 0-9]*"
+                           className="textbox"
+                           name="pname"
+                           style={{ marginTop: 20 + "px" }}
+                           required
+                         ></input>
+                        }
+                        {
+                          this.props.location.state.inventory.isupdate &&
+                          <input
+                          type="text"
+                          pattern="[a-z A-Z 0-9]*"
+                          className="textbox"
+                          name="pname"
+                          defaultValue={this.state.val['pname']}
+                          style={{ marginTop: 20 + "px" }}
+                          required
+                        ></input>
+                        }
+                       
+                      </td>
+                      <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Brand name
+                        </h6>
+                        <select className="textbox" name="brandselc"  style={{ marginTop: 20 + "px" }}>
+                          {this.state.brand.map((res=> <option key={res.brandid} value={res.brandid}>{res.bname}</option>))}
+                        </select>
+                      </td>
+
+                      <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Price
+                        </h6>
+                          <input
+                          type="number"
+                          className="textbox"
+                          name="price"
+                          value={this.state.price}
+                           onChange={this.onpricechange}
+                          style={{ marginTop: 20 + "px" }}
+                          required
+                        ></input> 
+                      </td>
+
+                      <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Discount 
+                        </h6>
+                        <input
+                          type="number"
+                          className="textbox"
+                          placeholder="set as -1 if no discount"
+                          value={this.state.discount}
+                          onChange={this.ondiscountchange}
+                          name="discount"
+                          style={{ marginTop: 20 + "px" }}
+                          required
+                        ></input> 
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                    <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Stock 
+                        </h6>
+                        {!this.props.location.state.inventory.isupdate &&
+                         <input
+                         type="number"
+                         className="textbox"
+                         placeholder="-1 to disable the product "
+                         name="stock"
+                         style={{ marginTop: 20 + "px" }}
+                         required
+                       ></input>
+                        }
+
+                        {this.props.location.state.inventory.isupdate &&
+                         <input
+                         type="number"
+                         className="textbox"
+                         defaultValue={this.state.val['stock']}
+                         name="stock"
+                         style={{ marginTop: 20 + "px" }}
+                         required
+                       ></input>
+                        }
+
+                        
+                        
+                      </td>
+                      <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Waranty
+                        </h6>
+                           <input
+                           type="number"
+                           className="textbox"
+                           placeholder="in months"
+                           value={this.state.waranty}
+                           onChange={this.onwarantychange}
+                           name="waranty"
+                           style={{ marginTop: 20 + "px" }}
+                           required
+                         ></input>
+                      
+                      </td>
+                   
+                      <td>
+                      <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Product Condition
+                        </h6>
+                        <select name="condselc" className="textbox" style={{ marginTop: 20 + "px"}}>
+                          <option value="0">Brand New</option>
+                          <option value="1">Refurbished</option>
+                        </select>
+                      </td>
+
+                      <td>
+                      <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Product Image
+                        </h6>
+                        {!this.props.location.state.inventory.isupdate &&
+                          <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
+                        }
+                        {this.props.location.state.inventory.isupdate &&
+                           <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }}></input>
+                        }
+                      
+                      </td>
+                     
+                    </tr>
+                    <tr>
+                    <td>
+                        <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                          Product description
+                        </h6>
+                        {!this.props.location.state.inventory.isupdate &&
+                          <textarea name="pdesc" className="textbox" rows={5} required></textarea>
+                        }
+                         {this.props.location.state.inventory.isupdate &&
+                          <textarea name="pdesc" defaultValue={this.state.val['pdesc']} className="textbox" rows={5} required></textarea>
+                        }
+                         
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                      <h6 style={{ marginLeft: 20 + "px", marginTop: 20 + "px" }}>
+                         Tool Type
+                        </h6>
+                        {!this.props.location.state.inventory.isupdate &&
+                          <input
+                          type="text"
+                          pattern="[a-z A-Z]*"
+                          className="textbox"
+                          name="ptype"
+                          style={{ marginTop: 20 + "px" }}
+                          required
+                        ></input>
+                        }
+                        {this.props.location.state.inventory.isupdate &&
+                          <input
+                          type="text"
+                          pattern="[a-z A-Z]*"
+                          className="textbox"
+                          defaultValue={this.state.val['tooltype']}
+                          name="ptype"
+                          style={{ marginTop: 20 + "px" }}
+                          required
+                        ></input>
+                        }
+                       
+                      </td>
+
+
+                    </tr>
+                    <tr>
+                    <td style={{verticalAlign:"bottom",marginTop:20+"px"}}>
+                    {!this.props.location.state.inventory.isupdate &&
+                        <button type="submit" style={{marginTop:20+"px",marginLeft:22+"px"}}>INSERT</button>
+                      }
+                       {this.props.location.state.inventory.isupdate &&
+                        <button type="submit" style={{marginTop:20+"px",marginLeft:22+"px"}}>UPDATE</button>
+                      }
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+
+            ) 
         }
     }
    render()

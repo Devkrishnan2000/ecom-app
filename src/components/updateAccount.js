@@ -149,7 +149,7 @@ class UpdateAccount extends Component {
             marginBottom: 30 + "px",
           }}
         >
-          Update Account
+         UPDATE <span>ACCOUNT</span>
         </h1>
         <div className="Table-div">
           <form onSubmit={this.updateacc} ref={(el) => (this.myFormRef = el)}>

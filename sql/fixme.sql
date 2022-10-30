@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2022 at 10:39 AM
+-- Generation Time: Oct 30, 2022 at 11:10 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -88,6 +88,8 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
 (1, 3011, 1),
+(2, 3002, 1),
+(2, 3009, 1),
 (17, 3001, 1),
 (17, 3002, 1),
 (17, 3007, 1);
@@ -114,7 +116,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`cid`, `cname`, `caddr`, `cmail`, `cphno`, `cpass`, `pincode`) VALUES
 (1, 'Devkrishnan V A', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva near pulincode metro station', 'des@gmail.com', '9074757442', '$2y$10$gB7fvV74TDKyrUF7Qhy5cuAnXlbacfE6QXDV/LCKF3hD0niSIUY0S', 683123),
-(2, 'Anjali V A', 'Aiswarya Nagar Flat no 207 thaikkattukara po aluva', 'anjaliaswinikumar7@gmail.com', '9400531221', '$2y$10$INpO8hWCi7lmpIwgIMlrKO9IgIy/ayCYw7hHvoqw6PsC1qbsAwXTi', 683123),
+(2, 'Anjali V A', 'Aiswarya Nagar Flat no 308 thaikkattukara po aluva', 'anjaliaswinikumar7@gmail.com', '9847193950', '$2y$10$w1fxdKIDS.k/r9SN/pw.0Ogep/fs1xvIcP0Q/UlMkOV340sqI.6qi', 683123),
 (3, 'Aswinikumar V V', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva', 'aswinikumarjaya@gmail.com', '9847193950', '$2y$10$5NrKQ7qlenTHofmPNyVrO.tlYu8bmV1fvJPkejbmVuqNa74t7nKcC', 683106),
 (17, 'Jayasree M J', 'fsf', 'jayasreeaswinikumar@gmail.com', '9446743339', '$2y$10$zgQvPcoV6UYSkZ/iT4NUC.Sf6ut9eAccKTMzW397H/bwiTborfPNy', 683106),
 (18, 'Neeraj K Nair', 'kadvanthra ', 'imca-182@scmsgroup.org', '9074757442', '$2y$10$oq5VucepGyGI0mXScEdIBu92hLfWmIl0ivBExGpdo9AaNOF2wa4YO', 683123);
@@ -160,11 +162,11 @@ CREATE TABLE `elecproduct` (
 
 INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
 (3006, 2000, 'Battery', 50, 0),
-(3007, 2000, 'Back Cover (BLACK)', 0, 8),
+(3007, 2000, 'Back Cover (BLACK)', 0, 9),
 (3008, 2000, 'Back Cover(PINK)', 0, 0),
 (3009, 2000, 'Back Cover(RED)', 0, 0),
-(3010, 2001, 'Battery', 0, 0),
-(3011, 2001, 'display', 50, 0),
+(3010, 2001, 'Battery', 0, 9),
+(3011, 2001, 'display', 50, 8),
 (3012, 2001, 'camera', 50, 0);
 
 -- --------------------------------------------------------
@@ -241,7 +243,7 @@ CREATE TABLE `porder` (
 --
 
 INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocation`, `odate`) VALUES
-(100005, 1, 3005, 150, 1, 'Delivered', 'ALUVA', '2022-09-10'),
+(100005, 1, 3005, 150, 1, 'Delivered', 'ALUVA', '2021-09-10'),
 (100006, 1, 3001, 5600, 4, 'Canceled', 'Warehouse', '2022-09-10'),
 (100007, 1, 3001, 7000, 5, 'Shipping', 'Tamil Nadu', '2022-09-10'),
 (100009, 1, 3001, 5600, 4, 'Shipping', 'Warehouse', '2022-09-11'),
@@ -252,10 +254,14 @@ INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocatio
 (100014, 17, 3002, 1385, 1, 'Delivered', 'Tamil Nadu', '2022-09-15'),
 (100015, 17, 3001, 1400, 1, 'Delivered', 'ALUVA', '2022-09-15'),
 (100016, 1, 3003, 750, 1, 'Shipping', 'Warehouse', '2022-09-15'),
-(100017, 17, 3007, 1350, 1, 'Shipping', 'Warehouse', '2022-09-18'),
+(100017, 17, 3007, 1350, 1, 'Delivered', 'ALUVA', '2022-09-18'),
 (100018, 1, 3006, 1400, 2, 'Shipping', 'Warehouse', '2022-09-24'),
-(100019, 1, 3012, 3304, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-05'),
-(100020, 1, 3011, 11250, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-05');
+(100019, 1, 3012, 3304, 1, 'Shipping', 'Warehouse', '2022-10-05'),
+(100020, 1, 3011, 11250, 1, 'Shipping', 'Warehouse', '2022-10-05'),
+(100021, 2, 3011, 11250, 1, 'Delivered', 'ALUVA', '2022-10-30'),
+(100022, 2, 3010, 1920, 1, 'Delivered', 'ALUVA', '2022-10-30'),
+(100023, 2, 3002, 1385, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-30'),
+(100024, 2, 3009, 1400, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-30');
 
 -- --------------------------------------------------------
 
@@ -286,16 +292,16 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `price`, `oprice`, `discount`, `stock`, `waranty`, `rating`, `pcondition`) VALUES
 (3000, 1006, 'tool', 'Morary Driver Kit', 'Meet the Moray, Minnow’s slightly bigger brother. Measuring a portable .9\" x 3.1\" x 4.9\", the Moray is the perfect every-day-carry toolkit or junk drawer standby to prevent your stuff from becoming junk.\r\n\r\nWe built the Moray using data from thousands of repair manuals and teardowns, ensuring you have a compact assortment of bits for electronics and home repair. Our 4 mm precision bit driver handle has an integrated SIM Eject pin, magnetic bit socket, knurled grip, and swivel top—and the 32 precision driver bits have a 4 mm hex shank and extended-reach long necks.\r\n\r\nStandard and security bits like Phillips and Pentalobes will get you into most electronic devices and small household appliances, and an assortment of Hex and specialty bits come in handy for furniture and older devices. Whether you\'re a professional fixer or a weekend warrior, the Moray has what you need to disassemble and repair smartphones, laptops, new and vintage game consoles, kitchen appliances, and more.', 'images/Tools/morary.png', 1500, 1500, -1, 4, 6, 3, 0),
 (3001, 1006, 'tool', 'Pro Tech Tool Kit', 'At the heart of the toolkit, 64 steel screwdriver bits to service all your tech. The Pro Tech Toolkit has everything from a Y000 bit for next-gen Apple products to the Gamebit for vintage game consoles.\r\n\r\nWe’ve engineered this toolkit from the ground up—from the custom opening tools and spudgers to the iFixit-designed aluminum driver with knurled handle and swivel top.\r\n\r\n', 'images/Tools/protech.png', 2000, 1400, 30, 14, 6, 4, 0),
-(3002, 1008, 'tool', 'A7104-XJ  Screwdriver', 'Package Contents: Screwdriver bits (25 mm) Philips: 4x PH1, 4 x PH2, 2 x PH3. Pozidriv: 2x PZ1, 2 x PZ2, 2 x PZ3, Slotted: 2x SL4, 4x SL6, 2x SL7.2 Torx: 2x TX10, 2x TX15, 2x TX20, 2x TX25 Hex: 2x HEX3, 2x HEX4, 2x HEX5, 2x HEX6. Screwdriver bits (50 mm) Philips: PH1, PH2, PH3, Pozidriv: PZ1, PZ2, Slotted: SL6, and SL7.2. Sockets: 5, 6, 7, 8, 10, 11, 12 mm. 1x Hand Ratchet and 1x Magnetic Holder\r\nAn ergonomic ratchet screw driver, which makes the task of fastening screws and bolts a lot easier\r\nThe set can be used in electronics, electrical, wood working and other hardware maintenance task\r\nThe driver bits and sockets are made of high quality materials to withstand heavy duty usage.', 'images/Tools/bd_screw_driver_set.png', 2114, 1385, 34, 19, 6, 4, 0),
+(3002, 1008, 'tool', 'A7104-XJ  Screwdriver', 'Package Contents: Screwdriver bits (25 mm) Philips: 4x PH1, 4 x PH2, 2 x PH3. Pozidriv: 2x PZ1, 2 x PZ2, 2 x PZ3, Slotted: 2x SL4, 4x SL6, 2x SL7.2 Torx: 2x TX10, 2x TX15, 2x TX20, 2x TX25 Hex: 2x HEX3, 2x HEX4, 2x HEX5, 2x HEX6. Screwdriver bits (50 mm) Philips: PH1, PH2, PH3, Pozidriv: PZ1, PZ2, Slotted: SL6, and SL7.2. Sockets: 5, 6, 7, 8, 10, 11, 12 mm. 1x Hand Ratchet and 1x Magnetic Holder\r\nAn ergonomic ratchet screw driver, which makes the task of fastening screws and bolts a lot easier\r\nThe set can be used in electronics, electrical, wood working and other hardware maintenance task\r\nThe driver bits and sockets are made of high quality materials to withstand heavy duty usage.', 'images/Tools/bd_screw_driver_set.png', 2114, 1385, 34, 18, 6, 4, 0),
 (3003, 1006, 'tool', 'Precision Tweezers', 'Grab everything from screws to eyebrows with iFixit\'s Precision Tweezers Set. The complete tweezer kit for all holding, pulling, squeezing, picking up, and plucking jobs.\r\n\r\nIncluded are the three essential tips for DIY projects:\r\n\r\nPointed (extra fine!) - For ultimate precision\r\nAngled - For ergonomic accuracy\r\nBlunt - For heavy lifting\r\nMade with stainless steel and a protective coating that prevents ESD damage from harming sensitive electronics. Keep your tweezers organized with the portable fabric storage sleeve.', 'images/Tools/tweezers.png', 750, 750, -1, 19, 6, 5, 0),
 (3004, 1006, 'tool', 'Anti static tray', 'Organize and Store Your Projects\r\n\r\nInvaluable for all electronics projects and repairs.\r\nStore tiny components and screws in the 20 small compartments, store large components and tools in the larger compartments.\r\nMade from Anti-Static Plastic, so it\'s safe for delicate components.\r\nUse in conjunction with our screwmaps for repairs on our most popular smartphone guides.\r\nGreat for phone repair! Put your standard size smartphone in the side compartment, store your tools in the bottom compartment, and organize your screws and parts in the small compartments.', 'images/Tools/tray.png', 350, 350, -1, 20, 6, 4, 0),
 (3005, 1006, 'tool', 'Magnetic mat', 'Organize all your small parts while you work on a device.\r\nDry erase surface lets you keep notes and location sketches.\r\nReduces reassembly time by up to 40% while preventing errors.\r\nDesigned by fixers, for fixers, the 8”x10” Magnetic Project Mat catches and securely holds screws as you pull them out of a device.\r\n\r\nNow you can stop worrying about keeping track of all the loose screws and focus on your repair. Screws and small parts will remain right where you left them. For laptops with hundreds of screws, use the whole mat as a screw guide and keep careful location notes.\r\n\r\nThe included pen is uniquely suited for the Project Mat. It’s made by Staedtler, producer of top-of-the-line pens and pencils for artists and architects. Their Lumocolor Correctable pen resists smears and won\'t wipe away with a casual brush of your hand. When your repair is complete, the eraser tip or a dry cloth wipes the ink away clean.', 'images/Tools/mat.png', 150, 150, -1, 20, 6, 4, 0),
 (3006, 1000, 'part', 'GALAXY S20 BATTERY', 'This Samsung Galaxy S20 Ultra replacement battery is what you need to bring your dead smartphone back to life!\r\n\r\nBattery degradation is an inevitable part of your smartphone\'s lifespan — extend it with this replacement battery compatible with the S20 Ultra model Samsung Galaxy. If your phone won’t turn on, won’t hold a charge, or you simply experience poor battery life, this replacement battery may be what you need to fix it.', 'images\\parts\\samsungs20bat.png', 1000, 700, 30, 8, 6, 4, 0),
 (3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1350, 10, 2, 6, 4, 0),
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 3, 0),
-(3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 10, 6, 4, 0),
-(3010, 1001, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 4, 6, 3, 0),
-(3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 9, 6, 0, 1),
+(3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 9, 6, 4, 0),
+(3010, 1001, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 3, 6, 5, 0),
+(3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 8, 6, 4, 1),
 (3012, 1001, 'part', 'iPhone 12 Rear Camera', 'Replace a dual primary rear-facing camera assembly in your iPhone 12.\r\n\r\nIf your rear camera has sensor issues, focusing problems, or shows a blank image, you’ll want to replace this part.', 'images/parts/iphone12camera.png', 4130, 3304, 20, 9, 12, 0, 0);
 
 -- --------------------------------------------------------
@@ -320,9 +326,10 @@ CREATE TABLE `review` (
 INSERT INTO `review` (`cid`, `pid`, `rtitle`, `rdesc`, `rrating`, `rscore`) VALUES
 (1, 3005, 'Nice Mat', 'Sed auctor, nisi ac rutrum sagittis, est dui condimentum sapien, sed bibendum nunc nisl et lacus. Vestibulum consectetur tortor id magna iaculis, vitae lobortis ante egestas. Maecenas porttitor erat non arcu venenatis, non consequat metus sollicitudin. Maecenas a tristique velit. Mauris quis faucibus libero. Etiam ut ultricies enim. Vestibulum lacus quam, aliquam non lobortis in, venenatis sed odio. Nam fringilla lectus at augue auctor porttitor.', 4, 0),
 (1, 3007, 'good product', 'gsdgagdsfsg', 4, 8),
-(2, 3000, 'Easy to use very nice product', 'EaEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productEasy to use very nice productsy to use very nice product', 4, 0),
-(3, 3000, 'Very good product ill recommend it', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rhoncus nisi arcu, eu convallis dolor fringilla a. Fusce posuere euismod dui non vestibulum. Aenean finibus ex eget rutrum vehicula. Donec ornare massa sed ex facilisis, sed porttitor felis mattis. Etiam blandit pellentesque eros, non finibus lectus lacinia id. Ut vehicula finibus massa eget convallis. Phasellus et hendrerit diam. Aliquam facilisis molestie nulla sit amet semper. Curabitur in ornare arcu. In efficitur vitae tortor non posuere. Mauris sit amet velit aliquam, tincidunt augue at, pretium libero. Donec quis lorem vel turpis volutpat tempor vitae luctus mauris.', 5, 0),
-(17, 3001, 'Awesome Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum sem nec pulvinar faucibus. Curabitur viverra sodales libero. In dictum accumsan massa, a tempor ante vestibulum sed. Quisque nulla magna, placerat at turpis id, porta iaculis mi. Sed vel quam placerat, suscipit dolor vel, malesuada enim. Aliquam pharetra et quam ac accumsan. In interdum tellus elit, nec tincidunt quam commodo ac. Aenean sit amet pharetra urna. In eget metus ultrices nisi viverra dignissim. Praesent vulputate tristique pulvinar. Suspendisse vel ligula vel metus fermentum aliquam. Suspendisse vitae ante orci. Vestibulum auctor tortor quis volutpat fermentum. Sed ultricies porta velit.', 5, 0);
+(2, 3010, 'Good Battery', 'Nice Battery now my phones battery lasts for days', 5, 9),
+(2, 3011, 'Great display', 'Great display im really linking it', 4, 8),
+(17, 3001, 'Awesome Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum sem nec pulvinar faucibus. Curabitur viverra sodales libero. In dictum accumsan massa, a tempor ante vestibulum sed. Quisque nulla magna, placerat at turpis id, porta iaculis mi. Sed vel quam placerat, suscipit dolor vel, malesuada enim. Aliquam pharetra et quam ac accumsan. In interdum tellus elit, nec tincidunt quam commodo ac. Aenean sit amet pharetra urna. In eget metus ultrices nisi viverra dignissim. Praesent vulputate tristique pulvinar. Suspendisse vel ligula vel metus fermentum aliquam. Suspendisse vitae ante orci. Vestibulum auctor tortor quis volutpat fermentum. Sed ultricies porta velit.', 5, 0),
+(17, 3007, 'Good Product', 'Not The Best but good', 3, 10);
 
 -- --------------------------------------------------------
 
@@ -497,7 +504,7 @@ ALTER TABLE `electronics`
 -- AUTO_INCREMENT for table `porder`
 --
 ALTER TABLE `porder`
-  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100021;
+  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100025;
 
 --
 -- AUTO_INCREMENT for table `products`

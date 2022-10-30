@@ -89,7 +89,7 @@ import  { Redirect } from 'react-router-dom'
   render() {
     return (
       <div>
-        <h1 style={{marginLeft:150+"px",marginTop:20+"px",marginBottom:30+"px"}}>Create New Account</h1>
+        <h1 style={{marginLeft:150+"px",marginTop:20+"px",marginBottom:30+"px"}}>CREATE NEW <span>ACCOUNT</span></h1>
         <div className="Table-div">
           <form onSubmit={this.createAc} ref={(el) => this.myFormRef = el}>
             <table width={1000 + "px"}>

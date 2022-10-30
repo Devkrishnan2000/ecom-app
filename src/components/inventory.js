@@ -13,7 +13,8 @@ export default class Inventory extends Component
             category:'',
             brand:[],
             electronic:[],
-            parts:[]
+            parts:[],
+            tools:[]
         }
         this.onselectchange = this.onselectchange.bind(this);
     }
@@ -49,6 +50,14 @@ export default class Inventory extends Component
                 this.setState({parts:res.data});
             }
             this.setState({category:e.target.value})
+          }) 
+          
+          case "Tools":  axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getinventory.php",{params:{cat:e.target.value}}).then(res=>{
+            if(res.data!==-1)
+            {
+                this.setState({tools:res.data});
+            }
+            this.setState({category:e.target.value})
           })   
 
         }
@@ -66,7 +75,7 @@ export default class Inventory extends Component
                     <option value="Parts">Parts</option>
                     <option value="Tools">Tools</option>
                 </select>
-               <Imanagement category={this.state.category} brand={this.state.brand} electronic={this.state.electronic} parts={this.state.parts}></Imanagement>
+               <Imanagement category={this.state.category} brand={this.state.brand} electronic={this.state.electronic} parts={this.state.parts} tools={this.state.tools}></Imanagement>
             </div>
         )
     }

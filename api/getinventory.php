@@ -19,6 +19,8 @@ if(isset($_SESSION['admin'])&& isset($_GET['cat']) && isset($_GET['id']))
         break;
         case "Parts": $sql = " select  products.pid , products.pname, products.price ,products.oprice, products.discount, products.waranty, products.pdesc ,products.stock ,elecproduct.parttype from products,elecproduct where products.pid = elecproduct.pid and products.pid=$id";
         break;
+        case "Tools":  $sql = " select  products.pid , products.pname, products.price ,products.oprice, products.discount, products.waranty, products.pdesc ,products.stock ,tool.tooltype from products,tool where products.pid = tool.pid and products.pid=$id";
+        break;
         case "Doc" :$sql = "select * from document where did=$id";
         break;
         default : $sql =-1;
@@ -57,6 +59,8 @@ else if(isset($_SESSION['admin'])&& isset($_GET['cat']))
         case "Electronics": $sql = "select * from Electronics";
         break;
         case "Parts": $sql = " select  products.pid , products.pname, products.price ,products.oprice ,products.stock ,elecproduct.parttype from products,elecproduct where products.pid = elecproduct.pid";
+        break;
+        case "Tools":  $sql = " select  products.pid , products.pname, products.price ,products.oprice, products.discount, products.waranty, products.pdesc ,products.stock ,tool.tooltype from products,tool where products.pid = tool.pid";
         break;
         case "Doc" :$sql = "select * from document";
         break;

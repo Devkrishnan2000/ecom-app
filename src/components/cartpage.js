@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import CartItem from "./cartitem";
 import "./css/cartpage.css";
+import "./css/popup.css";
 
 
 class CartPage extends Component
@@ -18,11 +19,14 @@ class CartPage extends Component
          cartempty:false,
          address:'',
          pincode:'',
+         popup:false,
       }
       this.delcart = this.delcart.bind(this);
       this.placeorder = this.placeorder.bind(this);
       this.buyall  = this.buyall.bind(this);
       this.gotoaccount = this.gotoaccount.bind(this);
+      this.setpopup = this.setpopup.bind(this);
+      this.orderplaced = this.orderplaced.bind(this);
    }
 
    delcart(pid)
@@ -84,6 +88,7 @@ class CartPage extends Component
     
          if(this.state.deliv==='0')
          {
+            
             let tprice =Number(qty)*Number(price);
             axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/placeorder.php",{params:{pid:pid,qty:qty,price:tprice}}).then(res=>
             {
@@ -104,15 +109,26 @@ class CartPage extends Component
          
    }
 
+   orderplaced(e)
+   {
+      e.preventDefault();
+      this.state.cartitem.map((result=> this.placeorder(result.pid,result.qty,result.oprice)));
+      
+   }
+
    buyall()
    {
-      this.state.cartitem.map((result=> this.placeorder(result.pid,result.qty,result.oprice)));
+      this.setState({popup:true});
       console.log("buy all");
    }
 
    gotoaccount()
    {
       this.props.history.push('/updateAcc');
+   }
+   setpopup()
+   {
+      this.setState({popup:false});
    }
 
   
@@ -154,11 +170,31 @@ class CartPage extends Component
                      <button onClick={this.gotoaccount}>CHANGE</button>
                      </div>
                      </div>
+
                    </div>
                    
                }
                
-              
+               {this.state.popup &&
+                 <div className="modal">
+                 <div className="overlay"></div>
+                 <div className="modal-content">
+                   <h2 style={{marginTop:30+"px",marginBottom:20+"px",textAlign:"center"}}>PAYMENT INFORMATION</h2>
+                   <form onSubmit={this.orderplaced} >
+                      <h4>Card Number</h4>
+                      <input className="textbox"  type="tel" inputMode="numeric" pattern="[0-9\s]{13,19}" autoComplete="cc-number" maxLength="19" placeholder="xxxx xxxx xxxx xxxx" required></input>
+                      <h4>CVV</h4>
+                      <input className="textbox" type="tel" inputMode="numeric" maxLength="3" minLength="3" required></input>
+                      <div>
+                      <input style={{marginTop:20+"px"}} type="submit" className="button-black" value="PLACE ORDER"></input>
+                      </div>
+                      
+                   </form>
+                   <button className="close-modal" onClick={this.setpopup}>CLOSE</button>
+                 </div>
+                 </div>
+             }
+               
             
             </div>
             {this.state.cartempty &&
