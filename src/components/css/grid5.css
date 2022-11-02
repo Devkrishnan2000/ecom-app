@@ -8,3 +8,11 @@
    
 
 }
+
+.category-wrapper{
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content  max-content  max-content  max-content  max-content ;
+   
+    
+}

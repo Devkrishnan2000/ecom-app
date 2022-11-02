@@ -88,7 +88,7 @@ import axios from "axios";
             <a className='brand' href="/">{this.props.brand}</a>
           </li>
             <li>
-            <Link to={{pathname:'/tools',state:false}}>{this.props.option1}</Link>
+            <Link to={{pathname:'/parts',state:false}}>{this.props.option1}</Link>
             </li>
             <li>
               <Link to={{pathname:'/tools',state:true}}>{this.props.option3}</Link>

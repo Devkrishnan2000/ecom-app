@@ -11,12 +11,12 @@ export default class Category extends Component
 
       callcategory(e)
       {
-          this.props.setcategory(this.props.parttype);
+          this.props.setcategory(this.props.parttype,this.props.keyval);
       }
     render()
     {
         return(
-            <h6 onClick={this.callcategory}  className="category-div">{this.props.parttype}</h6>
+            <h6  onClick={this.callcategory}  className="category-div">{this.props.parttype}</h6>
         )
     }
 }

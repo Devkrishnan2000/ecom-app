@@ -6,7 +6,7 @@ import "./css/tools.css";
 import Category from "./category";
 import PriceSelect from "./priceselect";
 
-class ProductPage extends Component
+class ShopforTools extends Component
 {
     constructor(props)
     {
@@ -67,18 +67,11 @@ class ProductPage extends Component
     {
         return(
             <div className="tools-div">
-             { this.props.location.state &&
+             
                 <div>
-               <h1 style={{marginLeft:20+"px"}}>BUY <span>TOOLS</span></h1>
+               <h1 style={{marginLeft:20+"px"}}>SHOP FOR <span>TOOLS</span></h1>
                <h6 style={{marginTop:20+"px",marginLeft:20+"px"}}>We offer every tool you need to get your machine up and running again: comprehensive laptop and computer repair kits, genuine iFixit precision screwdrivers for your iPhone or Nintendo Switch, and repair necessities such as spudgers and tweezers. Not sure what tools you need? Our repair guides show you exactly what tools to use for your repair job.</h6>
-                </div>          
-             }
-              { !this.props.location.state &&
-                <div>
-               <h1 style={{marginLeft:20+"px"}}>BUY ELECTRONIC <span> PARTS</span></h1>
-               <h6 style={{marginTop:20+"px",marginLeft:20+"px"}}>Repair with confidence! iFixit has you covered with parts, tools, and free repair guides. All of our replacement parts are tested to meet rigorous quality standards and are backed by our industry-leading guarantee.</h6>
-                </div>          
-             }     
+                </div>            
             
              <h2  style={{marginTop:20+"px",marginLeft:20+"px"}}>Product Category</h2>
              <div style={{display:"flex",marginLeft:20+"px",marginTop:20+"px"}} className="product-category">
@@ -96,5 +89,4 @@ class ProductPage extends Component
     }
     
 }
-export default withRouter(ProductPage);
-
+export default withRouter(ShopforTools);
