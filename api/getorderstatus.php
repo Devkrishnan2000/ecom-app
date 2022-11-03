@@ -10,7 +10,7 @@ $conn = $db->connect();
 if(isset($_SESSION['admin'])&& isset($_GET['oid']))
 {
     $oid = $_GET['oid'];
-    $sql ="select customer.cname,customer.caddr,customer.cphno,ostatus,olocation from customer,porder where porder.cid =customer.cid and oid=$oid and ostatus='Shipping'";
+    $sql ="select customer.cname,customer.caddr,customer.cphno,ostatus,olocation from customer,porder where porder.cid =customer.cid and oid=$oid and (ostatus='Shipping' or ostatus='Waiting for pickup' or ostatus='Set Picked Up' or ostatus='Set Reached Warehouse')";
     $res = mysqli_query($conn,$sql);
     if(mysqli_num_rows($res)>0)
     {

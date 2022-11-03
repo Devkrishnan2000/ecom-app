@@ -10,6 +10,7 @@ import Addshiper from "./addshiper";
 import Inventory from "./inventory";
 import Location from "./location";
 import Analytics from "./analytics";
+import Viewreturns from "./viewreturns";
 
 class AdminPage extends Component
 {
@@ -31,6 +32,7 @@ class AdminPage extends Component
      this.inventory = this.inventory.bind(this);
      this.location = this.location.bind(this);
      this.analytics = this.analytics.bind(this);
+     this.returns  = this.returns.bind(this);
    }
   componentDidMount()
   {
@@ -88,6 +90,10 @@ class AdminPage extends Component
   {
     this.setState({choice:8});
   }
+  returns()
+  {
+    this.setState({choice:9})
+  }
 
 
    setcontent()
@@ -100,9 +106,10 @@ class AdminPage extends Component
         case 3: return(<Shipment/>);
         case 4: return(<AddocPage/>);
         case 5: return(<Addshiper/>);
-        case 6: return(<Inventory/>)
-        case 7: return(<Location/>)
-        case 8: return(<Analytics/>)
+        case 6: return(<Inventory/>);
+        case 7: return(<Location/>);
+        case 8: return(<Analytics/>);
+        case 9: return(<Viewreturns/>);
         default: return(<div></div>);
       }
    }
@@ -140,6 +147,13 @@ class AdminPage extends Component
                       <li onClick={this.Ordermgnt}>
                       <img src="images\svg\clipboard_white.svg"></img>
                       <h6>Order Management</h6>
+                    </li>
+                  }
+                   {
+                       this.state.atype==='0' &&
+                      <li onClick={this.returns}>
+                      <img src="images\svg\returnbox.svg"></img>
+                      <h6>Return Management</h6>
                     </li>
                   }
                  

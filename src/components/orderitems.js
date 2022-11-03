@@ -39,6 +39,23 @@ class OrderItems extends Component
             case "Applied For Return":return(
                 <h6 style={{color:"orange"}}>Applied For Return</h6>
             )
+            case "Return Claim Rejected":
+            return(
+                <h6 style={{color:"red"}}>Return Claim Rejected</h6>
+            )
+            case "Waiting for pickup":
+                return(
+                    <h6 style={{color:"orange"}}>Waiting for pickup</h6>
+                )
+            case "Set Picked Up":
+                    return(
+                        <h6 style={{color:"orange"}}>Picked Up</h6>
+                    )
+            case "Set Reached Warehouse":
+                     return(
+                            <h6 style={{color:"green"}}>Reached Warehouse</h6>
+                    )             
+
         }
     }
 
@@ -126,6 +143,34 @@ class OrderItems extends Component
            
         }
         else if(this.state.curstatus==="Applied For Return")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Waiting for pickup")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Return Claim Rejected")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Set Picked Up")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Set Reached Warehouse")
         {
             return(
                 <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>

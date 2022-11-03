@@ -20,6 +20,8 @@ class Shipment extends Component
         this.showchangelocation = this.showchangelocation.bind(this);
         this.setorderlocation = this.setorderlocation.bind(this);
         this.setdelivered = this.setdelivered.bind(this);
+        this.setpickup = this.setpickup.bind(this);
+        this.setwarehouse = this.setwarehouse.bind(this);
       }
     getorderstatus(e)
     {
@@ -39,6 +41,7 @@ class Shipment extends Component
                      this.setState({statusdata:res.data});
                      this.setState({isstatusdata:true});
                      this.setState({oid:e.target.oid.value});
+
                 }
             }
             
@@ -61,16 +64,44 @@ class Shipment extends Component
     setdelivered(e)
     {
        e.preventDefault();
-       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdelivery.php",{params:{oid:this.state.oid}}).then(res=>{
+       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdelivery.php",{params:{oid:this.state.oid,msg:"Delivered"}}).then(res=>{
 
        console.log(res.data);
         if(res.data===0)
         {
           console.log("Delivered");
+          alert("Status Sucessfully Changed");
         }
        })
        
     }
+    setpickup(e)
+    {
+        e.preventDefault();
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdelivery.php",{params:{oid:this.state.oid,msg:"Set Picked Up"}}).then(res=>{
+ 
+        console.log(res.data);
+         if(res.data===0)
+         {
+           console.log("Set Picked Up");
+           alert("Status Sucessfully Changed");
+         }
+        })
+    }
+    setwarehouse(e)
+    {
+        e.preventDefault();
+        axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdelivery.php",{params:{oid:this.state.oid,msg:"Set Reached Warehouse"}}).then(res=>{
+ 
+        console.log(res.data);
+         if(res.data===0)
+         {
+           console.log("Set Reached Warehouse");
+           alert("Status Sucessfully Changed");
+         }
+        })
+    }
+    
 
 
     showchangelocation()
@@ -119,6 +150,8 @@ class Shipment extends Component
                      <tr>
                         <td><button className="button-black" onClick={this.showchangelocation}>Change Location</button></td>
                         <td><button onClick={this.setdelivered}>Set Delivered</button></td>
+                        <td><button onClick={this.setpickup}>Set Picked Up</button></td>
+                        <td><button onClick={this.setwarehouse}>Set Reached Warehouse</button></td>
                      </tr>
                  </tbody>
              </table>

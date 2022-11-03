@@ -18,6 +18,7 @@ class GetReturn extends Component
        fd.append("rdesc",e.target.content.value);
        fd.append("rimg",e.target.rimg.files[0]);
        fd.append("oid",this.props.location.state.oid);
+       fd.append("pid",this.props.location.state.pid);
        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/addreturn.php",fd).then(res=>{
           if(res.data==0)
           {
