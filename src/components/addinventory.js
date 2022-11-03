@@ -514,10 +514,10 @@ class AddInventory extends Component
                             Product Image
                           </h6>
                           {!this.props.location.state.inventory.isupdate &&
-                            <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
+                            <input type="file" name="pimg" accept=".jpg,.jpeg,.png"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
                           }
                           {this.props.location.state.inventory.isupdate &&
-                             <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }}></input>
+                             <input type="file" name="pimg" accept=".jpg,.jpeg,.png"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }}></input>
                           }
                         
                         </td>
@@ -740,10 +740,10 @@ class AddInventory extends Component
                           Product Image
                         </h6>
                         {!this.props.location.state.inventory.isupdate &&
-                          <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
+                          <input type="file" name="pimg" accept=".jpg,.jpeg,.png"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }} required></input>
                         }
                         {this.props.location.state.inventory.isupdate &&
-                           <input type="file" name="pimg"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }}></input>
+                           <input type="file" name="pimg" accept=".jpg,.jpeg,.png"  style={{ marginTop: 20 + "px",marginLeft:20+"px" }}></input>
                         }
                       
                       </td>
