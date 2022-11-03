@@ -17,7 +17,6 @@ class ShopforParts extends Component {
     this.setprodcategory = this.setprodcategory.bind(this);
     this.setbrandcategory = this.setbrandcategory.bind(this);
     this.setprodallcategory = this.setprodallcategory.bind(this);
-    this.setbrandallcategory = this.setbrandallcategory.bind(this);
   }
 
   componentDidMount() {
@@ -80,7 +79,7 @@ class ShopforParts extends Component {
   {
     axios
     .get(
-      "http://localhost:80/sem8project/ecom-app/ecom-app/api/getproduct.php",{params:{prodcat:"null",brandcat:this.state.curbrandcat}}
+      "http://localhost:80/sem8project/ecom-app/ecom-app/api/getproduct.php",{params:{prodcat:"null",brandcat:"null"}}
     )
     .then((res) => {
       this.setState({ electronics: res.data });
@@ -88,17 +87,7 @@ class ShopforParts extends Component {
     });
   }
 
-  setbrandallcategory(keyval)
-  {
-    axios
-    .get(
-      "http://localhost:80/sem8project/ecom-app/ecom-app/api/getproduct.php",{params:{prodcat:this.state.curprodcat,brandcat:"null"}}
-    )
-    .then((res) => {
-      this.setState({ electronics: res.data });
-      console.log(res.data);
-    });
-  }
+  
 
   render() {
     return (
@@ -156,7 +145,6 @@ class ShopforParts extends Component {
               setcategory={this.setbrandcategory}
             />
           ))}
-          <Category parttype="ALL" setcategory={this.setbrandallcategory}></Category>
             </div>
          
         </div>

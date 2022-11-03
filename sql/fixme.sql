@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2022 at 11:10 AM
+-- Generation Time: Nov 03, 2022 at 09:38 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -92,7 +92,7 @@ INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
 (2, 3009, 1),
 (17, 3001, 1),
 (17, 3002, 1),
-(17, 3007, 1);
+(17, 3007, 2);
 
 -- --------------------------------------------------------
 
@@ -161,8 +161,8 @@ CREATE TABLE `elecproduct` (
 --
 
 INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
-(3006, 2000, 'Battery', 50, 0),
-(3007, 2000, 'Back Cover (BLACK)', 0, 9),
+(3006, 2000, 'Battery', 50, 8),
+(3007, 2000, 'Back Cover', 50, 9),
 (3008, 2000, 'Back Cover(PINK)', 0, 0),
 (3009, 2000, 'Back Cover(RED)', 0, 0),
 (3010, 2001, 'Battery', 0, 9),
@@ -255,13 +255,13 @@ INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocatio
 (100015, 17, 3001, 1400, 1, 'Delivered', 'ALUVA', '2022-09-15'),
 (100016, 1, 3003, 750, 1, 'Shipping', 'Warehouse', '2022-09-15'),
 (100017, 17, 3007, 1350, 1, 'Delivered', 'ALUVA', '2022-09-18'),
-(100018, 1, 3006, 1400, 2, 'Shipping', 'Warehouse', '2022-09-24'),
+(100018, 1, 3006, 1400, 2, 'Delivered', 'Warehouse', '2022-09-24'),
 (100019, 1, 3012, 3304, 1, 'Shipping', 'Warehouse', '2022-10-05'),
 (100020, 1, 3011, 11250, 1, 'Shipping', 'Warehouse', '2022-10-05'),
 (100021, 2, 3011, 11250, 1, 'Delivered', 'ALUVA', '2022-10-30'),
 (100022, 2, 3010, 1920, 1, 'Delivered', 'ALUVA', '2022-10-30'),
-(100023, 2, 3002, 1385, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-30'),
-(100024, 2, 3009, 1400, 1, 'Waiting for Dispatch', 'Warehouse', '2022-10-30');
+(100023, 2, 3002, 1385, 1, 'Shipping', 'Warehouse', '2022-10-30'),
+(100024, 2, 3009, 1400, 1, 'Shipping', 'Warehouse', '2022-10-30');
 
 -- --------------------------------------------------------
 
@@ -297,12 +297,13 @@ INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `
 (3004, 1006, 'tool', 'Anti static tray', 'Organize and Store Your Projects\r\n\r\nInvaluable for all electronics projects and repairs.\r\nStore tiny components and screws in the 20 small compartments, store large components and tools in the larger compartments.\r\nMade from Anti-Static Plastic, so it\'s safe for delicate components.\r\nUse in conjunction with our screwmaps for repairs on our most popular smartphone guides.\r\nGreat for phone repair! Put your standard size smartphone in the side compartment, store your tools in the bottom compartment, and organize your screws and parts in the small compartments.', 'images/Tools/tray.png', 350, 350, -1, 20, 6, 4, 0),
 (3005, 1006, 'tool', 'Magnetic mat', 'Organize all your small parts while you work on a device.\r\nDry erase surface lets you keep notes and location sketches.\r\nReduces reassembly time by up to 40% while preventing errors.\r\nDesigned by fixers, for fixers, the 8”x10” Magnetic Project Mat catches and securely holds screws as you pull them out of a device.\r\n\r\nNow you can stop worrying about keeping track of all the loose screws and focus on your repair. Screws and small parts will remain right where you left them. For laptops with hundreds of screws, use the whole mat as a screw guide and keep careful location notes.\r\n\r\nThe included pen is uniquely suited for the Project Mat. It’s made by Staedtler, producer of top-of-the-line pens and pencils for artists and architects. Their Lumocolor Correctable pen resists smears and won\'t wipe away with a casual brush of your hand. When your repair is complete, the eraser tip or a dry cloth wipes the ink away clean.', 'images/Tools/mat.png', 150, 150, -1, 20, 6, 4, 0),
 (3006, 1000, 'part', 'GALAXY S20 BATTERY', 'This Samsung Galaxy S20 Ultra replacement battery is what you need to bring your dead smartphone back to life!\r\n\r\nBattery degradation is an inevitable part of your smartphone\'s lifespan — extend it with this replacement battery compatible with the S20 Ultra model Samsung Galaxy. If your phone won’t turn on, won’t hold a charge, or you simply experience poor battery life, this replacement battery may be what you need to fix it.', 'images\\parts\\samsungs20bat.png', 1000, 700, 30, 8, 6, 4, 0),
-(3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1350, 10, 2, 6, 4, 0),
+(3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1500, -1, 1, 6, 4, 0),
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 3, 0),
 (3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 9, 6, 4, 0),
 (3010, 1001, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 3, 6, 5, 0),
 (3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 8, 6, 4, 1),
-(3012, 1001, 'part', 'iPhone 12 Rear Camera', 'Replace a dual primary rear-facing camera assembly in your iPhone 12.\r\n\r\nIf your rear camera has sensor issues, focusing problems, or shows a blank image, you’ll want to replace this part.', 'images/parts/iphone12camera.png', 4130, 3304, 20, 9, 12, 0, 0);
+(3012, 1001, 'part', 'iPhone 12 Rear Camera', 'Replace a dual primary rear-facing camera assembly in your iPhone 12.\r\n\r\nIf your rear camera has sensor issues, focusing problems, or shows a blank image, you’ll want to replace this part.', 'images/parts/iphone12camera.png', 4130, 3304, 20, 9, 12, 0, 0),
+(3013, 1000, 'tool', 'Precision Cleaning Kit', 'Regular cleaning of your devices is one of the best practices of preventative maintenance to enhance their lifespan. Unfortunately, many of today’s electronics contain increasingly small connections, ports and other tight spaces. Through regular use, these areas of our devices collect dirt, lint and other contaminants. iFixit has assembled a group of helpful and practical tools to tackle cleaning hard-to-reach areas. These are meant to be reused, so keep them clean between projects.', 'images/Tools/pre_cleaning_kit.png', 850, 850, -1, 10, 6, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -325,6 +326,7 @@ CREATE TABLE `review` (
 
 INSERT INTO `review` (`cid`, `pid`, `rtitle`, `rdesc`, `rrating`, `rscore`) VALUES
 (1, 3005, 'Nice Mat', 'Sed auctor, nisi ac rutrum sagittis, est dui condimentum sapien, sed bibendum nunc nisl et lacus. Vestibulum consectetur tortor id magna iaculis, vitae lobortis ante egestas. Maecenas porttitor erat non arcu venenatis, non consequat metus sollicitudin. Maecenas a tristique velit. Mauris quis faucibus libero. Etiam ut ultricies enim. Vestibulum lacus quam, aliquam non lobortis in, venenatis sed odio. Nam fringilla lectus at augue auctor porttitor.', 4, 0),
+(1, 3006, 'nice product', 'product is good', 4, 8),
 (1, 3007, 'good product', 'gsdgagdsfsg', 4, 8),
 (2, 3010, 'Good Battery', 'Nice Battery now my phones battery lasts for days', 5, 9),
 (2, 3011, 'Great display', 'Great display im really linking it', 4, 8),
@@ -374,7 +376,8 @@ INSERT INTO `tool` (`pid`, `tooltype`) VALUES
 (3001, 'Tool Kit'),
 (3002, 'Drivers'),
 (3004, 'Organization Tools'),
-(3005, 'Organization Tools');
+(3005, 'Organization Tools'),
+(3013, 'Cleaning');
 
 --
 -- Indexes for dumped tables
@@ -510,7 +513,7 @@ ALTER TABLE `porder`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3013;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3014;
 
 --
 -- Constraints for dumped tables

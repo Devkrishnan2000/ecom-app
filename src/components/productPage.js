@@ -14,6 +14,7 @@ import UserReview from "./userReview";
         super(props);
         this.score = React.createRef();
        this.state={
+         id:0,
          pname :"",
          deliv:0,
          pdesc:"",
@@ -50,8 +51,40 @@ import UserReview from "./userReview";
 
      }
 
+   componentDidUpdate(prevProps)
+   {
+    
+    if(prevProps.location.state.id!=this.props.location.state.id)
+    {
+      window.scrollTo(0, 0);
+      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getproductdata.php",{params:{pid:this.props.location.state.id}}).then(res=>{
+      this.setState({pname:res.data['pname']});
+      this.setState({pdesc:res.data['pdesc']});
+      this.setState({pimage:res.data['pimage']});
+      this.setState({price:res.data['price']});
+      this.setState({rating:res.data['rating']});
+      this.setState({oprice:res.data['oprice']});
+      this.setState({discount:res.data['discount']});
+      this.setState({stock:res.data['stock']});
+      this.setState({waranty:res.data['waranty']});
+      this.setState({pcondition:res.data['pcondition']});
+      if(typeof this.props.location.state.eid!=='undefined')
+      this.setState({ispart:true});
+      console.log(this.props.location.state.id);
+      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getrscore.php",{params:{pid:this.props.location.state.id}}).then(res=>{
+        this.setState({rscore:res.data});
+        
+      })
+     
+    }
+    )
+    }
+   }
+
+
      componentDidMount()
      {
+       
         window.scrollTo(0, 0);
         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getproductdata.php",{params:{pid:this.props.location.state.id}}).then(res=>{
         this.setState({pname:res.data['pname']});
@@ -66,11 +99,11 @@ import UserReview from "./userReview";
         this.setState({pcondition:res.data['pcondition']});
         if(typeof this.props.location.state.eid!=='undefined')
         this.setState({ispart:true});
+      
         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getrscore.php",{params:{pid:this.props.location.state.id}}).then(res=>{
           this.setState({rscore:res.data});
           
         })
-       
       }
       )
 
@@ -92,8 +125,38 @@ import UserReview from "./userReview";
 
     pricedisp()
     {
+      
         if(this.state.oprice===this.state.price)
         {
+          if(this.state.stock==0)
+            {
+             return(
+               <div>
+                  <div className="price-discount">
+                  <h2>₹ {this.state.price}.00</h2>   
+                  </div>
+                  <div className="price-stock">
+                  <h5 style={{marginLeft:0+"px"}} className="stock">OUT OF STOCK</h5>
+                  </div>
+                </div>
+           )
+            }
+            else
+            if(this.state.stock==-1)
+            {
+                return(
+                    <div>
+                        <div className="price-discount">
+                        <div className="price-stock">
+                  <h5 style={{marginLeft:0+"px"}} className="stock">PRODUCT CURRENTLY UNAVAILABLE</h5>
+                  </div> 
+                        </div>
+                    </div>
+                    
+                )  
+            }
+          
+            else
             if(this.state.stock>5)
             {
                 return(
@@ -105,6 +168,7 @@ import UserReview from "./userReview";
                     
                 )  
             }
+             
             else if(this.state.stock<5)
             {
                 return(
@@ -121,10 +185,41 @@ import UserReview from "./userReview";
                     
                 )  
             }
+           
         }
         else
         {
-               if(this.state.stock>5)
+           if(this.state.stock==0)
+          {
+           return(
+             <div>
+                <div className="price-discount">
+                <h2>₹ {this.state.oprice}.00</h2>
+                <h4> %{this.state.discount} OFF</h4>     
+                </div>
+                <div className="price-stock">
+                <h5>M.R.P ₹ {this.state.price}.00</h5>
+                <h5 className="stock">OUT OF STOCK</h5>
+                </div>
+              </div>
+         )
+          }
+         else if(this.state.stock==-1)
+          {
+           return(
+             <div>
+                <div className="price-discount">
+                  
+                </div>
+                <div className="price-stock">
+                
+                <h5 style={{marginLeft:0+"px"}} className="stock">PRODUCT CURRENTLY UNAVAILABLE</h5>
+                </div>
+              </div>
+         )
+          }
+          else     
+          if(this.state.stock>5)
                {
                  return(
                        <div>
@@ -138,6 +233,7 @@ import UserReview from "./userReview";
                        </div>
                  )
                }
+              
                else if(this.props.stock<5)
                {
                  return(
@@ -153,6 +249,7 @@ import UserReview from "./userReview";
                       </div>
                  )
                }
+              
         }
     }
 
@@ -257,6 +354,8 @@ import UserReview from "./userReview";
         }
       })
     }
+
+   
   render()
   {
 
@@ -275,17 +374,20 @@ import UserReview from "./userReview";
                 </div>
 
                {this.pricedisp()}
-               <form>
-               <div style={{display:"flex",alignItems:"center",marginTop:20+"px"}}>
-                <h6>Quantity</h6>
-                <input className="textbox" name="qty" style={{width:4+"vw",fontSize:12+"px"}} type='number' value={this.state.qty} onChange={this.ontextchange} min="0"></input>
-                
-               </div>
-               <div style={{marginTop:20+"px"}}>
-                <button onClick={this.addtocart}  className="button-black"  style={{marginRight:30+"px"}}>ADD TO CART</button>
-                <button onClick={this.buynow}>BUY NOW</button>
-               </div>
-               </form>
+               { this.state.stock != 0 && this.state.stock !=-1 &&
+                <form>
+                <div style={{display:"flex",alignItems:"center",marginTop:20+"px"}}>
+                 <h6>Quantity</h6>
+                 <input className="textbox" name="qty" style={{width:4+"vw",fontSize:12+"px"}} type='number' value={this.state.qty} onChange={this.ontextchange} min="0"></input>
+                 
+                </div>
+                <div style={{marginTop:20+"px"}}>
+                 <button onClick={this.addtocart}  className="button-black"  style={{marginRight:30+"px"}}>ADD TO CART</button>
+                 <button onClick={this.buynow}>BUY NOW</button>
+                </div>
+                </form>
+               }
+               
                
                <h6 style={{marginTop:30+"px"}}>Check availability in your Region</h6>
                <div style={{marginTop:10+"px"}}>
@@ -326,7 +428,7 @@ import UserReview from "./userReview";
               {this.state.ispart &&
                 <button onClick={this.gotodoc} className="button-black" style={{marginTop:20+"px"}} >VIEW DIY INSTRUCTIONS</button>}
             </div>
-            <UserReview pid={this.props.location.state.id}/>
+            <UserReview pid={this.props.location.state.id}/> 
            </div>
            
      )

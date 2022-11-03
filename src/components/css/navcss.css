@@ -83,6 +83,40 @@
     font-family: 'Roboto';
 
   }
+  .search-div
+  {
+   
+  }
+  .search-list
+  {
+    color: white;
+    font-family: 'Roboto';
+    list-style: none;
+    padding: 0;
+    margin-top: -15px;
+    position: absolute;
+    left: 25.0%;
+    z-index: 2;
+   
+   
+  }
+  .search-list li
+  {
+    background-color: #1b1d20;
+    width: 33vw;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom:2px ;
+    text-decoration: none;
+    
+
+  }
+  .search-list li:hover
+  {
+    background-color: #222831;
+    cursor: pointer;
+  }
 
   textarea:focus, input:focus{
     outline: none;

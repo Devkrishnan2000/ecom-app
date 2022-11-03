@@ -15,12 +15,17 @@ import axios from "axios";
             super(props);
             this.state={
               visible:0,
+              searchterm:"",
+              searchres:[],
+              searchvisible:false,
               usrname:"LOGIN",
             }
             this.setvisible = this.setvisible.bind(this);
             this.setinvisible = this.setinvisible.bind(this);
             this.dispdropdown =this.dispdropdown.bind(this);
             this.setlogout =this.setlogout.bind(this);
+            this.onchange = this.onchange.bind(this);
+            this.clear = this.clear.bind(this);
           }
 
 
@@ -47,7 +52,28 @@ import axios from "axios";
             this.props.history.push("/");
           }
 
-          
+          onchange(e)
+          {
+            this.setState({searchterm:e.target.value})
+            axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/search.php",{params:{search:e.target.value}}).then(res=>{
+              console.log(res.data);
+              if(res.data!="")
+              {
+                this.setState({searchvisible:true})
+                this.setState({searchres:res.data});
+              }
+              else
+              {
+                this.setState({searchvisible:false})
+              }
+              
+            })
+          }
+          clear()
+          {
+            this.setState({searchvisible:false})
+            this.setState({searchterm:""})
+          }
 
     
       componentDidUpdate()
@@ -95,8 +121,8 @@ import axios from "axios";
             </li>
             <li>
               <div className="search-box">
-               <img  src={search}></img>
-               <input type='text'placeholder="Search for parts" className="nav-textbox"></input>
+               <img  src={search}></img> 
+               <input  type='text'placeholder="Search for parts" onChange={this.onchange} value={this.state.searchterm} className="nav-textbox"></input>
               </div>
             </li>
             <li className='align-right'>
@@ -109,6 +135,10 @@ import axios from "axios";
      
         </ul>
         {this.dispdropdown()}
+        <ul className="search-list">  
+        {this.state.searchvisible &&
+        this.state.searchres.map((result)=> <li  key={result.pname}><Link onClick={this.clear}  style={{textDecoration:"none"}} to={{pathname:'/productPage', state:{id:result.pid}}}>{result.pname}</Link></li>)}     
+        </ul>
       </div>
     );
   }

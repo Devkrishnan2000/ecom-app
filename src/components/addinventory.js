@@ -15,11 +15,13 @@ class AddInventory extends Component
             doc :[],
             price:'',
             discount:'',
+            stock:'',
             waranty:''
         }
         this.onpricechange = this.onpricechange.bind(this);
         this.ondiscountchange = this.ondiscountchange.bind(this);
         this.onwarantychange = this.onwarantychange.bind(this);
+        this.onstockchange = this.onstockchange.bind(this);
         this.ins_brand = this.ins_brand.bind(this);
         this.ins_elec = this.ins_elec.bind(this);
         this.ins_part = this.ins_part.bind(this);
@@ -49,6 +51,7 @@ class AddInventory extends Component
             {
               this.state.price = res.data['price'];
               this.state.discount = res.data['discount'];
+              this.state.stock = res.data['stock'];
               this.state.waranty = res.data['waranty'];
             }
           }
@@ -78,6 +81,14 @@ class AddInventory extends Component
         {
             this.setState({waranty:e.target.value});
         }
+     }
+     onstockchange(e)
+     {
+       if(e.target.value>-2)
+       {
+        this.setState({stock:e.target.value});
+       }
+       
      }
 
      ins_brand(e)
@@ -444,6 +455,8 @@ class AddInventory extends Component
                            <input
                            type="number"
                            className="textbox"
+                           onChange={this.onstockchange}
+                           value={this.state.stock}
                            placeholder="-1 to disable the product "
                            name="stock"
                            style={{ marginTop: 20 + "px" }}
@@ -456,6 +469,10 @@ class AddInventory extends Component
                            type="number"
                            className="textbox"
                            defaultValue={this.state.val['stock']}
+                           onChange={this.onstockchange}
+                           value={this.state.stock}
+                           placeholder="-1 to disable the product "
+                         
                            name="stock"
                            style={{ marginTop: 20 + "px" }}
                            required

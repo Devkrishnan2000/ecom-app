@@ -8,9 +8,11 @@ h1{
 
 h1 span{
     color: #00ADB5;
+    text-transform: uppercase;
 }
 h2 span{
     color: #00ADB5;
+    text-transform: uppercase;
 }
 
 h4{

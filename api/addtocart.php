@@ -15,7 +15,7 @@ if(isset($_GET['pid'])&&isset($_GET['cid'])&&isset($_GET['qty']))
    $sqlcheck ="select stock from products where pid=$pid";
    $checkeres = mysqli_query($conn,$sqlcheck);
    $rc = mysqli_fetch_assoc($checkeres);
-   if($rc['stock']>$qant)
+   if($rc['stock']>=$qant)
    {
     $sql = "select qty from cart where pid=$pid and cid=$cid";
     $res = mysqli_query($conn,$sql);
