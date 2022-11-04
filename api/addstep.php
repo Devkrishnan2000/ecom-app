@@ -16,7 +16,6 @@ if(isset($_SESSION['admin']))
   if($_FILES['stimg'])
   {
     $filedir = $dir.basename($_FILES['stimg']['name']);
-    move_uploaded_file($_FILES['stimg']['tmp_name'],$filedir);
   }
 
   $did = $_POST['did'];
@@ -25,9 +24,15 @@ if(isset($_SESSION['admin']))
   $sdesc = $_POST['stdesc'];
   $relpath =  abs_to_rel($filedir,$dir,"images/documentation/");
   $sql = "insert into steps values($did,$sid,'$stitle','$sdesc','$relpath')";
-  mysqli_query($conn,$sql);
+  if(mysqli_query($conn,$sql))
+  {
+    move_uploaded_file($_FILES['stimg']['tmp_name'],$filedir);
+    echo "1";
+  }
+  else
+  echo "-1";
   mysqli_close($conn);
-  echo "1";
+ 
 }
 else
 

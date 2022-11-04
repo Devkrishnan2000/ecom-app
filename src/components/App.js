@@ -62,8 +62,8 @@ export default class App extends Component {
           <Navbar
             key={this.state.isloggedIn}
             brand="FixMe.com"
-            option1="Parts"
-            option3="Tools"
+            option1=" Shop For Parts"
+            option3=" Shop For Tools"
             islogin={this.state.isloggedIn}
             setlogoutval={this.setlogoutval}
             username={this.state.username}

@@ -52,8 +52,16 @@ import "./css/step.css";
          axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/updatestep.php",fs).then(res=>
          {
           console.log(res.data);
-          alert("Updated sucessfully");
-          this.props.history.push("/admin");
+          if(res.data=="1")
+          {
+            alert("Updated sucessfully");
+            this.props.history.push("/admin");
+          }
+          else
+          {
+            alert("Updation failed make sure text doesnt contain ' ");
+          }
+         
          }
          ) 
         }
@@ -61,11 +69,19 @@ import "./css/step.css";
         {
          fs.append("did",this.props.getdocid());
          fs.append("stid",this.props.stepcount)
-         this.props.addnewstep();
-         this.form.current.reset();
+        
          axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/addstep.php",fs).then(res=>
          {
-          console.log(res.data);
+            console.log(res.data);
+           if(res.data=="1")
+           {
+            this.props.addnewstep();
+            this.form.current.reset();
+           }
+           else
+           {
+             alert("Insertion failed make sure text doesnt contain ' ");
+           }
          }
          ) 
         }

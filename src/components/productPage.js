@@ -74,10 +74,7 @@ import UserReview from "./userReview";
       this.setState({ispart:true});
       console.log(this.props.location.state.id);
       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getrscore.php",{params:{pid:this.props.location.state.id}}).then(res=>{
-        this.setState({rscore:res.data});
-       
-      
-          
+      this.setState({rscore:res.data});       
       })
      
     }

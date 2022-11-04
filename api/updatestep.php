@@ -13,10 +13,10 @@ $dir =$docimgdir;
 if(isset($_SESSION['admin']))
 {
   $filedir ="null";
-  if($_FILES['stimg'])
+  if(isset($_FILES['stimg']))
   {
     $filedir = $dir.basename($_FILES['stimg']['name']);
-    move_uploaded_file($_FILES['stimg']['tmp_name'],$filedir);
+    
   }
 
   $did = $_POST['did'];
@@ -33,9 +33,16 @@ if(isset($_SESSION['admin']))
     $sql = "update steps set stitle='$stitle',stdesc='$sdesc' where did=$did and stid=$sid";
   }
 
-  mysqli_query($conn,$sql);
+  if(mysqli_query($conn,$sql))
+  {
+    if($filedir!="null")
+    move_uploaded_file($_FILES['stimg']['tmp_name'],$filedir);
+    echo "1";
+  }
+  else
+  echo "-1";
   mysqli_close($conn);
-  echo "1";
+  
 }
 else
 

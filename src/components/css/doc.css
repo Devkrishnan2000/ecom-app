@@ -48,12 +48,12 @@
 .docpage-div .content .step  div
 {
      display: flex;
-     justify-content: space-evenly;
+     justify-content:left;
 }
 
 .docpage-div .content .step div img
 {
     height: 250px;
-    width: 600px;
+    width: 300px;
     margin-right: 30px;
 }

@@ -16,7 +16,7 @@ class Docpage extends Component {
       dname:'',
       ddiff:'',
       dtime:'',
-      dstep:'',
+      dstep:0,
       dintro:'',
       steps:[]
     }
@@ -32,9 +32,10 @@ class Docpage extends Component {
     this.setState({dintro:res.data['intro']})
     axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getstep.php",{params:{did:res.data['did']}}).then(step=>{
       this.setState({steps: step.data});
-      console.log(step.data);
+      this.setState({dstep: step.data.length});
         })
     })
+    
     
     
 
@@ -46,7 +47,7 @@ class Docpage extends Component {
         <div className="info-tab">
           <div className="info-detail">
             <img src="images\svg\difficulty.svg"></img>
-            <h4>difficulty: {this.state.ddiff}</h4>
+            <h4>Difficulty: {this.state.ddiff}</h4>
           </div>
 
           <div className="info-detail">
@@ -56,7 +57,7 @@ class Docpage extends Component {
 
           <div className="info-detail">
             <img src="images\svg\clipboard.svg"></img>
-            <h4>Steps: 14</h4>
+            <h4>Steps: {this.state.dstep}</h4>
           </div>
         </div>
 
