@@ -3,6 +3,7 @@
   $prodimgdir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/Products/";
   $partimgdir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/parts/";
   $toolimgdir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/Tools/";
+  $returndir = "F:/XAMPP/htdocs/sem8project/ecom-app/ecom-app/public/images/returns/";
 
   function abs_to_rel($abspath,$dir,$relpath)
   {

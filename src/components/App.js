@@ -28,6 +28,7 @@ import Tools from "./shopfortools";
 import Analytics from "./analytics";
 import Apart from "./Analytics/apart";
 import Shopforparts from "./shopforparts";
+import Getreturn from "./getreturn";
 
 export default class App extends Component {
   constructor(props) {
@@ -153,6 +154,9 @@ export default class App extends Component {
               </Route>
               <Route path="/anpart">
                 <Apart/>
+              </Route>
+              <Route path="/return">
+                <Getreturn/>
               </Route>
             </Switch>
           </div>

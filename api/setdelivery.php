@@ -7,11 +7,12 @@ session_start();
 $db = new DbConnect();
 $conn = $db->connect();
 
-if(isset($_SESSION['admin'])&& isset($_GET['oid']))
+if(isset($_SESSION['admin'])&& isset($_GET['oid']) && isset($_GET['msg']))
 {
     $oid = $_GET['oid'];
     $loc =$_GET['location'];
-    $sql ="update porder set ostatus='Delivered' where oid=$oid";
+    $msg = $_GET['msg'];
+    $sql ="update porder set ostatus='$msg' where oid=$oid";
     mysqli_query($conn,$sql);
     echo "0";
     

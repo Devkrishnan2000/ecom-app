@@ -50,3 +50,10 @@ p{
     letter-spacing: 1px;
     font-weight: 400;
 }
+label
+{
+    font-size: 14px;
+    font-family: 'Roboto';
+    letter-spacing: 1px;
+    font-weight: 400;
+}

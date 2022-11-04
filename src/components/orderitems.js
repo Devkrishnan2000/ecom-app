@@ -16,6 +16,7 @@ class OrderItems extends Component
         this.orderagain = this.orderagain.bind(this);
         this.getInvoice = this.getInvoice.bind(this);
         this.addreview = this.addreview.bind(this);
+        this.placereturn = this.placereturn.bind(this);
     }
 
     setstatus()
@@ -35,6 +36,26 @@ class OrderItems extends Component
             case "Canceled": return(
                 <h6 style={{color:"red"}}>Canceled</h6>
             )
+            case "Applied For Return":return(
+                <h6 style={{color:"orange"}}>Applied For Return</h6>
+            )
+            case "Return Claim Rejected":
+            return(
+                <h6 style={{color:"red"}}>Return Claim Rejected</h6>
+            )
+            case "Waiting for pickup":
+                return(
+                    <h6 style={{color:"orange"}}>Waiting for pickup</h6>
+                )
+            case "Set Picked Up":
+                    return(
+                        <h6 style={{color:"orange"}}>Picked Up</h6>
+                    )
+            case "Set Reached Warehouse":
+                     return(
+                            <h6 style={{color:"green"}}>Reached Warehouse</h6>
+                    )             
+
         }
     }
 
@@ -87,6 +108,14 @@ class OrderItems extends Component
         });
     }
 
+    placereturn()
+    {
+        this.props.history.push({
+            pathname:'/return',
+            state :{pid:this.props.pid,pname:this.props.pname,oid:this.props.oid}
+        })
+    }
+
     renderbuttons()
     {
         if(this.state.curstatus==="Delivered")
@@ -97,6 +126,7 @@ class OrderItems extends Component
                     <button className="button-black"  onClick={this.getInvoice}>VIEW INVOICE</button>
                     <button className="button-black" onClick={this.addreview}>WRITE A REVIEW</button>
                     <button className="button-black" onClick={this.orderagain}>ORDER AGAIN</button>
+                    <button className="button-black" onClick={this.placereturn}>RETURN PRODUCT</button>
 
                 </div>
             )
@@ -109,6 +139,41 @@ class OrderItems extends Component
                 <button className="button-black" onClick={this.orderagain}>ORDER AGAIN</button>
     
             </div>
+            )
+           
+        }
+        else if(this.state.curstatus==="Applied For Return")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Waiting for pickup")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Return Claim Rejected")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Set Picked Up")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
+            )
+           
+        }
+        else if(this.state.curstatus==="Set Reached Warehouse")
+        {
+            return(
+                <button className="button-black" onClick={this.getInvoice}>VIEW INVOICE</button>
             )
            
         }
@@ -138,7 +203,7 @@ class OrderItems extends Component
                         <h6>Order ID :</h6>
                         <h6>Order Status :</h6>
                         <h6>Current Location :</h6>
-                        <h6>Expected Delivery :</h6>
+                        <h6>Estimated Delivery :</h6>
                     </div>
                     <div className="rhs">
                          <h6> {this.props.oid}</h6>
