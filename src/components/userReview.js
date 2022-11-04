@@ -15,6 +15,7 @@ export default class UserReview extends Component
     }
     componentDidMount()
     {
+        console.log(this.props.pid);
         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/showreview.php",{params:{pid:this.props.pid}}).then(res=>{
             if(res.data!==-1)
             {   this.setState({isreview:true});

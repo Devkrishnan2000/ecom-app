@@ -10,7 +10,6 @@ $conn = $db->connect();
 if(isset($_SESSION['admin'])&& isset($_GET['oid']) && isset($_GET['msg']))
 {
     $oid = $_GET['oid'];
-    $loc =$_GET['location'];
     $msg = $_GET['msg'];
     $sql ="update porder set ostatus='$msg' where oid=$oid";
     mysqli_query($conn,$sql);

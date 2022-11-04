@@ -9,6 +9,7 @@ import UserReview from "./userReview";
 
  class ProductPage extends Component
 {
+   
      constructor(props)
      {
         super(props);
@@ -48,6 +49,7 @@ import UserReview from "./userReview";
         this.addtocart = this.addtocart.bind(this);
         this.buynow = this.buynow.bind(this);
         this.gotodoc = this.gotodoc.bind(this);
+        this.setscorecolor = this.setscorecolor.bind(this);
 
      }
 
@@ -73,7 +75,9 @@ import UserReview from "./userReview";
       console.log(this.props.location.state.id);
       axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getrscore.php",{params:{pid:this.props.location.state.id}}).then(res=>{
         this.setState({rscore:res.data});
-        
+       
+      
+          
       })
      
     }
@@ -106,8 +110,30 @@ import UserReview from "./userReview";
         })
       }
       )
-
+          
      
+     }
+
+     setscorecolor()
+     {
+        if(this.state.rscore>=8)
+        {
+          return(
+            <h6 style={{backgroundColor:"green"}} ref={this.score} className="score">{this.state.rscore}</h6>
+          )
+        }
+        else if(this.state.rscore>=5 && this.state.rscore<8)
+        {
+          return(
+            <h6 style={{backgroundColor:"orange"}} ref={this.score} className="score">{this.state.rscore}</h6>
+          )
+        }
+        else if(this.state.rscore<5)
+        {
+          return(
+            <h6 style={{backgroundColor:"red"}} ref={this.score} className="score">{this.state.rscore}</h6>
+          )
+        }
      }
     setrating()
     {
@@ -405,11 +431,11 @@ import UserReview from "./userReview";
                       <h6 style={{marginTop:10+"px",color:"red"}}>This product is not deliverable to this location</h6>
                   }
                   {
-                    this.state.ispart &&
+                    this.state.ispart && this.state.rscore > 0 &&
                     <div className="score-parent-div">
                      <h6>User Repairability Score:</h6>
                      <div className="userscore-div">
-                      <h6 ref={this.score} className="score">{this.state.rscore}</h6>
+                      {this.setscorecolor()}
                       <h6>10</h6>
                      </div>
                     </div>
@@ -428,6 +454,7 @@ import UserReview from "./userReview";
               {this.state.ispart &&
                 <button onClick={this.gotodoc} className="button-black" style={{marginTop:20+"px"}} >VIEW DIY INSTRUCTIONS</button>}
             </div>
+          
             <UserReview pid={this.props.location.state.id}/> 
            </div>
            

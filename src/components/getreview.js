@@ -33,25 +33,41 @@ class GetReview extends Component
     subreview(e)
     {
         e.preventDefault();
-        const fd = new FormData();
-        console.log(this.props.location.state.pid);
-        fd.append("pid",this.props.location.state.pid);
-        fd.append("title",e.target.title.value);
-        fd.append("content",e.target.content.value);
-        fd.append("rating",this.state.rating);
-        fd.append("score",this.state.score);
-        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/addreview.php",fd).then(
-            res=>{
-                if(res.data==0)
-                {
-                    this.props.history.push('/orders');
-                }
-                else if(res.data==-1)
-                {
-                    alert("please login and try again");
-                }
+        if(this.state.rating!=0)
+        {
+            if(this.state.ispart==true && this.state.score=="0")
+            {
+                alert("Please provide a valid score");
             }
-        )
+            else
+            {
+                const fd = new FormData();
+                console.log(this.props.location.state.pid);
+                fd.append("pid",this.props.location.state.pid);
+                fd.append("title",e.target.title.value);
+                fd.append("content",e.target.content.value);
+                fd.append("rating",this.state.rating);
+                fd.append("score",this.state.score);
+                axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/addreview.php",fd).then(
+                    res=>{
+                        if(res.data==0)
+                        {
+                            this.props.history.push('/orders');
+                        }
+                        else if(res.data==-1)
+                        {
+                            alert("please login and try again");
+                        }
+                    }
+                )
+            }
+           
+        }
+        else
+        {
+            alert("Please Provide valid rating")
+        }
+       
         
     }
 
@@ -75,10 +91,14 @@ class GetReview extends Component
                 <textarea className="textbox" name="content" placeholder="Enter your Review"  rows={10} required></textarea>
                 <h5>Rating</h5>
                 <SetRating setrat={this.setrat}/>
-                <h5>Repairability Score</h5>
-                <p>A score which determines how easy or difficult the repair was it ranges from 1-10 where 1 stands for most difficult repair and 10 stands for easiest repair</p>
+                
+               
                 {this.state.ispart &&
+                  <div>
+                  <h5>Repairability Score</h5>
+                  <p>A score which determines how easy or difficult the repair was it ranges from 1-10 where 1 stands for most difficult repair and 10 stands for easiest repair</p>
                   <Score setscore={this.setrscore}/>
+                  </div>
                 }
                 
                 <button style={{marginTop:50+"px",marginBottom:50+"px",marginLeft:20+"px"}}>SUBMIT</button>

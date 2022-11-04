@@ -38,7 +38,7 @@ class OrderMgnt extends Component
                     this.setState({ispendingorder:false});
                     console.log("ispendingorder is false");
                 }
-               // console.log(res.data);
+                console.log(res.data);
                })
         }
         else if(this.state.allorders===true)
@@ -69,9 +69,11 @@ class OrderMgnt extends Component
 
     getdispatched(oid)
     {
-      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdispatch.php",{params:{oid:oid}});
-      this.getorders();
-      this.forceUpdate();
+      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/setdispatch.php",{params:{oid:oid}}).then(res=>{
+        this.getorders();
+      });
+     
+     // this.forceUpdate();
 
     }
 
