@@ -133,11 +133,11 @@ export default class Revenue extends Component {
           </select>
           <h2 style={{ marginTop: 20 + "px"}}>REVENUE MONTHLY WISE</h2>
           <RevenueChart revenuedat={this.state.revenuedat} type="Revenue ₹"  label={this.state.months}></RevenueChart>
-          <h2 style={{ marginTop: 20 + "px"}}>SALES MONTHLY WISE</h2>
+          <h2 style={{ marginTop: 20 + "px"}}>QUANTITY SOLD MONTHLY WISE</h2>
           <RevenueChart revenuedat={this.state.salesdat} type="Sales" label={this.state.months} ></RevenueChart>
           <h2 style={{ marginTop: 20 + "px"}}>REVENUE YEAR WISE</h2>
           <RevenueChart revenuedat={this.state.yearrevdat} type="Year wise Revenue ₹" label={this.state.years.map((res=>res.year))}></RevenueChart>
-          <h2 style={{ marginTop: 20 + "px"}}>SALES YEAR WISE</h2>
+          <h2 style={{ marginTop: 20 + "px"}}>QUANTITY SOLD YEAR WISE</h2>
           <RevenueChart revenuedat={this.state.yearsaledat} type="Year wise Sale" label={this.state.years.map((res=>res.year))}></RevenueChart>
         </div>
       </div>

@@ -18,7 +18,7 @@ if(isset($_GET['pid']))
 
         $r = mysqli_fetch_assoc($res);
         $did = $r['did'];
-        $sql = "select did,dname,ddiff,dtime,intro from document where did=$did";
+        $sql = "select did,dname,ddiff,dtime,intro,video from document where did=$did";
         $res = mysqli_query($conn,$sql);
         $r = mysqli_fetch_assoc($res);
         print json_encode($r,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);

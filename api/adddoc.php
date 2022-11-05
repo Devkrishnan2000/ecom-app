@@ -16,10 +16,11 @@ if(isset($_SESSION['admin']) && isset($_POST['dname']))
   $intro = $_POST['dintro'];
   $elecprod = $_POST['elecprod'];
   $elecname = $_POST['elecname'];
+  $vlink = $_POST['vlink'];
   $sql = "select dname from document where dname='$dname'";
   if(mysqli_num_rows(mysqli_query($conn,$sql))==0)
   {
-    $sql = "insert into document (dname,ddiff,dtime,intro) values('$dname','$ddiff',$dtime,'$intro')";
+    $sql = "insert into document (dname,ddiff,dtime,intro,video) values('$dname','$ddiff',$dtime,'$intro','$vlink')";
     mysqli_query($conn,$sql);
     $sql = "select did from document where dname='$dname'";
     $res = mysqli_query($conn,$sql);

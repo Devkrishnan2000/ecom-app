@@ -15,7 +15,8 @@ if(isset($_SESSION['admin']) && isset($_POST['did']))
   $ddiff = $_POST['ddiff'];
   $dtime = $_POST['dtime'];
   $intro = $_POST['dintro'];
-  $sql = "update document set dname='$dname',ddiff='$ddiff',dtime=$dtime,intro='$intro' where did=$did";
+  $vlink = $_POST['vlink'];
+  $sql = "update document set dname='$dname',ddiff='$ddiff',dtime=$dtime,intro='$intro',video='$vlink' where did=$did";
   mysqli_query($conn,$sql);
   mysqli_close($conn);
   echo "0";

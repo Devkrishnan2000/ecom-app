@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2022 at 05:32 PM
+-- Generation Time: Nov 05, 2022 at 12:43 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -87,6 +87,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
+(1, 3010, 1),
 (1, 3011, 1),
 (1, 3013, 2),
 (2, 3003, 1),
@@ -137,18 +138,19 @@ CREATE TABLE `document` (
   `dname` varchar(50) NOT NULL,
   `ddiff` varchar(20) NOT NULL,
   `dtime` int(11) NOT NULL,
-  `intro` text NOT NULL
+  `intro` text NOT NULL,
+  `video` text NOT NULL DEFAULT 'https://youtu.be/5qtLijnz1tc'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `document`
 --
 
-INSERT INTO `document` (`did`, `dname`, `ddiff`, `dtime`, `intro`) VALUES
-(50, 'Samsung Galaxy  S20 Battery Replacement', 'easy', 1, 'If the battery in your Galaxy S20 Ultra has gone bad, but you’re not ready to part with the phone yet, you’re in the right place! This video will show you how to replace the battery in your S20 Ultra!'),
-(61, 'iPhone 12 Battery Replacement', 'easy', 2, 'iPhone batteries are rated to hold 80% of their capacity for up to 500 charge cycles, which lasts roughly 18-24 months for most users. After that, your iPhone may need to be charged far more frequently, and iOS may warn you that performance is affected (in other words, your phone will run slower). Use this guide to replace your battery and restore your iPhone to like-new performance.\r\n\r\n'),
-(63, 'iPhone 12 Display Replacement', 'moderate', 3, 'If your iPhone 12 screen is cracked, not responding to touch, or not showing a picture when your phone is powered on, use this guide to restore your iPhone to working order with a new screen, a.k.a. display assembly.\r\n\r\nThe combined earpiece speaker + sensor assembly affixed to the back of the display is paired to your individual iPhone from the factory, so you must transfer it from your old display to your new one during any display replacement. It contains the flood illuminator, which is part of the biometric Face ID security feature. If it is damaged or replaced, Face ID will cease to function, so take extra care not to damage any of these components during this procedure. If damaged, only Apple or an Apple-authorized technician can restore Face ID function.'),
-(64, 'Nitro5 Battery Replacement', 'easy', 2, 'Battery power degrades over time, which reduces the portability and function of laptops.\r\n\r\nUse this guide to replace the battery in yourAcer Aspire V Nitro VN7-572G laptop.\r\n\r\nIt is very important to take appropriate precautions if the battery is swollen. This has occurred if the top of the battery is curving, rather than flat, and can be seen as a misshapen keyboard.\r\n\r\nBe sure to power down your laptop and unplug from the external charger prior to starting this repair.');
+INSERT INTO `document` (`did`, `dname`, `ddiff`, `dtime`, `intro`, `video`) VALUES
+(50, 'Samsung Galaxy  S20 Battery Replacement', 'easy', 1, 'If the battery in your Galaxy S20 Ultra has gone bad, but you’re not ready to part with the phone yet, you’re in the right place! This video will show you how to replace the battery in your S20 Ultra!', 'https://www.youtube.com/embed/5qtLijnz1tc'),
+(61, 'iPhone 12 Battery Replacement', 'easy', 2, 'iPhone batteries are rated to hold 80% of their capacity for up to 500 charge cycles, which lasts roughly 18-24 months for most users. After that, your iPhone may need to be charged far more frequently, and iOS may warn you that performance is affected (in other words, your phone will run slower). Use this guide to replace your battery and restore your iPhone to like-new performance.\r\n\r\n', 'https://www.youtube.com/embed/5qtLijnz1tc'),
+(63, 'iPhone 12 Display Replacement', 'moderate', 3, 'If your iPhone 12 screen is cracked, not responding to touch, or not showing a picture when your phone is powered on, use this guide to restore your iPhone to working order with a new screen, a.k.a. display assembly.\r\n\r\nThe combined earpiece speaker + sensor assembly affixed to the back of the display is paired to your individual iPhone from the factory, so you must transfer it from your old display to your new one during any display replacement. It contains the flood illuminator, which is part of the biometric Face ID security feature. If it is damaged or replaced, Face ID will cease to function, so take extra care not to damage any of these components during this procedure. If damaged, only Apple or an Apple-authorized technician can restore Face ID function.', 'https://www.youtube.com/embed/5qtLijnz1tc'),
+(64, 'Nitro5 Battery Replacement', 'easy', 2, 'Battery power degrades over time, which reduces the portability and function of laptops.\r\n\r\nUse this guide to replace the battery in yourAcer Aspire V Nitro VN7-572G laptop.\r\n\r\nIt is very important to take appropriate precautions if the battery is swollen. This has occurred if the top of the battery is curving, rather than flat, and can be seen as a misshapen keyboard.\r\n\r\nBe sure to power down your laptop and unplug from the external charger prior to starting this repair.', 'https://www.youtube.com/embed/wlcR2P1FNFc');
 
 -- --------------------------------------------------------
 
@@ -181,7 +183,7 @@ INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
 (3016, 2002, 'battery', 0, 0),
 (3017, 2002, 'camera', 50, 0),
 (3018, 2004, 'battery', 64, 0),
-(3019, 2005, 'battery', 64, 0);
+(3019, 2005, 'battery', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -283,7 +285,8 @@ INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocatio
 (100028, 18, 3000, 1500, 1, 'Shipping', 'Warehouse', '2022-11-04'),
 (100029, 18, 3004, 350, 1, 'Shipping', 'Warehouse', '2022-11-04'),
 (100030, 19, 3010, 1920, 1, 'Canceled', 'Warehouse', '2022-11-04'),
-(100031, 19, 3012, 3304, 1, 'Set Reached Warehouse', 'ALUVA', '2022-11-04');
+(100031, 19, 3012, 3304, 1, 'Set Reached Warehouse', 'ALUVA', '2022-11-04'),
+(100032, 1, 3010, 1920, 1, 'Delivered', 'ALUVA', '2022-11-05');
 
 -- --------------------------------------------------------
 
@@ -322,7 +325,7 @@ INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `
 (3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1500, -1, 1, 6, 4, 0),
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 0, 0),
 (3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 9, 6, 0, 0),
-(3010, 1000, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 3, 6, 5, 0),
+(3010, 1000, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 2, 6, 5, 0),
 (3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 8, 6, 4, 1),
 (3012, 1001, 'part', 'iPhone 12 Rear Camera', 'Replace a dual primary rear-facing camera assembly in your iPhone 12.\r\n\r\nIf your rear camera has sensor issues, focusing problems, or shows a blank image, you’ll want to replace this part.', 'images/parts/iphone12camera.png', 4130, 3304, 20, 8, 12, 5, 0),
 (3013, 1000, 'tool', 'Precision Cleaning Kit', 'Regular cleaning of your devices is one of the best practices of preventative maintenance to enhance their lifespan. Unfortunately, many of today’s electronics contain increasingly small connections, ports and other tight spaces. Through regular use, these areas of our devices collect dirt, lint and other contaminants. iFixit has assembled a group of helpful and practical tools to tackle cleaning hard-to-reach areas. These are meant to be reused, so keep them clean between projects.', 'images/Tools/pre_cleaning_kit.png', 850, 850, -1, 8, 6, 0, 0),
@@ -580,7 +583,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `electronics`
@@ -592,7 +595,7 @@ ALTER TABLE `electronics`
 -- AUTO_INCREMENT for table `porder`
 --
 ALTER TABLE `porder`
-  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100032;
+  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100033;
 
 --
 -- AUTO_INCREMENT for table `products`

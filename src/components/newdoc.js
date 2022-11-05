@@ -68,6 +68,7 @@ class NewDoc extends Component
        fd.append("dintro",e.target.intro.value)
        fd.append("elecname",e.target.elecname.value)
        fd.append("elecprod",e.target.elecprod.value)
+       fd.append("vlink",e.target.vlink.value);
        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/adddoc.php",fd).then(res=>{
       console.log(res.data);
          
@@ -156,13 +157,17 @@ class NewDoc extends Component
                        
                         </div>
 
-                        <div className="docdiff"style={{marginLeft:220+"px"}} >
+                        <div className="docdiff"style={{marginLeft:230+"px"}} >
                         <h6>Electronic product</h6>
                         <select name="elecprod" className="textbox" required>
                         {!this.state.prodempty &&
                           this.state.elecprouct.map((res=> <option key={res.pid} value={res.pid}>{res.pname}</option> ))
                         }
                         </select>
+                        </div>
+                        <div style={{marginLeft:220+"px"}}>
+                        <h6>Documentation Video Link</h6>
+                        <input type='text'  className="textbox" name="vlink" placeholder="Use Embed Link" required ></input>
                         </div>
                   </div>
                     <div className="intro">

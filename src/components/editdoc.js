@@ -13,6 +13,7 @@ class Editdoc extends Component
             ddiff:'',
             doctime:'',
             dintro:'',
+            vlink:'',
             steps:[]
          }
 
@@ -42,6 +43,7 @@ class Editdoc extends Component
        fd.append("ddiff",e.target.diff.value)
        fd.append("dtime",e.target.dtime.value)
        fd.append("dintro",e.target.intro.value)
+       fd.append("vlink",e.target.vlink.value)
        axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/updatedoc.php",fd).then(res=>{
         if(res.data===0)
         {
@@ -86,7 +88,11 @@ class Editdoc extends Component
                     <div className="doctime">
                     <h6>Documentation Time</h6>
                     <input type='number' name="dtime"  className="textbox" placeholder="Time In Hours" defaultValue={this.state.doctime} required></input>
-                    </div>    
+                    </div>  
+                    <div>
+                        <h6>Documentation Video Link</h6>
+                        <input type='text'  className="textbox" name="vlink" placeholder="Use Embed Link" required ></input>
+                        </div>  
                 </div>
                 <div className="intro">
                 <h6>Introduction</h6>
