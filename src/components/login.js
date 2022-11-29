@@ -103,7 +103,8 @@ class Login extends Component
     render()
     {
         return(
-            <div className="login-parent">
+          <div className="maindiv">
+  <div className="login-parent">
               <div className="login-div">
                <h1 style={{marginTop:20+"px", alignSelf:"center"}}>LOGIN</h1>
                {this.state.isadmin &&
@@ -128,6 +129,8 @@ class Login extends Component
                {this.showError()}
               </div>
             </div>
+          </div>
+          
              
         )
     }

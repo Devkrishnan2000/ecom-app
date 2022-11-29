@@ -15,10 +15,12 @@ export default class Revenue extends Component {
       revenuedat:[0,0,0,0,0,0,0,0,0,0,0,0],
       salesdat:[0,0,0,0,0,0,0,0,0,0,0,0],
       yearrevdat:[],
-      yearsaledat:[]
+      yearsaledat:[],
+      datewisedat:[]
     };
 
     this.onchangeyear= this.onchangeyear.bind(this);
+    this.ondateselc = this.ondateselc.bind(this);
   }
   componentDidMount() {
     axios
@@ -87,12 +89,35 @@ export default class Revenue extends Component {
       
       
   }
+
+  ondateselc(e)
+  {
+    e.preventDefault();
+
+    const dfrom = Date.parse(e.target.datefrom.value);
+    const  dto = Date.parse(e.target.dateto.value);
+
+    console.log(dfrom);
+    console.log(dto);
+    if(dfrom <= dto)
+    {
+      axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getrevenue.php",{params:{from:e.target.datefrom.value,to:e.target.dateto.value}}).then((res)=>{
+        this.setState({datewisedat: res.data});
+        console.log(res.data);
+      })
+    }
+    else
+    {
+      alert("Invalid Range");
+    }
+    
+  }
   render() {
     return (
       <div className="revenue-parent-div">
         <div className="revenue-div">
           <div className="sales">
-            <h2>TOTAL SALES</h2>
+            <h2>TOTAL ORDERS</h2>
             <h2>
               <span>
                 <AnimatedNumber
@@ -139,6 +164,32 @@ export default class Revenue extends Component {
           <RevenueChart revenuedat={this.state.yearrevdat} type="Year wise Revenue ₹" label={this.state.years.map((res=>res.year))}></RevenueChart>
           <h2 style={{ marginTop: 20 + "px"}}>QUANTITY SOLD YEAR WISE</h2>
           <RevenueChart revenuedat={this.state.yearsaledat} type="Year wise Sale" label={this.state.years.map((res=>res.year))}></RevenueChart>
+          <h2 style={{ marginTop: 20 + "px"}}>REVENUE DATE WISE</h2>
+          <form onSubmit={this.ondateselc}>
+            <input style={{marginTop:30+"px",marginRight:20+"px"}} className="textbox" type="date" name="datefrom" required></input>
+            <label>To</label>
+            <input style={{marginTop:30+"px",marginBottom:30+"px"}} className="textbox" type="date" name="dateto" required></input>
+            <input style={{marginLeft:20+"px"}} className="button-black" type="submit" value="Go"></input>
+          </form>
+          <table style={{width:70+"%",marginLeft:0+"px",marginBottom:30+"px"}} className="order-table" >
+                <thead>
+                <tr>
+                    <th>Order Date</th>
+                    <th>Order ID</th>
+                    <th>Product ID</th>
+                    <th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+               
+                  {this.state.datewisedat.map((res)=><tr>
+                    <td>{res.odate}</td>
+                    <td>{res.oid}</td>
+                    <td>{res.pid}</td>
+                    <td>{res.qty}</td>
+                  </tr>)}
+                </tbody>
+                </table>
         </div>
       </div>
     );

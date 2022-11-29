@@ -151,7 +151,7 @@ class UpdateAccount extends Component {
         >
          UPDATE <span>ACCOUNT</span>
         </h1>
-        <div className="Table-div">
+        <div style={{justifyContent:"start",marginLeft:150+"px"}} className="Table-div">
           <form onSubmit={this.updateacc} ref={(el) => (this.myFormRef = el)}>
             <table width={1000 + "px"}>
               <tbody>

@@ -97,7 +97,7 @@ $conn = $db->connect();
     {
         for($i=1;$i<=$curmonth;++$i)
         {
-            $sql = "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
+            $sql = "SELECT IFNULL(sum(qty),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled';";
             $res = mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0)
             {
@@ -161,7 +161,7 @@ $conn = $db->connect();
        }
        for($i=0;$i<count($rows);++$i)
        {
-        $sql= "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$rows[$i] and ostatus!='canceled';";
+        $sql= "SELECT IFNULL(sum(qty),0) as sum from porder where year(odate)=$rows[$i] and ostatus!='canceled';";
         $res = mysqli_query($conn,$sql);
         if(mysqli_num_rows($res)>0)
         {
@@ -172,6 +172,26 @@ $conn = $db->connect();
        print json_encode($yearrev,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
  }
+ else
+ if(isset($_GET['from'])&& isset($_GET['to']))
+ {
+    $from = $_GET['from'];
+    $to = $_GET['to'];
+    $sql = "SELECT odate,oid,oprice,pid,qty from porder where odate BETWEEN '$from' AND '$to' and ostatus!='canceled' ";
+    $res = mysqli_query($conn,$sql);
+    $rows = array();
+    if(mysqli_num_rows($res)>0)
+    {
+        
+        while($r = mysqli_fetch_assoc($res))
+        {
+           $rows[] = $r;
+        }
+        print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        mysqli_close($conn);
+    }
+
+}
  
   
 ?>
