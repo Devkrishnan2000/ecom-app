@@ -177,9 +177,13 @@ $conn = $db->connect();
  {
     $from = $_GET['from'];
     $to = $_GET['to'];
-    $sql = "SELECT odate,oid,oprice,pid,qty from porder where odate BETWEEN '$from' AND '$to' and ostatus!='canceled' ";
-    $res = mysqli_query($conn,$sql);
+    $begin = new DateTime($from);
+    $end   = new DateTime($to);
     $rows = array();
+     for($i = $begin; $i <= $end; $i->modify('+1 day')){
+     $curdate = $i->format("Y-m-d");
+     $sql = "select DISTINCT(IFNULL(odate,'$curdate')) as ddate,IFNULL(sum(qty),0) as qty,IFNULL(sum(oprice),0) as oprice  from porder where odate = '$curdate' and ostatus!='canceled' ";
+     $res = mysqli_query($conn,$sql);
     if(mysqli_num_rows($res)>0)
     {
         
@@ -187,9 +191,13 @@ $conn = $db->connect();
         {
            $rows[] = $r;
         }
-        print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        mysqli_close($conn);
+       
     }
+    }
+    print json_encode($rows,JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    mysqli_close($conn);
+   // $sql = "SELECT odate,oid,oprice,pid,qty from porder where odate BETWEEN '$from' AND '$to' and ostatus!='canceled' ";
+    
 
 }
  

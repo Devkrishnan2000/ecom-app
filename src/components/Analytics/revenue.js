@@ -7,6 +7,7 @@ import RevenueChart from "./charts/revenuechart";
 export default class Revenue extends Component {
   constructor(props) {
     super(props);
+    this.table = React.createRef()
     this.state = {
       salesnum: 0,
       revenuenum: 0,
@@ -17,6 +18,7 @@ export default class Revenue extends Component {
       yearrevdat:[],
       yearsaledat:[],
       datewisedat:[]
+      
     };
 
     this.onchangeyear= this.onchangeyear.bind(this);
@@ -96,7 +98,7 @@ export default class Revenue extends Component {
 
     const dfrom = Date.parse(e.target.datefrom.value);
     const  dto = Date.parse(e.target.dateto.value);
-
+   
     console.log(dfrom);
     console.log(dto);
     if(dfrom <= dto)
@@ -105,6 +107,7 @@ export default class Revenue extends Component {
         this.setState({datewisedat: res.data});
         console.log(res.data);
       })
+      this.table.current.scrollIntoView({behavior: "smooth"})
     }
     else
     {
@@ -164,29 +167,27 @@ export default class Revenue extends Component {
           <RevenueChart revenuedat={this.state.yearrevdat} type="Year wise Revenue ₹" label={this.state.years.map((res=>res.year))}></RevenueChart>
           <h2 style={{ marginTop: 20 + "px"}}>QUANTITY SOLD YEAR WISE</h2>
           <RevenueChart revenuedat={this.state.yearsaledat} type="Year wise Sale" label={this.state.years.map((res=>res.year))}></RevenueChart>
-          <h2 style={{ marginTop: 20 + "px"}}>REVENUE DATE WISE</h2>
+          <h2 style={{ marginTop: 20 + "px"}}>REVENUE AND SALES DATE WISE</h2>
           <form onSubmit={this.ondateselc}>
             <input style={{marginTop:30+"px",marginRight:20+"px"}} className="textbox" type="date" name="datefrom" required></input>
             <label>To</label>
             <input style={{marginTop:30+"px",marginBottom:30+"px"}} className="textbox" type="date" name="dateto" required></input>
             <input style={{marginLeft:20+"px"}} className="button-black" type="submit" value="Go"></input>
           </form>
-          <table style={{width:70+"%",marginLeft:0+"px",marginBottom:30+"px"}} className="order-table" >
+          <table style={{width:70+"%",marginLeft:0+"px",marginBottom:30+"px"}} className="order-table" ref={this.table} >
                 <thead>
                 <tr>
                     <th>Order Date</th>
-                    <th>Order ID</th>
-                    <th>Product ID</th>
-                    <th>Quantity</th>
+                    <th>Total Sales</th>
+                    <th>Total Revenue</th>
                 </tr>
                 </thead>
                 <tbody>
                
-                  {this.state.datewisedat.map((res)=><tr>
-                    <td>{res.odate}</td>
-                    <td>{res.oid}</td>
-                    <td>{res.pid}</td>
+                  {this.state.datewisedat.map((res)=><tr key={res.ddata}>
+                    <td>{res.ddate}</td>
                     <td>{res.qty}</td>
+                    <td>{res.oprice}</td>
                   </tr>)}
                 </tbody>
                 </table>
