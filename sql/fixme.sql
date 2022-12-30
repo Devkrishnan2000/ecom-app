@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2022 at 11:22 AM
+-- Generation Time: Dec 30, 2022 at 05:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -151,7 +151,8 @@ INSERT INTO `document` (`did`, `dname`, `ddiff`, `dtime`, `intro`, `video`) VALU
 (50, 'Samsung Galaxy  S20 Battery Replacement', 'easy', 1, 'If the battery in your Galaxy S20 Ultra has gone bad, but you’re not ready to part with the phone yet, you’re in the right place! This video will show you how to replace the battery in your S20 Ultra!', 'https://www.youtube.com/embed/5qtLijnz1tc'),
 (61, 'iPhone 12 Battery Replacement', 'easy', 2, 'iPhone batteries are rated to hold 80% of their capacity for up to 500 charge cycles, which lasts roughly 18-24 months for most users. After that, your iPhone may need to be charged far more frequently, and iOS may warn you that performance is affected (in other words, your phone will run slower). Use this guide to replace your battery and restore your iPhone to like-new performance.\r\n\r\n', 'https://www.youtube.com/embed/5qtLijnz1tc'),
 (63, 'iPhone 12 Display Replacement', 'moderate', 3, 'If your iPhone 12 screen is cracked, not responding to touch, or not showing a picture when your phone is powered on, use this guide to restore your iPhone to working order with a new screen, a.k.a. display assembly.\r\n\r\nThe combined earpiece speaker + sensor assembly affixed to the back of the display is paired to your individual iPhone from the factory, so you must transfer it from your old display to your new one during any display replacement. It contains the flood illuminator, which is part of the biometric Face ID security feature. If it is damaged or replaced, Face ID will cease to function, so take extra care not to damage any of these components during this procedure. If damaged, only Apple or an Apple-authorized technician can restore Face ID function.', 'https://www.youtube.com/embed/5qtLijnz1tc'),
-(64, 'Nitro5 Battery Replacement', 'easy', 2, 'Battery power degrades over time, which reduces the portability and function of laptops.\r\n\r\nUse this guide to replace the battery in yourAcer Aspire V Nitro VN7-572G laptop.\r\n\r\nIt is very important to take appropriate precautions if the battery is swollen. This has occurred if the top of the battery is curving, rather than flat, and can be seen as a misshapen keyboard.\r\n\r\nBe sure to power down your laptop and unplug from the external charger prior to starting this repair.', 'https://www.youtube.com/embed/wlcR2P1FNFc');
+(64, 'Nitro5 Battery Replacement', 'easy', 2, 'Battery power degrades over time, which reduces the portability and function of laptops.\r\n\r\nUse this guide to replace the battery in yourAcer Aspire V Nitro VN7-572G laptop.\r\n\r\nIt is very important to take appropriate precautions if the battery is swollen. This has occurred if the top of the battery is curving, rather than flat, and can be seen as a misshapen keyboard.\r\n\r\nBe sure to power down your laptop and unplug from the external charger prior to starting this repair.', 'https://www.youtube.com/embed/wlcR2P1FNFc'),
+(71, 'iPhone 12 Camera Replacement', 'easy', 2, 'Use this guide to remove and replace the rear cameras in the iPhone 12. All the camera modules are replaced as a single unit.', 'https://www.youtube.com/embed/YoBxThZL-60');
 
 -- --------------------------------------------------------
 
@@ -178,7 +179,7 @@ INSERT INTO `elecproduct` (`pid`, `eid`, `parttype`, `did`, `rscore`) VALUES
 (3009, 2000, 'Back Cover(RED)', 0, 0),
 (3010, 2001, 'Battery', 61, 9),
 (3011, 2001, 'display', 63, 8),
-(3012, 2001, 'camera', 50, 8),
+(3012, 2001, 'camera', 71, 8),
 (3014, 2000, 'camera', 50, 0),
 (3015, 2002, 'display', 0, 0),
 (3016, 2002, 'battery', 0, 0),
@@ -438,7 +439,14 @@ INSERT INTO `steps` (`did`, `stid`, `stitle`, `stdesc`, `stimg`) VALUES
 (64, 4, 'Remove the optical drive', 'Push the optical drive out with a finger or pick.\r\n\r\nAnother screw could be holding the optical drive in.', 'images/documentation/nitrobat4.png'),
 (64, 5, 'Remove hard drive and USB connectors', 'Release the SATA hard drive and USB ZIF connectors from the board.\r\n\r\nRemoving the SATA connector is optional only if the battery screw is not easily accessible.\r\n\r\nIf the battery screw isnt more accessible, consider also releasing the SD card board ZIF connector and removing the SATA hard drive.\r\n\r\nRelease the USB ZIF connector from the breakout board.', 'images/documentation/nitrobat5.png'),
 (64, 6, 'Disconnect  battery connector from board', 'Use the Phillips #00 to remove the screw holding the battery in place.\r\n\r\nThere may be a second screw holding the battery in at the bottom left.\r\n\r\nDisconnect the battery connector from the board. Grasp it between two fingers and slowly pull it loose.', 'images/documentation/nitrobat6.png'),
-(64, 7, 'Remove the battery', 'Lift underneath the top of the battery to remove.', 'images/documentation/nitrobat7.png');
+(64, 7, 'Remove the battery', 'Lift underneath the top of the battery to remove.', 'images/documentation/nitrobat7.png'),
+(71, 1, 'Remove the pentalobe screws', 'Power off your iPhone before beginning disassembly.\r\n\r\nRemove the two 6.75 mm long pentalobe P2 screws at the bottom edge of the iPhone.', 'images/documentation/ip12c1.png'),
+(71, 2, 'Heat the lower edge of the iPhone', 'Use a hairdryer or heat gun or prepare an iOpener and apply it to the lower edge of the iPhone for about a minute in order to soften up the adhesive underneath.', 'images/documentation/ip12c2.png'),
+(71, 3, 'Disconnect the battery', 'Use a spudger or a clean fingernail to pry the battery connector up from its socket on the logic board.\r\nBend the connector slightly away from the logic board to prevent it from accidentally making contact with the socket and providing power to the phone during your repair.', 'images/documentation/ip12c3.png'),
+(71, 4, 'Disconnect the display cable', 'Use a spudger or a fingernail to disconnect the display cable connector.', 'images/documentation/ip12c4.png'),
+(71, 5, 'Remove the display assembly', 'Remove the display assembly.', 'images/documentation/ip12c5.png'),
+(71, 6, 'Disconnect the camera assembly', 'Use a spudger or a fingernail to disconnect the first camera cable connector by prying it straight up from its socket.', 'images/documentation/ip12c6.png'),
+(71, 7, 'Remove the rear-facing cameras', 'Use the tip of a spudger to lift the camera assembly out of the iPhone.\r\n\r\nRemove the rear-facing cameras.', 'images/documentation/ip12c7.png');
 
 -- --------------------------------------------------------
 
@@ -587,7 +595,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `electronics`

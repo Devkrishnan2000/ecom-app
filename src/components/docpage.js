@@ -90,7 +90,7 @@ class Docpage extends Component {
         </div>
         <div className="contact-us">
           <h2>Still Getting Stuck ?</h2>
-          <h4>Contact our team : 9074757442</h4>
+          <h4>Contact our team : +91 9074757442</h4>
         </div>
       </div>
     );
