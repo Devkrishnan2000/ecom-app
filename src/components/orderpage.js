@@ -40,7 +40,14 @@ class OrderPage extends Component
                }
                {
                 this.state.noorder &&
-                <h2 style={{marginTop:20+"px",textAlign:"center"}}>Orders Are Empty !</h2>
+                <div>
+                     <h2 style={{marginTop:20+"px",textAlign:"center",marginBottom:20+"px"}}>Orders Are Empty !</h2>
+                     <div style={{display:"flex",justifyContent:"center"}}>
+                        <img  src="images\svg\sad.svg" height="200" width="200"></img>
+                        </div>
+                </div>
+               
+                
                }
             </div>
         )

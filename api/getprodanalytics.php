@@ -28,7 +28,7 @@ $conn = $db->connect();
     {
         for($i=1;$i<=12;++$i)
         {
-            $sql = "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled0' and pid=$pid";
+            $sql = "SELECT IFNULL(count(*),0) as sum from porder where year(odate)=$year and month(odate)=$i and ostatus!='canceled' and pid=$pid";
             $res = mysqli_query($conn,$sql);
             if(mysqli_num_rows($res)>0)
             {

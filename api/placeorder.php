@@ -17,7 +17,7 @@ if(isset($_SESSION['user'])&& isset($_GET['pid']))
     $sql ="select stock from products where pid=$pid";
     $res =mysqli_query($conn,$sql);
     $r = mysqli_fetch_assoc($res);
-    if($r['stock']>$qty)
+    if($r['stock']>=$qty)
     {
         $newstock = $r['stock']-$qty;
         $sql ="update products set stock=$newstock where pid=$pid";

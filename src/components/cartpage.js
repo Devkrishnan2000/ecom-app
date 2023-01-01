@@ -199,7 +199,10 @@ class CartPage extends Component
             </div>
             {this.state.cartempty &&
                  <div>
-                  <h2 style={{textAlign:"center"}}>Cart is Empty !</h2>
+                  <h2 style={{textAlign:"center"}}>Cart is empty !</h2>
+                  <div style={{display:"flex",justifyContent:"center"}}>
+                  <img src="images\svg\cart.svg" height="200" width="200"></img>
+                  </div>
                  </div>
                }
          </div>

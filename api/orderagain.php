@@ -33,10 +33,11 @@ if(isset($_SESSION['user'])&&isset($_GET['oid']))
        mysqli_close($conn);
        echo "0";
    }
-
-   
-}
-else
+   else
 {
     echo "-1";
+}
+   
+
+   
 }

@@ -72,6 +72,7 @@ import  { Redirect } from 'react-router-dom'
             fd.append('pincode',e.target.pincode.value);
             axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/createAcc.php",fd).then(res=>{}
             )
+            alert("Account Created Sucessfully")
             this.props.history.push('/login');
             }
            

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2022 at 05:29 PM
+-- Generation Time: Jan 01, 2023 at 06:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -87,10 +87,6 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cid`, `pid`, `qty`) VALUES
-(1, 3002, 1),
-(1, 3010, 1),
-(1, 3011, 1),
-(1, 3013, 2),
 (2, 3003, 1),
 (17, 3001, 1),
 (17, 3002, 1),
@@ -126,7 +122,9 @@ INSERT INTO `customer` (`cid`, `cname`, `caddr`, `cmail`, `cphno`, `cpass`, `pin
 (3, 'Aswinikumar V V', 'Aiswarya Nagar Flat no 207 thaikkatukara po aluva', 'aswinikumarjaya@gmail.com', '9847193950', '$2y$10$5NrKQ7qlenTHofmPNyVrO.tlYu8bmV1fvJPkejbmVuqNa74t7nKcC', 683106),
 (17, 'Jayasree M J', 'fsf', 'jayasreeaswinikumar@gmail.com', '9446743339', '$2y$10$zgQvPcoV6UYSkZ/iT4NUC.Sf6ut9eAccKTMzW397H/bwiTborfPNy', 683106),
 (18, 'Neeraj K Nair', 'kadvanthra ', 'imca-182@scmsgroup.org', '9074757442', '$2y$10$oq5VucepGyGI0mXScEdIBu92hLfWmIl0ivBExGpdo9AaNOF2wa4YO', 683123),
-(19, 'MrX', 'sdfgsgagasdhlhsda', 'x@gmail.com', '9074757442', '$2y$10$QrUwuUHBVG9OfGcL3eQhCeeGeypk8PKPFV55ED2iU2QCJ8W5p3bqi', 683106);
+(19, 'MrX', 'sdfgsgagasdhlhsda', 'x@gmail.com', '9074757442', '$2y$10$QrUwuUHBVG9OfGcL3eQhCeeGeypk8PKPFV55ED2iU2QCJ8W5p3bqi', 683106),
+(20, 'Arun', 'nethaji road green field road kadavanthra', 'arun@gmail.com', '9074757442', '$2y$10$ywMgpGRJRnJ7zyE/5IcAAuwHBW.IyjqVf.P4CzEq8LBmOsEzzSALO', 682020),
+(21, 'divutha', 'sffagghjdskvjkdjvndsjvndsjvks', 'div@gmail.com', '9074757442', '$2y$10$gRWb1GiGWXWORRlFBG.qAeItJwUsK6R3Vv7NSAmQ2/i98WeJXAp0O', 682020);
 
 -- --------------------------------------------------------
 
@@ -235,6 +233,7 @@ CREATE TABLE `pincode` (
 --
 
 INSERT INTO `pincode` (`pincode`, `place`, `dfrom`, `dto`, `deliverable`) VALUES
+(682020, 'Kadavanthra', 1, 2, 0),
 (683104, 'kalamasserry', 1, 2, 0),
 (683106, 'Kandungaloor', 1, 2, 0),
 (683107, 'Koratty', 2, 3, 0),
@@ -288,8 +287,9 @@ INSERT INTO `porder` (`oid`, `cid`, `pid`, `oprice`, `qty`, `ostatus`, `olocatio
 (100029, 18, 3004, 350, 1, 'Shipping', 'Warehouse', '2022-11-04'),
 (100030, 19, 3010, 1920, 1, 'Canceled', 'Warehouse', '2022-11-04'),
 (100031, 19, 3012, 3304, 1, 'Set Reached Warehouse', 'ALUVA', '2022-11-04'),
-(100032, 1, 3010, 1920, 1, 'Applied For Return', 'ALUVA', '2022-11-05'),
-(100033, 1, 3002, 1385, 1, 'Delivered', 'ALUVA', '2022-11-08');
+(100032, 1, 3010, 1920, 1, 'Return Claim Rejected', 'ALUVA', '2022-11-05'),
+(100033, 1, 3002, 1385, 1, 'Delivered', 'ALUVA', '2022-11-08'),
+(100034, 20, 3010, 3840, 2, 'Set Reached Warehouse', 'Kadavanthra', '2023-01-01');
 
 -- --------------------------------------------------------
 
@@ -318,7 +318,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `price`, `oprice`, `discount`, `stock`, `waranty`, `rating`, `pcondition`) VALUES
-(3000, 1006, 'tool', 'Morary Driver Kit', 'Meet the Moray, Minnow’s slightly bigger brother. Measuring a portable .9\" x 3.1\" x 4.9\", the Moray is the perfect every-day-carry toolkit or junk drawer standby to prevent your stuff from becoming junk.\r\n\r\nWe built the Moray using data from thousands of repair manuals and teardowns, ensuring you have a compact assortment of bits for electronics and home repair. Our 4 mm precision bit driver handle has an integrated SIM Eject pin, magnetic bit socket, knurled grip, and swivel top—and the 32 precision driver bits have a 4 mm hex shank and extended-reach long necks.\r\n\r\nStandard and security bits like Phillips and Pentalobes will get you into most electronic devices and small household appliances, and an assortment of Hex and specialty bits come in handy for furniture and older devices. Whether you\'re a professional fixer or a weekend warrior, the Moray has what you need to disassemble and repair smartphones, laptops, new and vintage game consoles, kitchen appliances, and more.', 'images/Tools/morary.png', 1500, 1500, -1, 2, 6, 0, 0),
+(3000, 1006, 'tool', 'Morary Driver Kit', 'Meet the Moray, Minnow’s slightly bigger brother. Measuring a portable .9\" x 3.1\" x 4.9\", the Moray is the perfect every-day-carry toolkit or junk drawer standby to prevent your stuff from becoming junk.\r\n\r\nWe built the Moray using data from thousands of repair manuals and teardowns, ensuring you have a compact assortment of bits for electronics and home repair. Our 4 mm precision bit driver handle has an integrated SIM Eject pin, magnetic bit socket, knurled grip, and swivel top—and the 32 precision driver bits have a 4 mm hex shank and extended-reach long necks.\r\n\r\nStandard and security bits like Phillips and Pentalobes will get you into most electronic devices and small household appliances, and an assortment of Hex and specialty bits come in handy for furniture and older devices. Whether you\'re a professional fixer or a weekend warrior, the Moray has what you need to disassemble and repair smartphones, laptops, new and vintage game consoles, kitchen appliances, and more.', 'images/Tools/morary.png', 1500, 1500, -1, 0, 6, 0, 0),
 (3001, 1006, 'tool', 'Pro Tech Tool Kit', 'At the heart of the toolkit, 64 steel screwdriver bits to service all your tech. The Pro Tech Toolkit has everything from a Y000 bit for next-gen Apple products to the Gamebit for vintage game consoles.\r\n\r\nWe’ve engineered this toolkit from the ground up—from the custom opening tools and spudgers to the iFixit-designed aluminum driver with knurled handle and swivel top.\r\n\r\n', 'images/Tools/protech.png', 2000, 1400, 30, 14, 6, 4, 0),
 (3002, 1008, 'tool', 'A7104-XJ  Screwdriver', 'Package Contents: Screwdriver bits (25 mm) Philips: 4x PH1, 4 x PH2, 2 x PH3. Pozidriv: 2x PZ1, 2 x PZ2, 2 x PZ3, Slotted: 2x SL4, 4x SL6, 2x SL7.2 Torx: 2x TX10, 2x TX15, 2x TX20, 2x TX25 Hex: 2x HEX3, 2x HEX4, 2x HEX5, 2x HEX6. Screwdriver bits (50 mm) Philips: PH1, PH2, PH3, Pozidriv: PZ1, PZ2, Slotted: SL6, and SL7.2. Sockets: 5, 6, 7, 8, 10, 11, 12 mm. 1x Hand Ratchet and 1x Magnetic Holder\r\nAn ergonomic ratchet screw driver, which makes the task of fastening screws and bolts a lot easier\r\nThe set can be used in electronics, electrical, wood working and other hardware maintenance task\r\nThe driver bits and sockets are made of high quality materials to withstand heavy duty usage.', 'images/Tools/bd_screw_driver_set.png', 2114, 1385, 34, 17, 6, 4, 0),
 (3003, 1006, 'tool', 'Precision Tweezers', 'Grab everything from screws to eyebrows with iFixit\'s Precision Tweezers Set. The complete tweezer kit for all holding, pulling, squeezing, picking up, and plucking jobs.\r\n\r\nIncluded are the three essential tips for DIY projects:\r\n\r\nPointed (extra fine!) - For ultimate precision\r\nAngled - For ergonomic accuracy\r\nBlunt - For heavy lifting\r\nMade with stainless steel and a protective coating that prevents ESD damage from harming sensitive electronics. Keep your tweezers organized with the portable fabric storage sleeve.', 'images/Tools/tweezers.png', 750, 750, -1, 18, 6, 0, 0),
@@ -328,7 +328,7 @@ INSERT INTO `products` (`pid`, `brandid`, `ptype`, `pname`, `pdesc`, `pimage`, `
 (3007, 1000, 'part', 'Galaxy S20 Rear  Panel', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20back.png', 1500, 1500, -1, 1, 6, 4, 0),
 (3008, 1000, 'part', 'Galaxy S20 Rear Panel PINK', 'Replace a rear panel in your Samsung Galaxy S20 smartphones.\r\n\r\nFix issues like a broken or scratched rear cover.', 'images\\parts\\samsungs20backpink.png', 1500, 1500, -1, 2, 6, 0, 0),
 (3009, 1000, 'part', 'Galaxy S20 Rear Panel RED', '', 'images\\parts\\samsungs20backred.png', 1500, 1400, 5, 9, 6, 0, 0),
-(3010, 1000, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 2, 6, 5, 0),
+(3010, 1000, 'part', 'iPhone 12 Battery', ' \r\niPhone 12/12 Pro Battery\r\nItem code: IF442-002-1\r\n\r\nIdentify your iPhone\r\n\r\n$39.99\r\n\r\nAdd to Cart\r\nOnly 13 left\r\n\r\nShipping restrictions apply\r\n\r\n\r\nA new Galaxy of repair\r\nGenuine parts for Samsung Galaxy, now available.\r\n\r\nShop Samsung Parts\r\nFrequently Bought Together\r\nThis Item\r\n\r\n\r\n\r\n\r\n\r\n\r\n$53.97\r\nAdd to cart\r\nProduct Details\r\nDESCRIPTION\r\n\r\nThis iPhone 12 and 12 Pro replacement battery is what you need to bring your dead iPhone back to life!\r\n\r\nTested to confirm there are no cycles on the cell and the capacity is 95% or higher.\r\n100% factory tested with a customer return rate of only 1%.\r\nAssembled using high quality chipset from Texas Instruments.\r\nSpot tested by iFixit staff in San Luis Obispo, CA to ensure consistency of quality and capacity.\r\nBattery adhesive is preinstalled to improve the quality of your repair.', 'images\\parts\\iphone12bat.png', 2400, 1920, 20, 0, 6, 5, 0),
 (3011, 1001, 'part', 'iPhone 12 Display', 'Replace a scratched or cracked front panel glass digitizer screen or a malfunctioning Super Retina XDR OLED display. This part is compatible with an iPhone 12 and iPhone 12 Pro.', 'images/parts/iphone_display.png', 15000, 11250, 25, 8, 6, 4, 1),
 (3012, 1001, 'part', 'iPhone 12 Rear Camera', 'Replace a dual primary rear-facing camera assembly in your iPhone 12.\r\n\r\nIf your rear camera has sensor issues, focusing problems, or shows a blank image, you’ll want to replace this part.', 'images/parts/iphone12camera.png', 4130, 3304, 20, 8, 12, 5, 0),
 (3013, 1000, 'tool', 'Precision Cleaning Kit', 'Regular cleaning of your devices is one of the best practices of preventative maintenance to enhance their lifespan. Unfortunately, many of today’s electronics contain increasingly small connections, ports and other tight spaces. Through regular use, these areas of our devices collect dirt, lint and other contaminants. iFixit has assembled a group of helpful and practical tools to tackle cleaning hard-to-reach areas. These are meant to be reused, so keep them clean between projects.', 'images/Tools/pre_cleaning_kit.png', 850, 850, -1, 8, 6, 0, 0),
@@ -364,7 +364,8 @@ INSERT INTO `retprod` (`retid`, `oid`, `pid`, `rtime`, `pdinfo`, `rdesc`, `dpimg
 (1003, 100015, 3001, '2022-11-03', 'Defective Product', 'Damaged Tools set', 'images/returns/1-161024115610424.jpg'),
 (1004, 100014, 3002, '2022-11-03', 'Shippment Damage', 'screw driver damaged', 'images/returns/samsung-s7-cracked-broken-6654-001.jpg'),
 (1005, 100031, 3012, '2022-11-04', 'Shippment Damage', 'damaged product', 'images/returns/iphone12bat5.png'),
-(1006, 100032, 3010, '2022-11-08', 'Defective Product', 'product damaged while shipping', 'images/returns/5d2899b88feba23242cec25d.jpeg');
+(1006, 100032, 3010, '2022-11-08', 'Defective Product', 'product damaged while shipping', 'images/returns/5d2899b88feba23242cec25d.jpeg'),
+(1007, 100034, 3010, '2023-01-01', 'Defective Product', 'puffed battery', 'images/returns/maxresdefault.jpg');
 
 -- --------------------------------------------------------
 
@@ -395,7 +396,8 @@ INSERT INTO `review` (`cid`, `pid`, `rtitle`, `rdesc`, `rrating`, `rscore`) VALU
 (2, 3011, 'Great display', 'Great display im really linking it', 4, 8),
 (17, 3001, 'Awesome Product', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum sem nec pulvinar faucibus. Curabitur viverra sodales libero. In dictum accumsan massa, a tempor ante vestibulum sed. Quisque nulla magna, placerat at turpis id, porta iaculis mi. Sed vel quam placerat, suscipit dolor vel, malesuada enim. Aliquam pharetra et quam ac accumsan. In interdum tellus elit, nec tincidunt quam commodo ac. Aenean sit amet pharetra urna. In eget metus ultrices nisi viverra dignissim. Praesent vulputate tristique pulvinar. Suspendisse vel ligula vel metus fermentum aliquam. Suspendisse vitae ante orci. Vestibulum auctor tortor quis volutpat fermentum. Sed ultricies porta velit.', 5, 0),
 (17, 3007, 'Good Product', 'Not The Best but good', 3, 10),
-(19, 3012, 'Nice product', 'very good', 4, 5);
+(19, 3012, 'Nice product', 'very good', 4, 5),
+(20, 3010, 'Very good product', 'Very good product', 4, 8);
 
 -- --------------------------------------------------------
 
@@ -589,7 +591,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `document`
@@ -607,7 +609,7 @@ ALTER TABLE `electronics`
 -- AUTO_INCREMENT for table `porder`
 --
 ALTER TABLE `porder`
-  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100034;
+  MODIFY `oid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100035;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -619,7 +621,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `retprod`
 --
 ALTER TABLE `retprod`
-  MODIFY `retid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
+  MODIFY `retid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
 
 --
 -- Constraints for dumped tables

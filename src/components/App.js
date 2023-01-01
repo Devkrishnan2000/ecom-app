@@ -29,6 +29,7 @@ import Analytics from "./analytics";
 import Apart from "./Analytics/apart";
 import Shopforparts from "./shopforparts";
 import Getreturn from "./getreturn";
+import Docnotfound from "./docnotfound";
 
 export default class App extends Component {
   constructor(props) {
@@ -157,6 +158,9 @@ export default class App extends Component {
               </Route>
               <Route path="/return">
                 <Getreturn/>
+              </Route>
+              <Route path="/zdoc">
+                <Docnotfound/>
               </Route>
             </Switch>
           </div>

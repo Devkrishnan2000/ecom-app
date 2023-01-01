@@ -25,20 +25,29 @@ class Docpage extends Component {
         params: { pid: this.props.location.state.pid },
       })
       .then((res) => {
-        this.setState({ dname: res.data["dname"] });
-        this.setState({ ddiff: res.data["ddiff"] });
-        this.setState({ dtime: res.data["dtime"] });
-        this.setState({ dintro: res.data["intro"] });
-        this.setState({vlink:res.data["video"]});
-        axios
-          .get(
-            "http://localhost:80/sem8project/ecom-app/ecom-app/api/getstep.php",
-            { params: { did: res.data["did"] } }
-          )
-          .then((step) => {
-            this.setState({ steps: step.data });
-            this.setState({ dstep: step.data.length });
-          });
+        if(res.data!==null)
+        {
+          this.setState({ dname: res.data["dname"] });
+          this.setState({ ddiff: res.data["ddiff"] });
+          this.setState({ dtime: res.data["dtime"] });
+          this.setState({ dintro: res.data["intro"] });
+          this.setState({vlink:res.data["video"]});
+          axios
+            .get(
+              "http://localhost:80/sem8project/ecom-app/ecom-app/api/getstep.php",
+              { params: { did: res.data["did"] } }
+            )
+            .then((step) => {
+              this.setState({ steps: step.data });
+              this.setState({ dstep: step.data.length });
+              
+            });
+        }
+        else
+        {
+          this.props.history.push("/zdoc");
+        }
+       
       });
   }
   render() {
