@@ -111,7 +111,13 @@ class Login extends Component
                  <h5 style={{alignSelf:"center"}}>ADMIN</h5>
                }
                <form onSubmit={this.login}>
-               <h6 style={{marginLeft:20+"px",marginTop:20+"px"}} >Email</h6>
+                {this.state.isadmin &&
+                   <h6 style={{marginLeft:20+"px",marginTop:20+"px"}} >Username</h6>
+                }
+                 {!this.state.isadmin &&
+                   <h6 style={{marginLeft:20+"px",marginTop:20+"px"}} >Email</h6>
+                }
+              
                {!this.state.isadmin &&
                 <input type='email' className="textbox" style={{marginTop:20+"px"}} name="email" required></input>
                }

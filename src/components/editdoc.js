@@ -28,6 +28,7 @@ class Editdoc extends Component
             this.setState({ddiff:res.data['ddiff']});
             this.setState({doctime:res.data['dtime']});
             this.setState({dintro:res.data['intro']});
+            this.setState({vlink:res.data['video']});
         })
         axios.get("http://localhost:80/sem8project/ecom-app/ecom-app/api/getstep.php",{params:{did:this.props.location.state.did}}).then(res=>{
             this.setState({steps:res.data});
@@ -91,7 +92,7 @@ class Editdoc extends Component
                     </div>  
                     <div>
                         <h6>Documentation Video Link</h6>
-                        <input type='text'  className="textbox" name="vlink" placeholder="Use Embed Link" required ></input>
+                        <input type='text'  className="textbox" name="vlink" placeholder="Use Embed Link" defaultValue={this.state.vlink} required ></input>
                         </div>  
                 </div>
                 <div className="intro">

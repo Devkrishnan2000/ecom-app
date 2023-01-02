@@ -22,6 +22,8 @@ import { withRouter } from "react-router-dom";
             axios.post("http://localhost:80/sem8project/ecom-app/ecom-app/api/addshiper.php",fd).then(res=>{
                 if(res.data===1)
                 alert("User already exists");
+                else
+                alert("Shipper created Sucessfully");
             })
         }
         else

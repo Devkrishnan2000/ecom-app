@@ -15,7 +15,10 @@ if(isset($_SESSION['admin']))
   $filedir ="null";
   if(isset($_FILES['stimg']))
   {
-    $filedir = $dir.basename($_FILES['stimg']['name']);
+    //$filedir = $dir.basename($_FILES['stimg']['name']);
+    $predir = basename($_FILES['stimg']['name']);
+    $rand = random_int(1000,9999);
+    $filedir = $dir.$rand.'_'.$predir;
     
   }
 
